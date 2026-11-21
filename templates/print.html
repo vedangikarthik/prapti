@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist for {{ nick }} – Arhata</title>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; padding: 32px; font-family: "Source Serif 4", Georgia, serif; font-size: 15px; line-height: 1.45; color: #000; background: #fff; }
+    h1, h2 { font-family: "Young Serif", Georgia, serif; font-weight: 400; margin: 0; }
+    h1 { font-size: 28px; }
+    .meta { margin: 6px 0 20px; }
+    .scheme { padding: 16px 0 8px; break-inside: avoid; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 15px; margin: 12px 0 4px; }
+    ul, ol { margin: 0; padding-left: 22px; }
+    li { margin: 2px 0; }
+    .box { display: inline-block; width: 12px; height: 12px; border: 1.5px solid #000; margin-right: 8px; vertical-align: -1px; }
+    .docs { list-style: none; padding-left: 0; }
+    .foot { margin-top: 24px; font-size: 13px; }
+    .noprint { margin-bottom: 20px; }
+    @media print { .noprint { display: none; } body { padding: 0; } }
+  </style>
+</head>
+<body>
+  <p class="noprint"><button onclick="window.print()">Print this page</button></p>
+  <h1>Scholarship checklist: {{ nick }}</h1>
+  <p class="meta">Prepared with Arhata on {{ today }}. “Likely eligible” means the details meet the rules we know of; the scheme authority makes the final decision.</p>
+  {% for s in schemes %}
+  <section class="scheme">
+    <h2>{{ s.name_en }}</h2>
+    <p>{{ s.benefit_text }}. {% if s.deadline %}Last date: {{ nice_date(s.deadline) }}.{% endif %} Apply at {{ s.source_url }}</p>
+    <h3>Documents to bring</h3>
+    <ul class="docs">
+      {% for d in s.documents %}<li><span class="box"></span>{{ d.name }} — {{ d.hint }}</li>{% endfor %}
+    </ul>
+    <h3>Steps</h3>
+    <ol>{% for st in s.steps %}<li>{{ st.title }}. {{ st.detail }}</li>{% endfor %}</ol>
+  </section>
+  {% endfor %}
+  <p class="foot">Never pay anyone to apply. The application is free; Mee Seva charges only the official certificate fee.</p>
+</body>
+</html>

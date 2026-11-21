@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}About – Arhata{% endblock %}
+{% block page_class %}page page-about{% endblock %}
+{% block content %}
+<header class="about-head">
+  <h1 class="about-title">Why Arhata exists</h1>
+  <p class="about-lead">India has hundreds of scholarships for students like you. Many eligible families never claim them: the rules are hard to read, the document list is unclear, and middlemen charge for help that should be free.</p>
+</header>
+
+<section class="about-block" aria-labelledby="how-title">
+  <h2 id="how-title" class="section-title">How it works</h2>
+  <div class="about-steps">
+    <div class="slip about-step">
+      <h3>Tell</h3>
+      <p>Describe yourself in plain words, typed or spoken, in English, Telugu or Hindi. We only ask a quick question when a missing detail would change a result.</p>
+    </div>
+    <div class="slip about-step">
+      <h3>See why</h3>
+      <p>A plain rules engine checks every scheme. Each result shows the rule it rests on and your answer. AI only helps read your message; it never decides.</p>
+    </div>
+    <div class="slip about-step">
+      <h3>Apply and track</h3>
+      <p>Your document checklist, the steps on the official portal, and reminders before the last date, saved on your own phone.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-block about-privacy" aria-labelledby="privacy-title">
+  <h2 id="privacy-title" class="section-title">Our privacy promise</h2>
+  <ul class="promise-list">
+    <li>{{ icon('shield-check', 22) }}<span>We never ask for Aadhaar, PAN, bank, ration card or any ID number. If one is typed by mistake, it is removed before anything reads the message.</span></li>
+    <li>{{ icon('check-square', 22) }}<span>Your tracker and checklist are saved only on your device. There is no account and no login.</span></li>
+    <li>{{ icon('ban', 22) }}<span>No ads, and we never sell or share student data.</span></li>
+  </ul>
+</section>
+
+<section class="about-block" aria-labelledby="pays-title">
+  <h2 id="pays-title" class="section-title">Who pays, and why it stays free</h2>
+  <p class="about-text">Arhata is always free for students. It replaces middlemen who charge ₹500–2,000 per application. The cost is carried by organisations that already spend money to reach these students.</p>
+  <div class="pays-table-wrap">
+    <table class="pays-table">
+      <thead>
+        <tr><th scope="col">Partner</th><th scope="col">What they get</th><th scope="col">How they pay</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">CSR funds</th><td>An outcome report: students reached and rupees of scholarships unlocked for every rupee spent</td><td>Yearly sponsorship of a district</td></tr>
+        <tr><th scope="row">NGOs and education trusts</th><td>Helper mode for volunteers, printable checklists, an impact count</td><td>Low-cost licence per district, often CSR-funded</td></tr>
+        <tr><th scope="row">Mee Seva and service centres</th><td>Correct applications the first time, fewer rejections, more footfall</td><td>Free for them; sponsors cover it</td></tr>
+        <tr><th scope="row">Banks</th><td>Students who need an education loan are pointed to them, clearly marked, never above free schemes</td><td>Referral fee on loan schemes only</td></tr>
+        <tr><th scope="row">State and district government</th><td>A view of which schemes go unclaimed in which district</td><td>Pilot contract to run it statewide</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="about-text about-rules">Partner rules: free schemes are always shown first, partner names appear only in Helper mode and on this page, and no partner ever sees a student's answers.</p>
+  <a class="btn btn-secondary" href="/helper">Open Helper mode {{ icon('arrow-right', 20) }}</a>
+</section>
+
+<section class="about-block" aria-labelledby="sources-title">
+  <h2 id="sources-title" class="section-title">Where the rules come from</h2>
+  <p class="about-text">Only public scheme information, stored as data with the date it was last checked. When a government order changes a limit, one number changes and every result follows.</p>
+  <ul class="source-list">
+    {% for name, url in sources %}
+    <li><a href="{{ url }}" target="_blank" rel="noopener">{{ name }} {{ icon('external-link', 14) }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

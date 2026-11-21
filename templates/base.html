@@ -26,7 +26,7 @@
       <nav class="top-links" aria-label="Primary">
         <a href="/" {% if page == 'find' %}aria-current="page"{% endif %}>{{ t('nav.find') }}</a>
         <a href="/tracker" {% if page == 'tracker' %}aria-current="page"{% endif %}>{{ t('nav.tracker') }}</a>
-        <a href="#" data-soon>{{ t('nav.about') }}</a>
+        <a href="/about" {% if page == 'about' %}aria-current="page"{% endif %}>{{ t('nav.about') }}</a>
       </nav>
       <nav class="lang-switch" aria-label="{{ t('lang.label') }}">
         <a href="/lang/en" lang="en" hreflang="en" {% if lang == 'en' %}aria-current="true"{% endif %}>EN</a>
@@ -64,7 +64,7 @@
       <span>{{ t('nav.tracker') }}</span>
       <span class="nav-dot" aria-hidden="true"></span>
     </a>
-    <a href="#" data-soon>
+    <a href="/about" {% if page == 'about' %}aria-current="page"{% endif %}>
       {{ icon('info', 20) }}
       <span>{{ t('nav.about') }}</span>
     </a>

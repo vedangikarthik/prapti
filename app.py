@@ -1,13 +1,14 @@
+import hmac
 import json
 import os
-from datetime import date
+from datetime import date, datetime
 
 from flask import (Flask, Response, abort, jsonify, redirect, render_template,
                    request, session, url_for)
 
 from engine.extract import PROFILE_KEYS, extract
 from engine.ics import build_ics
-from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, fields_that_matter,
+from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, SCHEMES_PATH, fields_that_matter,
                           format_value, load_schemes, match_all, match_scheme)
 
 app = Flask(__name__)
@@ -314,6 +315,173 @@ def tracker():
             "source_name": s.get("source_name"),
         })
     return render_template("tracker.html", page="tracker", schemes_meta=meta)
+
+
+# ---------- About ----------
+@app.route("/about")
+def about():
+    seen, sources = set(), []
+    for sch in load_schemes():
+        if sch["source_url"] not in seen:
+            seen.add(sch["source_url"])
+            sources.append((sch["source_name"], sch["source_url"]))
+    return render_template("about.html", page="about", sources=sources)
+
+
+# ---------- Helper mode (NGO / Mee Seva operators) ----------
+@app.route("/helper")
+def helper():
+    return render_template("helper.html", page="helper")
+
+
+@app.route("/api/helper-check", methods=["POST"])
+def api_helper_check():
+    data = request.get_json(silent=True) or {}
+    extracted = extract(data.get("text", ""))
+    result = match_all(extracted["profile"], lang="en")
+    upcoming = sorted([m for m in result["likely"] if m["deadline"] and (m["days_left"] or 0) >= 0],
+                      key=lambda m: m["days_left"])
+    return jsonify({
+        "chips": understood_chips(extracted["profile"], "en"),
+        "likely": [{"id": m["id"], "name": m["name_en"]} for m in result["likely"]],
+        "maybe": len(result["maybe"]),
+        "value": result["summary"]["likely_value_inr"],
+        "next_deadline": date.fromisoformat(upcoming[0]["deadline"]).strftime("%-d %b %Y") if upcoming else None,
+        "removed_id": extracted["removed_id"],
+    })
+
+
+@app.route("/helper/print")
+def helper_print():
+    ids = [i for i in (request.args.get("ids") or "").split(",") if i]
+    nick = (request.args.get("nick") or "Student")[:40]
+    schemes = [sch for sch in load_schemes() if sch["id"] in ids]
+    return render_template("print.html", nick=nick, schemes=schemes,
+                           today=date.today().strftime("%-d %b %Y"))
+
+
+# ---------- Scheme editor ----------
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "arhata-demo")
+CHANGELOG_PATH = os.path.join(DATA_DIR, "changelog.json")
+OPS = ["eq", "in", "lte", "gte", "lt", "gt"]
+RULE_FIELDS = ["education_level", "year", "community", "annual_income", "gender", "area",
+               "disability", "marks_percent", "college_type"]
+
+
+def _is_admin():
+    return session.get("admin") is True
+
+
+def _read_log():
+    try:
+        with open(CHANGELOG_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return []
+
+
+def _parse_value(op, raw):
+    raw = (raw or "").strip()
+    def one(v):
+        v = v.strip()
+        if v.lower() in ("true", "false"):
+            return v.lower() == "true"
+        try:
+            return int(v)
+        except ValueError:
+            try:
+                return float(v)
+            except ValueError:
+                return v
+    if op == "in":
+        return [one(v) for v in raw.split(",") if v.strip()]
+    return one(raw)
+
+
+@app.route("/admin/login", methods=["POST"])
+def admin_login():
+    if hmac.compare_digest(request.form.get("password", ""), ADMIN_PASSWORD):
+        session["admin"] = True
+        return redirect(url_for("admin_schemes"))
+    return render_template("admin_login.html", page="admin", error="That password is not right."), 401
+
+
+@app.route("/admin/logout", methods=["POST"])
+def admin_logout():
+    session.pop("admin", None)
+    return redirect(url_for("index"))
+
+
+@app.route("/admin/schemes")
+def admin_schemes():
+    if not _is_admin():
+        return render_template("admin_login.html", page="admin")
+    today = date.today()
+    schemes = load_schemes()
+    for sch in schemes:
+        lv = sch.get("last_verified")
+        sch["stale"] = (not lv) or (today - date.fromisoformat(lv)).days > 90
+    return render_template("admin_list.html", page="admin", schemes=schemes, log=_read_log()[:12],
+                           saved=request.args.get("saved"), default_password=ADMIN_PASSWORD == "arhata-demo")
+
+
+@app.route("/admin/schemes/<scheme_id>", methods=["GET", "POST"])
+def admin_edit(scheme_id):
+    if not _is_admin():
+        return render_template("admin_login.html", page="admin")
+    with open(SCHEMES_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    sch = next((x for x in data["schemes"] if x["id"] == scheme_id), None)
+    if not sch:
+        abort(404)
+    if request.method == "GET":
+        return render_template("admin_edit.html", page="admin", s=sch, fields=RULE_FIELDS, ops=OPS)
+
+    form = request.form
+    changes = []
+    try:
+        deadline = form.get("deadline", "").strip() or None
+        if deadline:
+            date.fromisoformat(deadline)
+        updates = {
+            "benefit_text": form.get("benefit_text", "").strip(),
+            "benefit_max_inr": int(form.get("benefit_max_inr") or 0),
+            "deadline": deadline,
+            "deadline_note": form.get("deadline_note", "").strip(),
+            "source_url": form.get("source_url", "").strip(),
+        }
+        if not updates["source_url"].startswith("https://"):
+            raise ValueError("The official source must be an https:// link.")
+        for k, v in updates.items():
+            if sch.get(k) != v:
+                changes.append(f"{k} {sch.get(k)!r} → {v!r}")
+                sch[k] = v
+        for i, rule in enumerate(sch["rules"]):
+            op = form.get(f"op_{i}", rule["op"])
+            field = form.get(f"field_{i}", rule["field"])
+            if op not in OPS or field not in RULE_FIELDS:
+                raise ValueError("Unknown field or check.")
+            value = _parse_value(op, form.get(f"value_{i}"))
+            text = form.get(f"text_{i}", rule["text_en"]).strip()
+            if "{user_value}" not in text:
+                raise ValueError(f"Rule {i + 1}: keep {{user_value}} in the sentence.")
+            for k, v in (("field", field), ("op", op), ("value", value), ("text_en", text)):
+                if rule.get(k) != v:
+                    changes.append(f"rule {i + 1} {k} {rule.get(k)!r} → {v!r}")
+                    rule[k] = v
+    except ValueError as exc:
+        return render_template("admin_edit.html", page="admin", s=sch, fields=RULE_FIELDS, ops=OPS,
+                               error=str(exc) or "Please check the values."), 400
+
+    sch["last_verified"] = date.today().isoformat()
+    changes.append("marked verified")
+    with open(SCHEMES_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    log = _read_log()
+    log.insert(0, {"when": datetime.now().strftime("%Y-%m-%d %H:%M"), "scheme": sch["name_en"], "changes": changes})
+    with open(CHANGELOG_PATH, "w", encoding="utf-8") as f:
+        json.dump(log[:200], f, ensure_ascii=False, indent=2)
+    return redirect(url_for("admin_schemes", saved=sch["name_en"]))
 
 
 @app.route("/api/extract", methods=["POST"])

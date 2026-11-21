@@ -91,6 +91,50 @@ class TestFlow(unittest.TestCase):
             for lang in ("en", "te", "hi"):
                 self.assertIn(lang, entry, key)
 
+    def test_about_helper_and_print(self):
+        self.assertIn("Who pays", self.c.get("/about").get_data(as_text=True))
+        self.assertEqual(self.c.get("/helper").status_code, 200)
+        r = self.c.post("/api/helper-check", json={"text": "Inter 2nd year BC 1 lakh village, aadhaar 1234 5678 9012"})
+        d = r.get_json()
+        self.assertTrue(d["removed_id"])
+        self.assertIn("ts-postmatric-bc-ebc", [x["id"] for x in d["likely"]])
+        page = self.c.get("/helper/print?nick=Student%201&ids=ts-rtf").get_data(as_text=True)
+        self.assertIn("Documents to bring", page)
+
+    def test_editor_needs_password_and_changes_results(self):
+        import shutil, tempfile
+        from engine import match
+        backup = tempfile.mktemp()
+        shutil.copy(match.SCHEMES_PATH, backup)
+        from pathlib import Path
+        log_backup = Path("data/changelog.json").read_text(encoding="utf-8")
+        try:
+            self.assertNotIn("admin-item", self.c.get("/admin/schemes").get_data(as_text=True))
+            self.assertEqual(self.c.post("/admin/login", data={"password": "wrong"}).status_code, 401)
+            self.c.post("/admin/login", data={"password": "arhata-demo"})
+            form = self.c.get("/admin/schemes/ts-postmatric-bc-ebc").get_data(as_text=True)
+            self.assertIn("Save and mark verified today", form)
+            data = {"benefit_text": "x", "benefit_max_inr": "15000", "deadline": "2026-12-31", "deadline_note": "n",
+                    "source_url": "https://telanganaepass.cgg.gov.in"}
+            rules = match.load_schemes()
+            sch = next(s for s in rules if s["id"] == "ts-postmatric-bc-ebc")
+            for i, rule in enumerate(sch["rules"]):
+                data[f"field_{i}"] = rule["field"]
+                data[f"op_{i}"] = rule["op"]
+                v = rule["value"]
+                data[f"value_{i}"] = ", ".join(v) if isinstance(v, list) else str(v)
+                data[f"text_{i}"] = rule["text_en"]
+            data["value_2"] = "100000"  # rural limit below Lakshmi's ₹1.1L
+            r = self.c.post("/admin/schemes/ts-postmatric-bc-ebc", data=data)
+            self.assertEqual(r.status_code, 302)
+            self.c.post("/find", data={"sample": "lakshmi"})
+            page = self.c.get("/results").get_data(as_text=True)
+            self.assertIn("1 scheme", page)
+        finally:
+            shutil.copy(backup, match.SCHEMES_PATH)
+            Path("data/changelog.json").write_text(log_backup, encoding="utf-8")
+            self.c.post("/admin/logout")
+
     def test_calendar_file(self):
         r = self.c.get("/api/ics/aicte-pragati")
         self.assertEqual(r.status_code, 200)

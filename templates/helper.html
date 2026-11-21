@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Helper mode – Arhata{% endblock %}
+{% block page_class %}page page-helper{% endblock %}
+{% block content %}
+<header class="helper-head">
+  <h1 class="helper-title">Helper mode</h1>
+  <p class="helper-lead">For NGO volunteers, teachers and Mee Seva operators: help one student after another. Each student is saved on this device under a nickname only, never a name or number.</p>
+</header>
+
+<section class="helper-stats" aria-label="Your impact on this device">
+  <div class="stat"><span class="stat-num" data-stat="students">0</span><span class="stat-label">Students helped</span></div>
+  <div class="stat"><span class="stat-num" data-stat="schemes">0</span><span class="stat-label">Schemes matched</span></div>
+  <div class="stat stat-field"><span class="stat-num" data-stat="value">₹0</span><span class="stat-label">Value unlocked a year</span></div>
+  <div class="stat"><span class="stat-num" data-stat="applied">0</span><span class="stat-label">Applications submitted</span></div>
+</section>
+
+<section class="slip helper-new" aria-labelledby="new-title">
+  <div class="slip-body">
+    <h2 id="new-title" class="section-title">New student</h2>
+    <form class="helper-form" data-helper-form>
+      <label class="helper-label" for="h-nick">Nickname</label>
+      <input id="h-nick" class="helper-input" name="nick" autocomplete="off" maxlength="40" placeholder="Student 1 – Inter BC">
+      <label class="helper-label" for="h-text">What the student told you</label>
+      <textarea id="h-text" class="helper-input" name="text" rows="3" required placeholder="Inter 2nd year, BC, father is a farmer, income about 1 lakh, village near Siddipet"></textarea>
+      <p class="ask-hint">Do not type names, phone or ID numbers. Any ID-like number is removed automatically.</p>
+      <button type="submit" class="btn btn-primary">Check schemes {{ icon('arrow-right', 20) }}</button>
+    </form>
+  </div>
+</section>
+
+<section class="helper-list-wrap" aria-labelledby="list-title">
+  <h2 id="list-title" class="section-title">Students on this device</h2>
+  <p class="helper-empty" data-helper-empty>No students yet. Add one above.</p>
+  <div class="helper-list" data-helper-list></div>
+</section>
+
+<aside class="partner-slot">
+  <p class="partner-slot-title">Supported by</p>
+  <p class="partner-slot-box">Partner logo here</p>
+  <p class="partner-slot-note">CSR sponsors and NGOs are credited here and on the About page. They never see students' answers.</p>
+</aside>
+
+<template id="helper-row">
+  <article class="slip helper-row">
+    <div class="helper-row-main">
+      <div class="helper-row-top">
+        <h3 class="helper-nick" data-nick></h3>
+        <span class="helper-value" data-value></span>
+      </div>
+      <ul class="chip-row" data-chips></ul>
+      <p class="helper-schemes" data-schemes></p>
+      <p class="helper-next" data-next></p>
+    </div>
+    <div class="perforation" aria-hidden="true"></div>
+    <div class="helper-row-stub">
+      <label class="track-select"><span class="visually-hidden">Status</span>
+        <select data-status>
+          <option value="checked">Schemes checked</option>
+          <option value="documents">Collecting documents</option>
+          <option value="applied">Applied</option>
+        </select>
+      </label>
+      <a class="btn btn-primary btn-small" data-print target="_blank" rel="noopener">{{ icon('check-square', 18) }}Print checklist</a>
+      <button type="button" class="link-btn track-remove" data-remove>Remove</button>
+    </div>
+  </article>
+</template>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "arhata:helper";
+  function read() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function write(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
+  function inr(n) { return "₹" + Number(n).toLocaleString("en-IN"); }
+  var list = document.querySelector("[data-helper-list]");
+  var tpl = document.getElementById("helper-row");
+  var form = document.querySelector("[data-helper-form]");
+
+  function render() {
+    var rows = read();
+    document.querySelector("[data-helper-empty]").hidden = rows.length > 0;
+    list.innerHTML = "";
+    var schemes = 0, value = 0, applied = 0;
+    rows.forEach(function (r, i) {
+      schemes += r.likely.length;
+      value += r.value;
+      if (r.status === "applied") applied += 1;
+      var n = tpl.content.firstElementChild.cloneNode(true);
+      n.style.setProperty("--i", i);
+      n.querySelector("[data-nick]").textContent = r.nick;
+      n.querySelector("[data-value]").textContent = r.value ? inr(r.value) + " a year" : "";
+      var chips = n.querySelector("[data-chips]");
+      r.chips.forEach(function (c) { var li = document.createElement("li"); li.className = "chip"; li.textContent = c; chips.appendChild(li); });
+      n.querySelector("[data-schemes]").textContent = r.likely.length
+        ? "Likely eligible: " + r.likely.map(function (s) { return s.name; }).join(", ") + "."
+        : "No sure match yet." + (r.maybe ? " " + r.maybe + " might fit with one more detail." : "");
+      n.querySelector("[data-next]").textContent = r.nextDeadline ? "Next last date: " + r.nextDeadline + "." : "";
+      var sel = n.querySelector("[data-status]");
+      sel.value = r.status || "checked";
+      sel.addEventListener("change", function () { var all = read(); all[i].status = sel.value; write(all); render(); });
+      var pr = n.querySelector("[data-print]");
+      if (r.likely.length) pr.href = "/helper/print?nick=" + encodeURIComponent(r.nick) + "&ids=" + r.likely.map(function (s) { return s.id; }).join(",");
+      else pr.remove();
+      n.querySelector("[data-remove]").addEventListener("click", function () { var all = read(); all.splice(i, 1); write(all); render(); });
+      list.appendChild(n);
+    });
+    document.querySelector('[data-stat="students"]').textContent = rows.length;
+    document.querySelector('[data-stat="schemes"]').textContent = schemes;
+    document.querySelector('[data-stat="value"]').textContent = inr(value);
+    document.querySelector('[data-stat="applied"]').textContent = applied;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    var text = form.text.value;
+    var nick = (form.nick.value || "").trim() || "Student " + (read().length + 1);
+    fetch("/api/helper-check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: text }) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var rows = read();
+        rows.unshift({ nick: nick, chips: d.chips, likely: d.likely, maybe: d.maybe, value: d.value, nextDeadline: d.next_deadline, status: "checked", added: new Date().toISOString().slice(0, 10) });
+        write(rows);
+        form.reset();
+        render();
+      })
+      .catch(function () { alert("Could not check right now. Please try again."); })
+      .finally(function () { btn.disabled = false; });
+  });
+  render();
+})();
+</script>
+{% endblock %}

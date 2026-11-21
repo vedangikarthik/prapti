@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Edit {{ s.name_en }} – Arhata{% endblock %}
+{% block page_class %}page page-admin{% endblock %}
+{% block content %}
+<a class="back-link" href="/admin/schemes">{{ icon('arrow-left', 20) }}All schemes</a>
+<h1 class="helper-title">{{ s.name_en }}</h1>
+{% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
+
+<form class="slip admin-form" action="/admin/schemes/{{ s.id }}" method="post">
+  <div class="slip-body">
+    <div class="admin-grid">
+      <label>Benefit text<input name="benefit_text" value="{{ s.benefit_text }}"></label>
+      <label>Most a year (₹, 0 for loans)<input name="benefit_max_inr" type="number" min="0" value="{{ s.benefit_max_inr }}"></label>
+      <label>Last date (YYYY-MM-DD, blank if none)<input name="deadline" value="{{ s.deadline or '' }}" pattern="\d{4}-\d{2}-\d{2}"></label>
+      <label>Official source URL<input name="source_url" type="url" value="{{ s.source_url }}"></label>
+      <label class="admin-wide">Deadline note<input name="deadline_note" value="{{ s.deadline_note }}"></label>
+    </div>
+
+    <h2 class="section-title admin-rules-title">Rules</h2>
+    <p class="helper-lead">Value: a number, a word, true/false, or a comma list for “in”. The sentence is what students read; keep {user_value} where their answer goes.</p>
+    {% for r in s.rules %}
+    <fieldset class="admin-rule">
+      <legend>Rule {{ loop.index }}{% if r.only_if %} (applies only when {% for c in r.only_if %}{{ c.field }} {{ c.op }} {{ c.value if c.value is string else c.value | join('/') }}{{ ' and ' if not loop.last }}{% endfor %}){% endif %}</legend>
+      <div class="admin-rule-row">
+        <label>Field<select name="field_{{ loop.index0 }}">{% for f in fields %}<option value="{{ f }}" {% if f == r.field %}selected{% endif %}>{{ f }}</option>{% endfor %}</select></label>
+        <label>Check<select name="op_{{ loop.index0 }}">{% for o in ops %}<option value="{{ o }}" {% if o == r.op %}selected{% endif %}>{{ o }}</option>{% endfor %}</select></label>
+        <label class="admin-wide">Value<input name="value_{{ loop.index0 }}" value="{{ r.value | join(', ') if r.value is iterable and r.value is not string else (r.value | lower if r.value is sameas true or r.value is sameas false else r.value) }}"></label>
+      </div>
+      <label class="admin-wide">Sentence (English)<input name="text_{{ loop.index0 }}" value="{{ r.text_en }}"></label>
+    </fieldset>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Save and mark verified today</button>
+  </div>
+</form>
+{% endblock %}

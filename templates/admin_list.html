@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Scheme editor – Arhata{% endblock %}
+{% block page_class %}page page-admin{% endblock %}
+{% block content %}
+<header class="admin-head">
+  <h1 class="helper-title">Scheme editor</h1>
+  <p class="helper-lead">Rules live in data/schemes.json. Change a limit or a date here and every result follows, with no code change. Saving marks the scheme as verified today.</p>
+  {% if default_password %}<p class="notice">Demo password in use. Set the ADMIN_PASSWORD environment variable before going live.</p>{% endif %}
+</header>
+
+{% if saved %}<p class="notice" role="status">{{ icon('check-circle', 20) }} Saved {{ saved }}.</p>{% endif %}
+
+<section class="admin-list" aria-label="Schemes">
+  {% for s in schemes %}
+  <a class="slip admin-item" href="/admin/schemes/{{ s.id }}">
+    <span class="admin-name">{{ s.name_en }}</span>
+    <span class="admin-meta">
+      {% if s.stale %}<span class="badge badge-maybe">{{ icon('help-circle', 16) }}Re-verify</span>{% endif %}
+      {% if s.last_verified %}Verified {{ nice_date(s.last_verified) }}{% else %}Never verified{% endif %}
+      · {{ s.rules | length }} rules
+    </span>
+  </a>
+  {% endfor %}
+</section>
+
+<section class="admin-log" aria-labelledby="log-title">
+  <h2 id="log-title" class="section-title">Change log</h2>
+  {% if log %}
+  <ul class="log-list">
+    {% for e in log %}<li><strong>{{ e.when }}</strong> · {{ e.scheme }}: {{ e.changes | join('; ') }}</li>{% endfor %}
+  </ul>
+  {% else %}<p class="helper-lead">No changes yet.</p>{% endif %}
+</section>
+
+<form action="/admin/logout" method="post" class="admin-logout"><button class="link-btn" type="submit">Log out</button></form>
+{% endblock %}

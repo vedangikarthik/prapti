@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Scheme editor – Arhata{% endblock %}
+{% block content %}
+<section class="slip admin-login">
+  <div class="slip-body">
+    <h1 class="helper-title">Scheme editor</h1>
+    <p class="helper-lead">For the people who keep the scheme rules up to date.</p>
+    {% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
+    <form action="/admin/login" method="post" class="helper-form">
+      <label class="helper-label" for="pw">Password</label>
+      <input id="pw" class="helper-input" type="password" name="password" autocomplete="current-password" required>
+      <button class="btn btn-primary" type="submit">Open the editor</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
