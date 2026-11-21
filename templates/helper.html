@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
-{% block title %}Helper mode – Arhata{% endblock %}
+{% block title %}Helper mode – Prapti{% endblock %}
 {% block page_class %}page page-helper{% endblock %}
 {% block content %}
 <header class="helper-head">
@@ -70,7 +70,7 @@
 <script>
 (function () {
   "use strict";
-  var KEY = "arhata:helper";
+  var KEY = "prapti:helper";
   function read() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
   function write(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
   function inr(n) { return "₹" + Number(n).toLocaleString("en-IN"); }

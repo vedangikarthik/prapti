@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#e5e1d8">
-  <meta name="description" content="Arhata (అర్హత, 'eligibility'): tell us about yourself in your own words and see which Telangana and central government scholarships you can likely claim, and why.">
-  <title>{% block title %}Arhata – the scholarships you can claim{% endblock %}</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23456f3a'/%3E%3Ctext x='12' y='17.5' text-anchor='middle' font-family='Georgia,serif' font-size='15' fill='white'%3Eఅ%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="Prapti (ప్రాప్తి, 'receiving what is due'): tell us about yourself in your own words and see which Telangana and central government scholarships you can likely claim, and why.">
+  <title>{% block title %}Prapti – the scholarships you can claim{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23456f3a'/%3E%3Ctext x='12' y='17.5' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='white'%3EP%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Serif+Telugu:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
@@ -19,9 +19,9 @@
   <a class="skip-link" href="#main">{{ t('skip_link') }}</a>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="wordmark" href="/" aria-label="Arhata home">
-        <span class="wordmark-en">Arhata</span>
-        <span class="wordmark-te" lang="te" aria-hidden="true">అర్హత</span>
+      <a class="wordmark" href="/" aria-label="Prapti home">
+        <span class="wordmark-en">Prapti</span>
+        <span class="wordmark-te" lang="te" aria-hidden="true">ప్రాప్తి</span>
       </a>
       <nav class="top-links" aria-label="Primary">
         <a href="/" {% if page == 'find' %}aria-current="page"{% endif %}>{{ t('nav.find') }}</a>
@@ -52,7 +52,7 @@
         <p>{{ t('footer.meaning') }}</p>
         <p class="credits">Pictures: <a href="https://commons.wikimedia.org/w/index.php?curid=102950320">Kakatiya torana, Warangal Fort</a> by Ms Sarah Welch, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=126491456">Dept. of Telugu classroom, Osmania University</a> by Myadam Abhilash, CC0; <a href="https://commons.wikimedia.org/wiki/File:Corridor_in_Ground_floor_of_OU_arts_college.jpg">OU Arts College corridor</a> and <a href="https://commons.wikimedia.org/wiki/File:Architectural_elements_of_OU_college_of_arts_(1).jpg">window</a> by iMahesh, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; all via Wikimedia Commons.</p>
       </div>
-      <p class="footer-name" aria-hidden="true">Arhata</p>
+      <p class="footer-name" aria-hidden="true">Prapti</p>
     </div>
   </footer>
 
@@ -73,6 +73,6 @@
   </nav>
 
   <div class="toast" role="status" aria-live="polite" hidden></div>
-  <script>window.ARHATA_T = {{ js_text | tojson }}; window.ARHATA_LANG = {{ lang | tojson }};</script>
+  <script>window.PRAPTI_T = {{ js_text | tojson }}; window.PRAPTI_LANG = {{ lang | tojson }};</script>
 </body>
 </html>

@@ -1,9 +1,9 @@
-// Arhata client scripts: rotating examples, voice input, edit panel, checklist, tracker.
+// Prapti client scripts: rotating examples, voice input, edit panel, checklist, tracker.
 (function () {
   "use strict";
 
   function T(key, vars) {
-    var dict = window.ARHATA_T || {};
+    var dict = window.PRAPTI_T || {};
     var s = dict[key] != null ? dict[key] : key;
     if (vars) Object.keys(vars).forEach(function (k) { s = s.split("{" + k + "}").join(vars[k]); });
     return s;
@@ -145,7 +145,7 @@
   // ---------- Scheme detail: checklist ----------
   var list = document.querySelector("[data-checklist]");
   if (list) {
-    var key = "arhata:docs:" + list.dataset.checklist;
+    var key = "prapti:docs:" + list.dataset.checklist;
     var saved = store(key) || [];
     var boxes = list.querySelectorAll("input[type=checkbox]");
     var progressText = document.querySelector("[data-doc-progress]");
@@ -171,7 +171,7 @@
   var trackBtn = document.querySelector("[data-track]");
   var head = document.querySelector("[data-scheme-id]");
   if (trackBtn && head) {
-    var tracked = store("arhata:tracker") || [];
+    var tracked = store("prapti:tracker") || [];
     var id = head.dataset.schemeId;
     function setTracked(isTracked) {
       trackBtn.disabled = isTracked;
@@ -179,11 +179,11 @@
     }
     setTracked(tracked.some(function (t) { return t.id === id; }));
     trackBtn.addEventListener("click", function () {
-      tracked = store("arhata:tracker") || [];
+      tracked = store("prapti:tracker") || [];
       if (!tracked.some(function (t) { return t.id === id; })) {
         tracked.push({ id: id, name: head.dataset.schemeName, deadline: head.dataset.deadline || null,
                        status: "not_started", added: new Date().toISOString().slice(0, 10) });
-        store("arhata:tracker", tracked);
+        store("prapti:tracker", tracked);
       }
       setTracked(true);
       toast(T("det.added"));
@@ -199,7 +199,7 @@
 
   // ---------- Nav dot: any tracked deadline within 7 days ----------
   var dot = document.querySelector(".nav-dot");
-  var all = store("arhata:tracker") || [];
+  var all = store("prapti:tracker") || [];
   var soon = all.some(function (t) {
     if (!t.deadline || t.status === "received") return false;
     var days = (new Date(t.deadline) - new Date()) / 86400000;

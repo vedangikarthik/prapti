@@ -1,8 +1,8 @@
-# Arhata (అర్హత) — the scholarships you can claim
+# Prapti (ప్రాప్తి · प्राप्ति) — receive what's yours
 
 **ACE Builders Hackathon 2026 · Problem Statement 5: Claim What's Yours**
 
-*Arhata* is Telugu for "eligibility". A student from a low-income family in Telangana describes their life in plain words (typed or spoken, in English, Telugu or Hindi). Arhata shows which government scholarships they are **likely eligible** for, the exact rule behind every match, a personal document checklist, the steps on the official portal, and reminders before each last date.
+*Prapti* (ప్రాప్తి in Telugu, प्राप्ति in Hindi) means "receiving what is due to you". A student from a low-income family in Telangana describes their life in plain words (typed or spoken, in English, Telugu or Hindi). Prapti shows which government scholarships they are **likely eligible** for, the exact rule behind every match, a personal document checklist, the steps on the official portal, and reminders before each last date.
 
 ## Who it is for
 
@@ -10,7 +10,7 @@ Students from Class 9 to PG in Telangana whose families earn under about ₹8 la
 
 ## What it does
 
-| Requirement in the brief | Where it is in Arhata |
+| Requirement in the brief | Where it is in Prapti |
 |---|---|
 | Plain-language input, typed or spoken, regional language | Home page text box with voice input (te-IN / hi-IN / en-IN); offline reader for English, Telugu and Hindi; optional Claude reading when an API key is set |
 | Matching that shows its reasoning | A plain rules engine (`engine/match.py`). Every result lists each rule as a sentence with the student's own answer: "Family income up to ₹1,50,000 a year (rural), you said about ₹1,10,000" |
@@ -29,7 +29,7 @@ Students from Class 9 to PG in Telangana whose families earn under about ₹8 la
 
 ## Who pays
 
-Arhata is free for students and replaces middlemen who charge ₹500–2,000 per application. CSR funds sponsor districts and get an outcome report. NGOs and Mee Seva centres use **Helper mode** (`/helper`): one student after another under nicknames, impact counts, and a printable checklist for students without phones. Banks pay referral fees on loan schemes only, never ranked above free schemes. State and district governments can run it as a pilot. Full table on `/about`.
+Prapti is free for students and replaces middlemen who charge ₹500–2,000 per application. CSR funds sponsor districts and get an outcome report. NGOs and Mee Seva centres use **Helper mode** (`/helper`): one student after another under nicknames, impact counts, and a printable checklist for students without phones. Banks pay referral fees on loan schemes only, never ranked above free schemes. State and district governments can run it as a pilot. Full table on `/about`.
 
 ## Run it
 
@@ -45,14 +45,14 @@ Optional settings:
 
 | Variable | What it does |
 |---|---|
-| `ANTHROPIC_API_KEY` | Turns on AI reading of the student's message (Claude, structured JSON, low effort). Without it the offline reader is used. `ARHATA_AI=off` forces offline. |
-| `ADMIN_PASSWORD` | Password for the scheme editor. The demo default is `arhata-demo`; change it before any public use. |
+| `ANTHROPIC_API_KEY` | Turns on AI reading of the student's message (Claude, structured JSON, low effort). Without it the offline reader is used. `PRAPTI_AI=off` forces offline. |
+| `ADMIN_PASSWORD` | Password for the scheme editor. The demo default is `prapti-demo`; change it before any public use. |
 | `SECRET_KEY` | Signs the session cookie. Set a long random value in production. |
 
 Run the tests:
 
 ```bash
-ARHATA_AI=off python -m unittest discover -s tests -t .
+PRAPTI_AI=off python -m unittest discover -s tests -t .
 ```
 
 ## How it is built
@@ -86,4 +86,4 @@ Telangana ePASS Post-Matric (SC/ST, BC/EBC, Minorities), Reimbursement of Tuitio
 
 Photographs from Wikimedia Commons: Kakatiya torana at Warangal Fort by Ms Sarah Welch (CC0); Department of Telugu classroom, Osmania University by Myadam Abhilash (CC0); Osmania University Arts College corridor and window by iMahesh (CC BY-SA 4.0). Typefaces: Young Serif, Source Serif 4, Noto Serif Telugu, Noto Serif Devanagari (Google Fonts, OFL).
 
-*Arhata is a free guide, not a government website. Final eligibility is decided by the scheme authority. Never pay anyone to apply.*
+*Prapti is a free guide, not a government website. Final eligibility is decided by the scheme authority. Never pay anyone to apply.*

@@ -1,7 +1,7 @@
 import os
 import unittest
 
-os.environ["ARHATA_AI"] = "off"  # tests never call the API
+os.environ["PRAPTI_AI"] = "off"  # tests never call the API
 
 try:
     from app import app
@@ -111,7 +111,7 @@ class TestFlow(unittest.TestCase):
         try:
             self.assertNotIn("admin-item", self.c.get("/admin/schemes").get_data(as_text=True))
             self.assertEqual(self.c.post("/admin/login", data={"password": "wrong"}).status_code, 401)
-            self.c.post("/admin/login", data={"password": "arhata-demo"})
+            self.c.post("/admin/login", data={"password": "prapti-demo"})
             form = self.c.get("/admin/schemes/ts-postmatric-bc-ebc").get_data(as_text=True)
             self.assertIn("Save and mark verified today", form)
             data = {"benefit_text": "x", "benefit_max_inr": "15000", "deadline": "2026-12-31", "deadline_note": "n",

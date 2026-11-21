@@ -14,7 +14,7 @@ from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, SCHEMES_PATH, fiel
 app = Flask(__name__)
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 180  # remember language and answers for 6 months
 # The session only holds the student's answers (never ID numbers) on their own device.
-app.secret_key = os.environ.get("SECRET_KEY", "arhata-dev-only-change-me")
+app.secret_key = os.environ.get("SECRET_KEY", "prapti-dev-only-change-me")
 
 # Options for the "Edit my details" form (value, label).
 FIELD_OPTIONS = {
@@ -361,7 +361,7 @@ def helper_print():
 
 
 # ---------- Scheme editor ----------
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "arhata-demo")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "prapti-demo")
 CHANGELOG_PATH = os.path.join(DATA_DIR, "changelog.json")
 OPS = ["eq", "in", "lte", "gte", "lt", "gt"]
 RULE_FIELDS = ["education_level", "year", "community", "annual_income", "gender", "area",
@@ -422,7 +422,7 @@ def admin_schemes():
         lv = sch.get("last_verified")
         sch["stale"] = (not lv) or (today - date.fromisoformat(lv)).days > 90
     return render_template("admin_list.html", page="admin", schemes=schemes, log=_read_log()[:12],
-                           saved=request.args.get("saved"), default_password=ADMIN_PASSWORD == "arhata-demo")
+                           saved=request.args.get("saved"), default_password=ADMIN_PASSWORD == "prapti-demo")
 
 
 @app.route("/admin/schemes/<scheme_id>", methods=["GET", "POST"])
@@ -514,7 +514,7 @@ def api_ics(scheme_id):
     if not ics:
         abort(404)
     return Response(ics, mimetype="text/calendar",
-                    headers={"Content-Disposition": f"attachment; filename=arhata-{scheme_id}.ics"})
+                    headers={"Content-Disposition": f"attachment; filename=prapti-{scheme_id}.ics"})
 
 
 @app.errorhandler(404)

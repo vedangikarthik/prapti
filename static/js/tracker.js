@@ -1,9 +1,9 @@
-// Arhata tracker: everything is stored on this device (localStorage), nothing is sent anywhere.
+// Prapti tracker: everything is stored on this device (localStorage), nothing is sent anywhere.
 (function () {
   "use strict";
 
   function T(key, vars) {
-    var dict = window.ARHATA_T || {};
+    var dict = window.PRAPTI_T || {};
     var s = dict[key] != null ? dict[key] : key;
     if (vars) Object.keys(vars).forEach(function (k) { s = s.split("{" + k + "}").join(vars[k]); });
     return s;
@@ -40,12 +40,12 @@
   }
 
   function niceDate(iso) {
-    var loc = { te: "te-IN", hi: "hi-IN" }[window.ARHATA_LANG] || "en-IN";
+    var loc = { te: "te-IN", hi: "hi-IN" }[window.PRAPTI_LANG] || "en-IN";
     return new Date(iso + "T00:00:00").toLocaleDateString(loc, { day: "numeric", month: "short", year: "numeric" });
   }
 
   function docsDone(id) {
-    return read("arhata:docs:" + id, []);
+    return read("prapti:docs:" + id, []);
   }
 
   function nextStep(item, m, done) {
@@ -61,7 +61,7 @@
   }
 
   function render() {
-    var items = read("arhata:tracker", []);
+    var items = read("prapti:tracker", []);
     list.innerHTML = "";
     empty.hidden = items.length > 0;
     tools.hidden = items.length === 0;
@@ -131,7 +131,7 @@
       if (deadline && left != null && left >= 0) ics.href = "/api/ics/" + item.id; else ics.remove();
 
       node.querySelector("[data-remove]").addEventListener("click", function () {
-        write("arhata:tracker", read("arhata:tracker", []).filter(function (t) { return t.id !== item.id; }));
+        write("prapti:tracker", read("prapti:tracker", []).filter(function (t) { return t.id !== item.id; }));
         render();
       });
 
@@ -153,9 +153,9 @@
   }
 
   function setStatus(id, status) {
-    var items = read("arhata:tracker", []);
+    var items = read("prapti:tracker", []);
     items.forEach(function (t) { if (t.id === id) { t.status = status; t.updated = new Date().toISOString().slice(0, 10); } });
-    write("arhata:tracker", items);
+    write("prapti:tracker", items);
     render();
   }
 
@@ -165,8 +165,8 @@
 
   function remind() {
     if (!("Notification" in window) || Notification.permission !== "granted") return;
-    var sent = read("arhata:reminded", {});
-    read("arhata:tracker", []).forEach(function (t) {
+    var sent = read("prapti:reminded", {});
+    read("prapti:tracker", []).forEach(function (t) {
       if (t.status === "received" || t.status === "rejected") return;
       var m = meta[t.id];
       var left = daysLeft(m ? m.deadline : t.deadline);
@@ -180,7 +180,7 @@
         new Notification((m ? m.name : t.name), { body: left === 0 ? T("dl.today") : T("tr.notice_left", { n: left }) });
       } catch (e) {}
     });
-    write("arhata:reminded", sent);
+    write("prapti:reminded", sent);
   }
 
   function updateNotifyButton() {

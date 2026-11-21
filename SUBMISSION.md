@@ -1,14 +1,14 @@
 # Submission text (copy into the hackathon form)
 
-**Project name:** Arhata (అర్హత) — the scholarships you can claim
+**Project name:** Prapti (ప్రాప్తి · प्राप्ति) — receive what's yours
 
 **Problem statement:** PS5 · Citizens and Public Services · Claim What's Yours
 
 **One-line description:**
-A student in Telangana describes their life in plain words (typed or spoken, in Telugu, Hindi or English) and Arhata shows which scholarships they are likely eligible for, the exact rule behind each match, the documents to collect, the steps on the official portal, and reminders before every last date.
+A student in Telangana describes their life in plain words (typed or spoken, in Telugu, Hindi or English) and Prapti shows which scholarships they are likely eligible for, the exact rule behind each match, the documents to collect, the steps on the official portal, and reminders before every last date.
 
 **Description (about 150 words):**
-Every year, eligible students in Telangana miss scholarships because the rules are scattered and hard to read, the document list is unclear, and middlemen charge for help that should be free. Arhata asks for nothing but plain words, never an ID number. It reads the message (offline, or with Claude when a key is set) and asks only the few questions that would change a result. A plain rules engine then checks 10 Telangana and central schemes: ePASS, fee reimbursement, NMMS, Central Sector, AICTE Pragati and Saksham, and PM-Vidyalaxmi. Every match shows its rule and the student's own answer. The result is a personal checklist, portal steps, and a tracker with reminders, all in Telugu, Hindi or English. Rules are stored as editable data with a last-verified date. It is free for students; CSR funds, NGOs and Mee Seva centres pay through Helper mode, which includes printable checklists.
+Every year, eligible students in Telangana miss scholarships because the rules are scattered and hard to read, the document list is unclear, and middlemen charge for help that should be free. Prapti asks for nothing but plain words, never an ID number. It reads the message (offline, or with Claude when a key is set) and asks only the few questions that would change a result. A plain rules engine then checks 10 Telangana and central schemes: ePASS, fee reimbursement, NMMS, Central Sector, AICTE Pragati and Saksham, and PM-Vidyalaxmi. Every match shows its rule and the student's own answer. The result is a personal checklist, portal steps, and a tracker with reminders, all in Telugu, Hindi or English. Rules are stored as editable data with a last-verified date. It is free for students; CSR funds, NGOs and Mee Seva centres pay through Helper mode, which includes printable checklists.
 
 **Team:** (fill in your names / solo)
 

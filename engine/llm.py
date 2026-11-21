@@ -4,7 +4,7 @@ The AI only *reads* the message. It never decides eligibility: that stays in
 engine/match.py, driven by data/schemes.json.
 
 Runs only when Anthropic credentials are configured (ANTHROPIC_API_KEY or
-ANTHROPIC_AUTH_TOKEN, or ARHATA_AI=on for an `ant auth login` profile).
+ANTHROPIC_AUTH_TOKEN, or PRAPTI_AI=on for an `ant auth login` profile).
 Any problem (no SDK, no credentials, timeout, refusal) returns None and the
 offline parser in engine/extract.py is used instead.
 """
@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import os
 
-MODEL = os.environ.get("ARHATA_MODEL", "claude-opus-5-5")
+MODEL = os.environ.get("PRAPTI_MODEL", "claude-opus-5-5")
 
 LEVELS = ["class_9", "class_10", "inter", "iti_polytechnic", "degree", "professional", "pg"]
 COMMUNITIES = ["SC", "ST", "BC", "EBC", "Minority", "OC"]
@@ -58,7 +58,7 @@ Fill a field only when the message states it or makes it unmistakable; otherwise
 
 
 def _enabled() -> bool:
-    flag = os.environ.get("ARHATA_AI", "").lower()
+    flag = os.environ.get("PRAPTI_AI", "").lower()
     if flag in ("off", "0", "false"):
         return False
     return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN") or flag in ("on", "1", "true"))
