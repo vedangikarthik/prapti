@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% from "_scheme_card.html" import badge, rule_icon with context %}
+{% block title %}{{ s.name_en }} – Hakku{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ '/results' if has_profile else '/' }}">{{ icon('arrow-left', 20) }}{{ 'All my schemes' if has_profile else 'Home' }}</a>
+
+<header class="detail-head" data-scheme-id="{{ s.id }}" data-scheme-name="{{ s.name_en }}" data-deadline="{{ s.deadline or '' }}">
+  {% if has_profile %}{{ badge(m.status) }}{% endif %}
+  <h1 class="detail-title">{{ s.name_en }}</h1>
+  <p class="detail-runby">{{ icon('landmark', 16) }}{{ 'Telangana Government' if s.run_by == 'Telangana' else 'Government of India' }} · {{ s.category | capitalize }}</p>
+  <p class="detail-benefit">{{ s.benefit_text }}</p>
+  <p class="detail-summary">{{ s.summary_en }}</p>
+</header>
+
+{% if has_profile %}
+<section class="detail-section" aria-labelledby="why-title">
+  <h2 id="why-title" class="section-title">
+    {% if m.status == 'likely' %}Why we think you qualify{% elif m.status == 'maybe' %}What we still need to check{% else %}Why it's not a match right now{% endif %}
+  </h2>
+  <ul class="rule-list">
+    {% for r in m.reasons %}
+    <li class="rule-row">{{ rule_icon(r.status) }}<span>{{ r.text }}</span></li>
+    {% endfor %}
+  </ul>
+  {% if m.status == 'maybe' %}
+  <a class="btn btn-secondary btn-block" href="/results#edit-panel">Add {{ m.missing_labels | join(' and ') }}</a>
+  {% endif %}
+</section>
+{% endif %}
+
+<section class="deadline-box {% if m.days_left is not none and 0 <= m.days_left <= 7 %}deadline-box-urgent{% endif %}" aria-labelledby="dl-title">
+  <div class="deadline-main">
+    {{ icon('clock', 24) }}
+    <div>
+      <h2 id="dl-title" class="deadline-title">
+        {% if s.deadline and m.days_left is not none and m.days_left >= 0 %}
+          Apply by {{ nice_date(s.deadline) }}
+          <span class="days-left">{{ m.days_left }} day{{ '' if m.days_left == 1 else 's' }} left</span>
+        {% elif s.deadline %}Closed for this year
+        {% else %}No fixed last date{% endif %}
+      </h2>
+      {% if s.deadline_note %}<p class="deadline-note">{{ s.deadline_note }}</p>{% endif %}
+    </div>
+  </div>
+  <div class="deadline-actions">
+    <button type="button" class="btn btn-primary" data-track>{{ icon('bookmark-plus', 20) }}Add to my tracker</button>
+    {% if s.deadline and m.days_left is not none and m.days_left >= 0 %}
+    <a class="btn btn-secondary" href="/api/ics/{{ s.id }}" download>{{ icon('calendar-plus', 20) }}Add to phone calendar</a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="detail-section" aria-labelledby="docs-title">
+  <div class="section-head">
+    <h2 id="docs-title" class="section-title">Your document checklist</h2>
+    <span class="progress-text" data-doc-progress>0 of {{ m.documents|length }} ready</span>
+  </div>
+  <div class="progress"><span class="progress-bar" data-doc-bar></span></div>
+  <ul class="checklist" data-checklist="{{ s.id }}">
+    {% for d in m.documents %}
+    <li class="check-item">
+      <label>
+        <input type="checkbox" value="{{ loop.index0 }}">
+        <span class="check-box" aria-hidden="true">{{ icon('check-circle', 16) }}</span>
+        <span class="check-text">
+          <span class="check-name">{{ d.name }}</span>
+          <span class="check-hint">{{ d.hint }}</span>
+        </span>
+      </label>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="detail-section" aria-labelledby="steps-title">
+  <h2 id="steps-title" class="section-title">How to apply — step by step</h2>
+  <ol class="steps">
+    {% for st in s.steps %}
+    <li class="step">
+      <span class="step-num" aria-hidden="true">{{ loop.index }}</span>
+      <div class="step-body">
+        <h3 class="step-title">{{ st.title }}</h3>
+        <p class="step-detail">{{ st.detail }}</p>
+        {% if st.link %}<a class="btn btn-secondary btn-small" href="{{ st.link }}" target="_blank" rel="noopener">Open official portal {{ icon('external-link', 16) }}</a>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="detail-section" aria-labelledby="after-title">
+  <h2 id="after-title" class="section-title">After you apply</h2>
+  <p class="after-text">{{ s.after_apply }}</p>
+</section>
+
+<aside class="source-box">
+  <p>Source: <a href="{{ s.source_url }}" target="_blank" rel="noopener">{{ s.source_name }} {{ icon('external-link', 14) }}</a></p>
+  <p>{% if s.last_verified %}Last verified: {{ nice_date(s.last_verified) }}{% else %}Not yet verified — check the official site before applying{% endif %}</p>
+</aside>
+
+<a class="btn btn-secondary btn-block share-btn"
+   href="https://wa.me/?text={{ (s.name_en ~ ' – official details: ' ~ s.source_url ~ '  (found on Hakku, a free guide. Never pay anyone to apply.)') | urlencode }}"
+   target="_blank" rel="noopener">{{ icon('message-circle', 20) }}Send to WhatsApp</a>
+{% endblock %}

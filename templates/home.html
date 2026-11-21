@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<section class="hero">
+  <h1 class="t-display">Find the scholarships you can claim.</h1>
+  <p class="lede">Tell us about yourself in your own words. No forms, no ID numbers, free forever.</p>
+
+  <form class="ask" action="/find" method="post" data-ask>
+    <label class="visually-hidden" for="ask-text">Describe your situation</label>
+    <div class="ask-box">
+      <textarea id="ask-text" name="text" rows="5" required
+        data-examples='["I&#39;m in Inter 2nd year in Warangal, my father is a daily wage worker, we are BC, income around 1 lakh.", "నేను డిగ్రీ మొదటి సంవత్సరం, మా ఊరు నల్గొండ, మేము SC, మా ఆదాయం 80 వేలు.", "मैं हैदराबाद में B.Tech कर रही हूँ, हम minority हैं, family income 1.5 लाख है।"]'
+        placeholder="I'm in Inter 2nd year in Warangal, my father is a daily wage worker, we are BC, income around 1 lakh.">{{ text }}</textarea>
+      <p class="ask-hint">Say your class or course, community, family income and where you live. Skip anything you don't know.</p>
+    </div>
+
+    <div class="mic-row" data-mic-row hidden>
+      <button type="button" class="mic" data-mic aria-pressed="false" aria-label="Tap and speak">
+        {{ icon('mic', 24) }}
+      </button>
+      <span class="mic-label" data-mic-label>Tap and speak</span>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Find my schemes</button>
+  </form>
+</section>
+
+<section class="samples" aria-labelledby="samples-title">
+  <h2 id="samples-title" class="section-title">Or try a sample student</h2>
+  <div class="sample-grid">
+    {% for s in samples %}
+    <form action="/find" method="post" class="sample-form">
+      <input type="hidden" name="sample" value="{{ s.id }}">
+      <button type="submit" class="sample-card">
+        <span class="sample-avatar" aria-hidden="true">{{ s.name[0] }}</span>
+        <span class="sample-text">
+          <span class="sample-name">{{ s.name }}</span>
+          <span class="sample-blurb">{{ s.blurb }}</span>
+        </span>
+        {{ icon('arrow-right', 20, 'sample-arrow') }}
+      </button>
+    </form>
+    {% endfor %}
+  </div>
+</section>
+
+<ul class="trust" aria-label="Our promise">
+  <li>{{ icon('shield-check', 20) }}<span>No ID numbers needed</span></li>
+  <li>{{ icon('landmark', 20) }}<span>Official sources only</span></li>
+  <li>{{ icon('ban', 20) }}<span>Never pay a middleman</span></li>
+</ul>
+{% endblock %}
