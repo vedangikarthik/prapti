@@ -1,0 +1,356 @@
+{
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/my/profiles",
+      "handler": "profiles-1",
+      "auth_required": false,
+      "group": "Profiles",
+      "request_shape": "{raw_situation_text: string, input_method: string, input_language: string, preferred_language?: string}",
+      "response_shape": "Profile",
+      "description": "Creates or updates this session's anonymous profile from one typed or transcribed sentence: it redacts ID-like numbers, sends the sentence to OpenAI only to extract class level, institution type, state and income band with confidence flags, drops low-confidence and out-of-set values, sets out_of_scope when class is not 11 or 12, and runs the deterministic rules engine to recalculate results; used by the 'Tell Us About Your Situation' screen."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/profiles/{profileId}",
+      "handler": "profiles-2",
+      "auth_required": false,
+      "group": "Profiles",
+      "request_shape": "",
+      "response_shape": "Profile",
+      "description": "Returns this session's profile with its unanswered fields so the follow-up flow asks only the highest-value missing question; used by the follow-up flow, results and deadline screens."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/profiles/demo",
+      "handler": "demo-mode-4",
+      "auth_required": false,
+      "group": "Demo Mode",
+      "request_shape": "{persona_key: string}",
+      "response_shape": "Profile",
+      "description": "Loads the chosen fictional demo persona into this session as a profile with is_demo true, replacing the session's current profile, so judges can run the demo without typing; used by the Demo Mode switch."
+    },
+    {
+      "method": "GET",
+      "path": "/api/demo-personas",
+      "handler": "demo-mode-5",
+      "auth_required": false,
+      "group": "Demo Mode",
+      "request_shape": "",
+      "response_shape": "{persona_key: string, display_name: string, summary: string}[]",
+      "description": "Lists the preloaded fictional demo personas with a label and a one-line summary, without any real data, for the Demo Mode switch."
+    },
+    {
+      "method": "POST",
+      "path": "/api/speech-transcriptions",
+      "handler": "speech-6",
+      "auth_required": false,
+      "group": "Speech",
+      "request_shape": "{audio_base64: string, language: string}",
+      "response_shape": "{transcript: string, language: string}",
+      "description": "Sends one microphone recording to OpenAI speech-to-text in English or the regional language and returns the transcript for the person to confirm on the 'Tell Us About Your Situation' screen; the audio is not stored."
+    },
+    {
+      "method": "GET",
+      "path": "/api/schemes",
+      "handler": "schemes-7",
+      "auth_required": false,
+      "group": "Schemes",
+      "request_shape": "",
+      "response_shape": "Scheme[]",
+      "description": "Lists the curated active schemes for the configured state with name, short description, official source, last_verified_at and deadline, for the deadline tracker and catalogue views."
+    },
+    {
+      "method": "GET",
+      "path": "/api/schemes/{schemeId}",
+      "handler": "schemes-8",
+      "auth_required": false,
+      "group": "Schemes",
+      "request_shape": "",
+      "response_shape": "Scheme",
+      "description": "Returns one scheme's full detail with plain-language explanation, estimated benefit, common rejection risks, official_url and 'Last verified on' date, used by the Scheme Detail screen."
+    },
+    {
+      "method": "GET",
+      "path": "/api/schemes/{schemeId}/eligibility-rules",
+      "handler": "schemes-9",
+      "auth_required": false,
+      "group": "Schemes",
+      "request_shape": "",
+      "response_shape": "EligibilityRule[]",
+      "description": "Returns the editable eligibility rules for one scheme with each rule's plain-language text, reason and verification question, so the Scheme Detail screen can show why it matched and what still needs verification."
+    },
+    {
+      "method": "GET",
+      "path": "/api/schemes/{schemeId}/required-documents",
+      "handler": "required-documents-10",
+      "auth_required": false,
+      "group": "Required Documents",
+      "request_shape": "",
+      "response_shape": "RequiredDocument[]",
+      "description": "Lists the documents a scheme asks for, in sort order, so the Scheme Detail and Document Checklist screens can show them before anything is saved."
+    },
+    {
+      "method": "GET",
+      "path": "/api/schemes/{schemeId}/application-steps",
+      "handler": "application-steps-11",
+      "auth_required": false,
+      "group": "Application Steps",
+      "request_shape": "",
+      "response_shape": "ApplicationStep[]",
+      "description": "Lists the numbered official application steps for a scheme in step_number order, so the Scheme Detail and Document Checklist screens can show how to apply."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/eligibility-results",
+      "handler": "eligibility-results-12",
+      "auth_required": false,
+      "group": "Eligibility Results",
+      "request_shape": "header X-Session-Token: string; ?status=likely_eligible|may_qualify|not_currently_eligible (optional)",
+      "response_shape": "EligibilityResult[]",
+      "description": "Returns this session's result for every scheme, with status, previous_status and changed_rule_id, so the Results screen can group them as Likely eligible, May qualify and Not currently eligible; the optional status filter returns one group only."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/eligibility-results/{eligibilityResultId}",
+      "handler": "eligibility-results-13",
+      "auth_required": false,
+      "group": "Eligibility Results",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "EligibilityResult",
+      "description": "Returns one result with matched_rule_ids, failed_rule_ids, unverified_rule_ids, unverified_requirements and the plain-language reason_text and why_not_fit, so the Scheme Detail screen can show why it matched and what still needs verification."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/checklists",
+      "handler": "checklists-14",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "Checklist[]",
+      "description": "Lists the checklists this session has saved, one per scheme, for the Document Checklist and Application Steps screen."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/checklists",
+      "handler": "checklists-15",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string; {scheme_id: string}",
+      "response_shape": "Checklist",
+      "description": "Saves a personalised checklist for one scheme from the Scheme Detail screen: it copies that scheme's required documents and application steps into checklist_items as not done, sets progress_status to not_started and eligibility_category from the current result, and rejects a second save of the same scheme."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/checklists/{checklistId}",
+      "handler": "checklists-16",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "Checklist & {items: ChecklistItem[]}",
+      "description": "Returns one saved checklist with its document and step items, for the tick-off list and progress buttons on the Document Checklist and Application Steps screen."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/my/checklists/{checklistId}",
+      "handler": "checklists-17",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "{deleted: boolean}",
+      "description": "Removes a saved checklist and its items when the student stops tracking that scheme from the checklist screen."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/checklists/{checklistId}/mark-documents-ready",
+      "handler": "checklists-18",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "Checklist",
+      "description": "Moves progress_status from not_started to documents_ready and stamps status_updated_at, rejecting the call from any other status; used by the Deadline and Progress Tracker screen."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/checklists/{checklistId}/mark-applied",
+      "handler": "checklists-19",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "Checklist",
+      "description": "Moves progress_status from documents_ready to applied and stamps status_updated_at, rejecting the call from any other status; used by the Deadline and Progress Tracker screen."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/checklists/{checklistId}/mark-awaiting-outcome",
+      "handler": "checklists-20",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "Checklist",
+      "description": "Moves progress_status from applied to awaiting_outcome and stamps status_updated_at, rejecting the call from any other status; used by the Deadline and Progress Tracker screen."
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/my/checklists/{checklistId}/checklist-items/{checklistItemId}",
+      "handler": "checklist-items-21",
+      "auth_required": false,
+      "group": "Checklist Items",
+      "request_shape": "header X-Session-Token: string; {is_done: boolean}",
+      "response_shape": "ChecklistItem",
+      "description": "Ticks or unticks one document or step and sets completed_at when it is ticked, for the tick-off boxes on the Document Checklist screen."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/checklists/{checklistId}/share-summary",
+      "handler": "checklists-22",
+      "auth_required": false,
+      "group": "Checklists",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "{text: string}",
+      "description": "Builds a plain-text summary of the scheme name, official link, deadline, documents and steps, with no income, class, school or identity details, for the Share this checklist with family button."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/progress-tracker",
+      "handler": "progress-tracker-23",
+      "auth_required": false,
+      "group": "Progress Tracker",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "{checklist_id: string, scheme_id: string, scheme_name: string, deadline: string, days_until_deadline: number, progress_status: string}[]",
+      "description": "Returns each saved checklist with its scheme deadline, days_until_deadline (calendar days from today to the deadline, negative once it has passed) and progress_status, for the countdowns and tracker on the Deadline and Progress Tracker screen."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/follow-up-answers",
+      "handler": "follow-up-answers-24",
+      "auth_required": false,
+      "group": "Follow-up Answers",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "FollowUpAnswer[]",
+      "description": "Lists the questions this session has answered or skipped in capture_order, so the Follow-up Question Flow does not ask them again."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/follow-up-answers/next-question",
+      "handler": "follow-up-answers-25",
+      "auth_required": false,
+      "group": "Follow-up Answers",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "{question_key: string, question_text: string, optional: boolean, answered_or_skipped: number} | null",
+      "description": "Returns the highest-value question not yet answered or skipped, with optional and answered_or_skipped (count of questions already answered or skipped), or null once two to four questions are answered or skipped, for the Follow-up Question Flow screen."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/follow-up-answers",
+      "handler": "follow-up-answers-26",
+      "auth_required": false,
+      "group": "Follow-up Answers",
+      "request_shape": "header X-Session-Token: string; {question_key: string, answer: string}",
+      "response_shape": "{follow_up_answer: FollowUpAnswer, changed_results: EligibilityResult[]}",
+      "description": "Saves an answer to the question shown next, checks it against the allowed values for its question_key, sets captured_order, re-evaluates every scheme against the rules, and returns the results whose status changed; it rejects a question_key that is already answered or skipped."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/follow-up-answers/skip",
+      "handler": "follow-up-answers-27",
+      "auth_required": false,
+      "group": "Follow-up Answers",
+      "request_shape": "header X-Session-Token: string; {question_key: string}",
+      "response_shape": "{follow_up_answer: FollowUpAnswer, changed_results: EligibilityResult[]}",
+      "description": "Records an optional question as skipped, adds it to the profile's skipped_questions, re-evaluates results so schemes that depend on it show as May qualify, and returns the changed results; it rejects questions the rules do not mark optional."
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/my/follow-up-answers/{followUpAnswerId}",
+      "handler": "follow-up-answers-28",
+      "auth_required": false,
+      "group": "Follow-up Answers",
+      "request_shape": "header X-Session-Token: string; {answer: string}",
+      "response_shape": "{follow_up_answer: FollowUpAnswer, changed_results: EligibilityResult[]}",
+      "description": "Changes a previously given answer, re-evaluates every scheme, and returns the results whose status changed with previous_status and changed_rule_id, powering the What changes my result? interaction on the Results screen."
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/parent-profile",
+      "handler": "parent-profile-29",
+      "auth_required": false,
+      "group": "Parent Profile",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "ParentProfile",
+      "description": "Returns the parent's own record linking this session to the child's profile, for the parent's details on the Results screen."
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/parent-profile",
+      "handler": "parent-profile-30",
+      "auth_required": false,
+      "group": "Parent Profile",
+      "request_shape": "header X-Session-Token: string; {relationship: mother|father|guardian|other, town?: string}",
+      "response_shape": "ParentProfile",
+      "description": "Creates the parent's record from the Tell Us About Your Situation screen, sets child_profile_id from this session's profile, and rejects a second record for the same parent."
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/my/parent-profile",
+      "handler": "parent-profile-31",
+      "auth_required": false,
+      "group": "Parent Profile",
+      "request_shape": "header X-Session-Token: string; Partial<ParentProfile>",
+      "response_shape": "ParentProfile",
+      "description": "Updates the parent's relationship or town on the parent record."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/my/parent-profile",
+      "handler": "parent-profile-32",
+      "auth_required": false,
+      "group": "Parent Profile",
+      "request_shape": "header X-Session-Token: string",
+      "response_shape": "{deleted: boolean}",
+      "description": "Removes the parent's record so the parent can start again from the Tell Us About Your Situation screen."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/my/profiles/{profileId}",
+      "handler": "fix-33",
+      "description": "Removes this session's demo profile and its results, checklists and answers, so the session returns to an empty state.",
+      "group": "Profiles"
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/text-rewrites",
+      "handler": "fix-34",
+      "description": "Takes a result reason, rule text or step instruction and the preferred_language, and returns it in simple language or the regional language, so Results, Scheme Detail and read-aloud can show it in the",
+      "group": "Text Rewrites"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/my/profiles/{profileId}",
+      "handler": "fix-34",
+      "description": "Saves preferred_language, display_name, transcript_confirmed and intake answers (class level, institution type, state, income), then re-evaluates every scheme and returns the results whose status chan",
+      "group": "Profiles"
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/reset",
+      "handler": "fix-35",
+      "description": "Clears this session's profile, follow-up answers, eligibility results, checklists and parent record so the person can start a new check.",
+      "group": "Reset"
+    },
+    {
+      "method": "GET",
+      "path": "/api/my/schemes/{schemeId}/eligibility-result",
+      "handler": "fix-36",
+      "description": "Returns this session's result for one scheme, with status, matched, failed and unverified rules, reason_text, why_not_fit and unverified_requirements, so the Scheme Detail screen can show why it match",
+      "group": "Eligibility Result"
+    },
+    {
+      "method": "POST",
+      "path": "/api/my/ui-text-rewrites",
+      "handler": "fix-37",
+      "description": "Takes Welcome and Privacy page text, follow-up questions and their options, 'What we understood' items, tracker text and read-aloud text, with preferred_language, and returns it in simple language or",
+      "group": "Ui Text Rewrites"
+    }
+  ]
+}

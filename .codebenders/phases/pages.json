@@ -1,0 +1,116 @@
+{
+  "pages": [
+    {
+      "name": "Welcome",
+      "route": "/",
+      "description": "Language selection and a simple trust statement, shown first to every visitor. Also on this screen: Keep the chosen language in the browser session and, once a profile exists, save it as preferred_language with PATCH /api/my/profiles/{profileId} before the first page loads. Also on this screen: Add a 'Judge demo' link that opens /demo-mode, shown below the Start action and kept out of the parent and student paths. Also on this screen: When the regional language is chosen, show and read aloud the trust statement and disclaimer through POST /api/my/text-rewrites.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "choose English or regional language, read the trust statement",
+        "Low-income Student in Class 11–12": "choose English or regional language, read the trust statement"
+      }
+    },
+    {
+      "name": "Tell Us About Your Situation",
+      "route": "/tell-us-about-your-situation",
+      "description": "The conversational screen where a person describes their situation in one short sentence by voice or typing. Also on this screen: Add an optional 'About you' form with relationship and town. It saves with POST /api/my/parent-profile, edits with PATCH /api/my/parent-profile, and a 'Start again' action removes the record with DELETE /api/my/parent-profile. Also on this screen: After POST /api/my/profiles, if out_of_scope is true, show a plain message that HaqPath covers Classes 11–12 only, and do not offer the Continue action to the follow-up flow. Also on this screen: After a microphone recording, show the transcript from POST /api/speech-transcriptions in an editable box with a Confirm action; on confirm, save transcript_confirmed with PATCH /api/my/profiles/{profileId} before the sentence goes to POST /api/my/profiles. Also on this screen: After POST /api/my/profiles creates the profile, read the language kept in the browser session and save it as preferred_language with PATCH /api/my/profiles/{profileId}. Also save it with the same PATCH whenever the person switches language on this screen. Also on this screen: Enable the About you form only after POST /api/my/profiles succeeds; then save it with POST /api/my/parent-profile, and edit it with PATCH or remove it with DELETE /api/my/parent-profile. Also on this screen: When the preferred language is the regional language, show the 'What we understood' items and the example sentences through POST /api/my/text-rewrites. Also on this screen: After a microphone recording, show the transcript for the person to edit and confirm; only then call POST /api/my/profiles with the confirmed text, then PATCH /api/my/profiles/{profileId} to set transcript_confirmed. Also on this screen: When the sentence is submitted, send the language chosen on Welcome and the input method (typed or voice) with it in POST /api/my/profiles, so preferred_language, input_language and input_method are stored at creation. Also on this screen: When the profile has out_of_scope true (class not 11 or 12), show a respectful message that HaqPath covers Classes 11–12 only, with a control that changes the class through PATCH /api/my/profiles/{profileId}. Also on this screen: Keep the Language control's choice in the browser session until the sentence is submitted, then send it with POST /api/my/profiles; after a profile exists, save changes with PATCH /api/my/profiles/{profileId}. Also on this screen: When GET /api/my/profiles/{profileId} shows out_of_scope as true, show a respectful notice that HaqPath covers Class 11–12 students only, and stop the flow from moving on to the follow-up questions.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "describe the child's situation by typing or speaking",
+        "Low-income Student in Class 11–12": "describe their own situation by typing or speaking"
+      }
+    },
+    {
+      "name": "Follow-up Question Flow",
+      "route": "/follow-up-question-flow",
+      "description": "Asks only the highest-value unanswered question next, with optional questions that can be skipped. Also on this screen: When the preferred language is the regional language, show the current question text, its options and the 'What we understood' items through POST /api/my/text-rewrites. Also on this screen: Add a language toggle that saves preferred_language with PATCH /api/my/profiles/{profileId}. Also on this screen: Ask the residency question ('Do you live in [STATE]?') and the category question when a rule needs them, save each answer with POST /api/my/follow-up-answers, and write the value to profiles.resident_of_state and profiles.category through PATCH /api/my/profiles/{profileId}.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "answer 2–4 simple questions or skip optional ones",
+        "Low-income Student in Class 11–12": "answer 2–4 simple questions or skip optional ones"
+      }
+    },
+    {
+      "name": "Results",
+      "route": "/results",
+      "description": "Schemes grouped as Likely eligible, May qualify, or Not currently eligible, each with a respectful reason. Also on this screen: Show the parent's details (relationship and town) in the page header, with an Edit action that calls PATCH /api/my/parent-profile, using GET /api/my/parent-profile to load them. Also on this screen: When the preferred language is the regional language, show the reasons on each card and the read-aloud text through POST /api/my/text-rewrites. Also on this screen: Add the Change result panel: a Change action next to each answer (institution type, income band, residency and others) calls PATCH /api/my/profiles/{profileId} or PATCH /api/my/follow-up-answers/{followUpAnswerId}, then lists each scheme whose status changed with previous_status, new status and changed_rule_id from the returned results. The group lists refresh after the change. Also on this screen: In the Change result panel, under each changed scheme, show the plain_language_text of the rule named by changed_rule_id, loaded from GET /api/schemes/{schemeId}/eligibility-rules. Also on this screen: Each scheme card shows the scheme name, short description, deadline and official source link, loaded from GET /api/schemes; the card's Open button still goes to /schemes/[id]. Also on this screen: Add a language toggle that saves preferred_language with PATCH /api/my/profiles/{profileId} and reloads the reasons and read-aloud text. Also on this screen: Each scheme card in the three groups shows its reason_text (for Not currently eligible, its why_not_fit), loaded per result from GET /api/my/eligibility-results/{eligibilityResultId}. Also on this screen: Each scheme card shows 'Last verified on [date]' from last_verified_at in GET /api/schemes. Also on this screen: Show the display_name from GET /api/my/profiles/{profileId} in the page header, and let the person set it with PATCH /api/my/profiles/{profileId}. Also on this screen: When the profile has out_of_scope true, show the out-of-scope message in place of the Likely eligible, May qualify and Not currently eligible groups, loaded through GET /api/my/profiles/{profileId}. Also on this screen: When the profile has out_of_scope true, show a respectful notice that HaqPath covers Class 11–12 students only, and suggest changing the class answer. Load the flag with GET /api/my/profiles/{profileId} and let the person change the class with PATCH /api/my/profiles/{profileId}. Also on this screen: Each scheme card shows the scheme name, short description, deadline, official source link and 'Last verified on' date, loaded with GET /api/schemes alongside GET /api/my/eligibility-results. Also on this screen: In the Change result panel, show the plain_language_text of changed_rule_id for each scheme whose status changed, loaded with GET /api/schemes/{schemeId}/eligibility-rules.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "review grouped schemes, change one answer to see which result changes and which rule caused it, read aloud",
+        "Low-income Student in Class 11–12": "check which schemes they may qualify for, open a scheme, read aloud"
+      }
+    },
+    {
+      "name": "Scheme Detail",
+      "route": "/schemes/[id]",
+      "description": "Shows why a scheme matched, what still needs verification, required documents, deadline, how to apply, and the official source. Also on this screen: Add the 'What changes my result?' panel: a Change action next to each answer that calls PATCH /api/my/profiles/{profileId} or PATCH /api/my/follow-up-answers/{followUpAnswerId}, then shows this scheme's previous_status, new status and changed_rule_id from the returned results. Also on this screen: Add a 'What this scheme is about' section showing plain_language_explanation and a 'Common reasons applications are turned down' list showing common_rejection_risks, both from GET /api/schemes/{schemeId}. Also on this screen: When the preferred language is the regional language, show the why-matched, verification and documents text through POST /api/my/text-rewrites. Also on this screen: In the 'What changes my result?' panel, show the plain_language_text of the rule named by changed_rule_id, loaded from GET /api/schemes/{schemeId}/eligibility-rules. Also on this screen: Show the estimated_benefit in the scheme header, using GET /api/schemes/{schemeId}. Also on this screen: Add a language toggle that saves preferred_language with PATCH /api/my/profiles/{profileId}. Also on this screen: Add a 'What to watch for' section showing plain_language_explanation and common_rejection_risks, loaded from GET /api/schemes/{schemeId}. Also on this screen: When the preferred language is the regional language, show the required documents, deadline wording and application steps through POST /api/my/text-rewrites. Also on this screen: Show estimated_benefit in the scheme header, loaded from GET /api/schemes/{schemeId}. Also on this screen: Show the plain_language_explanation and common_rejection_risks in the scheme header or a section near it, loaded from GET /api/schemes/{schemeId}, with a Read aloud option that uses POST /api/my/text-rewrites when the regional language is set. Also on this screen: In the What changes my result? panel, show the plain_language_text of changed_rule_id next to the previous and new status, loaded with GET /api/schemes/{schemeId}/eligibility-rules. Also on this screen: Add a section showing the estimated benefit, the plain-language explanation and the common rejection risks, loaded with GET /api/schemes/{schemeId}.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "see why it matched, what still needs checking, documents, deadline and official source",
+        "Low-income Student in Class 11–12": "see why it matched and what still needs verification, then save it to their checklist"
+      }
+    },
+    {
+      "name": "Document Checklist and Application Steps",
+      "route": "/document-checklist-and-application-steps",
+      "description": "A personalised document checklist and step-by-step application guide that can be saved and shared as a text summary. Also on this screen: Add a 'Stop tracking this scheme' action on each scheme checklist card that calls DELETE /api/my/checklists/{checklistId} after confirmation, then removes the card. Also on this screen: Each scheme checklist card shows the official source link and deadline, loaded from GET /api/schemes by the checklist's scheme. Also on this screen: When the preferred language is the regional language, show the document and step text and the read-aloud text through POST /api/my/text-rewrites. Also on this screen: Add a language toggle that saves preferred_language with PATCH /api/my/profiles/{profileId}. Also on this screen: Each scheme checklist card shows 'Last verified on [date]' from last_verified_at in GET /api/schemes. Also on this screen: Each scheme checklist card shows a 'Check again: your answers changed' badge when needs_review is true, read from GET /api/my/checklists.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "review documents and steps, share the checklist summary with family",
+        "Low-income Student in Class 11–12": "save a personalised checklist and tick off documents and steps"
+      }
+    },
+    {
+      "name": "Deadline and Progress Tracker",
+      "route": "/deadline-and-progress-tracker",
+      "description": "Shows deadline countdowns and tracks each scheme's progress from Not started to Awaiting outcome. Also on this screen: Add a language toggle that saves preferred_language with PATCH /api/my/profiles/{profileId} and reloads the tracker text through POST /api/my/text-rewrites. Also on this screen: List the active schemes not yet saved, loaded from GET /api/schemes, each with its deadline and a Save to my checklist action that calls POST /api/my/checklists.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Parent": "see deadline countdowns for each scheme",
+        "Low-income Student in Class 11–12": "update progress from Not started to Documents ready, Applied and Awaiting outcome"
+      }
+    },
+    {
+      "name": "Privacy and How HaqPath Decides",
+      "route": "/privacy-and-how-haqpath-decides",
+      "description": "Explains how HaqPath decides eligibility and what data it does not collect. Also on this screen: Add a language toggle that saves preferred_language with PATCH /api/my/profiles/{profileId} and shows the page text through POST /api/my/text-rewrites. Also on this screen: When no profile exists, keep the chosen language in the browser session only; once a profile exists, save preferred_language with PATCH /api/my/profiles/{profileId} and reload the page text through POST /api/my/text-rewrites. Also on this screen: 'Start a new check' calls POST /api/my/reset, shows that the session was cleared, then opens /tell-us-about-your-situation. Also on this screen: 'Start a new check' calls POST /api/my/reset to clear this session's profile, answers, results, checklists and parent record, then opens /tell-us-about-your-situation.",
+      "personas": [
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {
+        "Low-income Student in Class 11–12": "read how HaqPath decides and what data it does not collect"
+      }
+    },
+    {
+      "name": "Demo Mode",
+      "route": "/demo-mode",
+      "description": "A judge-only switch that loads preloaded fictional personas. Also on this screen: When the demo switch is turned off, call DELETE /api/my/profiles/{profileId} for the demo profile and show that the session has been reset. Also on this screen: When a persona is loaded, first call DELETE /api/my/parent-profile so no old parent record points at the replaced profile. When the switch is turned off, call DELETE /api/my/parent-profile as well as DELETE /api/my/profiles/{profileId}, then show the session has been reset. Also on this screen: Before loading a persona when a profile already exists, call DELETE /api/my/profiles/{profileId} for the current profile so its results, checklists and answers are removed, then call POST /api/my/profiles/demo. Also on this screen: When a persona is loaded, call DELETE /api/my/profiles/{profileId} for the current session profile first, which removes its results, checklists and answers, then call POST /api/my/profiles/demo. Also on this screen: When the demo switch is turned off, also call DELETE /api/my/parent-profile before or together with DELETE /api/my/profiles/{profileId}, so no parent record is left pointing at the removed profile and the session shows an empty state.",
+      "personas": [
+        "Parent",
+        "Low-income Student in Class 11–12"
+      ],
+      "uses": {}
+    }
+  ]
+}

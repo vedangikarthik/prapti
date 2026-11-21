@@ -1,0 +1,29 @@
+{
+  "personas": [
+    {
+      "persona_id": "P-64B398",
+      "name": "Parent",
+      "short_description": "Describes the family's situation for a child in Class 11–12, reviews matching schemes, and shares the checklist with family.",
+      "key_responsibilities": [
+        "Describe a situation in one short sentence, by typing or speaking, in English or the regional language",
+        "Answer only 2–4 simple follow-up questions, or skip optional ones",
+        "See schemes grouped as Likely eligible, May qualify, or Not currently eligible",
+        "Change a profile answer and see which scheme results change and which rule caused it",
+        "Share a checklist summary with family without sensitive details",
+        "Have results and instructions read aloud"
+      ]
+    },
+    {
+      "persona_id": "P-C2E8B4",
+      "name": "Low-income Student in Class 11–12",
+      "short_description": "Enters their own situation, checks which schemes they may qualify for, and tracks application progress on a personal checklist.",
+      "key_responsibilities": [
+        "Describe a situation in one short sentence, by typing or speaking, in English or the regional language",
+        "See schemes grouped as Likely eligible, May qualify, or Not currently eligible",
+        "Open a scheme to see why it matched and what still needs verification",
+        "Save a personalised checklist and track progress from Not started to Awaiting outcome",
+        "Read how HaqPath decides and what data it does not collect"
+      ]
+    }
+  ]
+}

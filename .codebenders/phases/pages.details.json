@@ -1,0 +1,879 @@
+{
+  "version": 1,
+  "details": {
+    "/": {
+      "detail": {
+        "purpose": "Lets a family pick English or the regional language and read a short trust statement before anything else. Parents and low-income students in Class 11–12 both start here.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "HaqPath name, the tagline “Know what support you can claim.”, and one line saying it helps families find public scholarships they may qualify for, with plain explanations and official sources."
+          },
+          {
+            "area": "Language selection",
+            "contents": "Two large buttons: “English” and the regional language, shown with its own name. The selected one is clearly marked. Choosing one switches the screen text right away."
+          },
+          {
+            "area": "Trust statement",
+            "contents": "Short plain-language text: HaqPath does not ask for Aadhaar numbers, bank details or document scans, and every scheme links to its official source. Below it, the disclaimer: “HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.”"
+          },
+          {
+            "area": "Start action",
+            "contents": "One large primary button labelled “Start” (or the regional-language equivalent) that moves on to the situation screen. Below it, a text link “How HaqPath decides”."
+          },
+          {
+            "area": "Read-aloud control",
+            "contents": "A speaker button labelled “Read aloud” that reads the trust statement and disclaimer in the selected language."
+          }
+        ],
+        "shows": [],
+        "actions": [
+          {
+            "who": "Parent",
+            "action": "Chooses English or the regional language.",
+            "result": "The whole screen switches to that language and stays in it for the rest of the app."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Chooses English or the regional language.",
+            "result": "The whole screen switches to that language and stays in it for the rest of the app."
+          },
+          {
+            "who": "Parent",
+            "action": "Reads the trust statement and disclaimer, or taps “Read aloud”.",
+            "result": "The statement and disclaimer are read in the selected language. Nothing is saved."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Reads the trust statement and disclaimer, or taps “Read aloud”.",
+            "result": "The statement and disclaimer are read in the selected language. Nothing is saved."
+          },
+          {
+            "who": "Everyone",
+            "action": "Taps “Start”.",
+            "result": "The visitor goes to the situation screen to describe their situation."
+          }
+        ],
+        "links": [
+          {
+            "to": "/tell-us-about-your-situation",
+            "label": "Start",
+            "when": "After choosing a language and reading the trust statement, when the visitor is ready to describe their situation."
+          },
+          {
+            "to": "/privacy-and-how-haqpath-decides",
+            "label": "How HaqPath decides",
+            "when": "When the visitor wants to know how results are worked out and what data is not collected before starting."
+          }
+        ],
+        "states": {
+          "empty": "",
+          "loading": "The English text shows at once, with the regional-language option available; no data is fetched.",
+          "error": "If the regional-language text cannot load, the screen stays in English with a short notice that the language is unavailable."
+        },
+        "notes": "No sign-in and no personal details are asked on this screen. Use large tap targets and very simple language. The regional-language option must be a clear toggle, not hidden in a menu. The disclaimer wording must appear exactly as given and the screen must not use “approved” or “guaranteed”."
+      },
+      "basis": "[\"Welcome\",\"Language selection and a simple trust statement, shown first to every visitor.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"choose English or regional language, read the trust statement\"],[\"Parent\",\"choose English or regional language, read the trust statement\"]]]",
+      "at": "2026-11-21T08:22:22.092Z"
+    },
+    "/tell-us-about-your-situation": {
+      "detail": {
+        "purpose": "Lets a person describe their family or student situation in one short sentence, by typing or speaking, so HaqPath can pick up the details it needs. Parents and Class 11–12 students start here.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'Tell us about your situation'. A short line below says: 'Say or type one sentence. We will ask only a few quick questions.'"
+          },
+          {
+            "area": "Sentence input",
+            "contents": "Large text box with placeholder 'For example: My daughter is in Class 11 at a government school and our income is low.' Beside it, a large microphone button labelled 'Speak'."
+          },
+          {
+            "area": "Language control",
+            "contents": "Clear toggle for English and the regional language, placed above the input. The text box and prompts switch language when it is changed."
+          },
+          {
+            "area": "Example sentences",
+            "contents": "Two or three tap-to-use example sentences, so the user can try one without typing."
+          },
+          {
+            "area": "What we understood",
+            "contents": "Appears after the sentence is read. Lists the details picked up from it, such as class, institution type, and income level, each with a plain label. Shows 'Not yet known' for anything missing."
+          },
+          {
+            "area": "Continue bar",
+            "contents": "Large button 'Continue' and a small text link 'Why do we ask?' next to it."
+          }
+        ],
+        "shows": [
+          {
+            "item": "Typed or spoken sentence",
+            "details": "The text as entered or transcribed, editable before continuing."
+          },
+          {
+            "item": "Details picked up from the sentence",
+            "details": "Class level, institution type, state, and income level when the sentence mentions them. Listed in that order. Missing details are marked 'Not yet known'."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Parent",
+            "action": "Types one sentence about the child's class, school type, and family income, or speaks it with the microphone.",
+            "result": "The sentence is read, details are picked up, and 'What we understood' updates. Parent taps Continue to go to the follow-up questions."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Types or speaks one sentence about their own class, school type, and income.",
+            "result": "The sentence is read and details are picked up. Student taps Continue to go to the follow-up questions."
+          },
+          {
+            "who": "Everyone",
+            "action": "Taps an example sentence to fill the input.",
+            "result": "The example text replaces the input and the details are picked up from it."
+          },
+          {
+            "who": "Everyone",
+            "action": "Switches between English and the regional language.",
+            "result": "Prompts, placeholders, and the 'What we understood' labels change language. The sentence already typed is kept."
+          }
+        ],
+        "links": [
+          {
+            "to": "/follow-up-question-flow",
+            "label": "Continue",
+            "when": "After one sentence has been entered. Opens the follow-up questions, which ask only what is still unknown."
+          },
+          {
+            "to": "/privacy-and-how-haqpath-decides",
+            "label": "Why do we ask?",
+            "when": "When the user wants to know what HaqPath collects and what it does not collect."
+          },
+          {
+            "to": "/",
+            "label": "Back",
+            "when": "When the user wants to return to the Welcome screen to change the language."
+          }
+        ],
+        "states": {
+          "empty": "Input is blank, with the placeholder example and two example sentences shown. Continue is disabled.",
+          "loading": "While speech is transcribed or the sentence is read, show 'Listening…' on the mic button or 'Understanding your sentence…' under the input.",
+          "error": "If the microphone is unavailable or the sentence cannot be read, show a plain message such as 'We could not hear that. Please type it instead.' and keep the typed text."
+        },
+        "notes": "The screen asks for only one sentence. It must not ask for Aadhaar numbers, bank details, or document uploads. Show a short line saying so. Continue stays disabled until the sentence has some text. The 'What we understood' list may be corrected by editing the sentence. Voice input is transcribed by AI and the transcript is always shown for review before continuing. Eligibility is not decided on this screen."
+      },
+      "basis": "[\"Tell Us About Your Situation\",\"The conversational screen where a person describes their situation in one short sentence by voice or typing.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"describe their own situation by typing or speaking\"],[\"Parent\",\"describe the child's situation by typing or speaking\"]]]",
+      "at": "2026-11-21T08:22:37.476Z"
+    },
+    "/follow-up-question-flow": {
+      "detail": {
+        "purpose": "Asks one high-value follow-up question at a time so the matching engine has the details it needs, using only 2–4 questions in total. A parent or Class 11–12 student comes here after describing their situation and leaves for the results once enough is known.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'A few quick questions' with a short line saying you can skip optional ones. A step indicator such as 'Question 1 of 2–4'."
+          },
+          {
+            "area": "What we understood so far",
+            "contents": "Short list of details already taken from the first sentence, such as class, institution type or state, each with a small edit control. Shows the answered details in plain words."
+          },
+          {
+            "area": "Current question card",
+            "contents": "One question in very simple language with large answer options as tappable buttons or a text field. A label 'Optional' appears when the question can be skipped. Includes a 'Why we ask this' line in one sentence."
+          },
+          {
+            "area": "Action buttons",
+            "contents": "Primary 'Next' button that saves the answer and moves to the next question. Secondary 'Skip this question' button shown only for optional questions. A 'Read aloud' button for the question and its options."
+          },
+          {
+            "area": "Progress and exit",
+            "contents": "Progress bar matching the step indicator, and a 'See my results' button that appears once the required answers are in."
+          },
+          {
+            "area": "Trust footer",
+            "contents": "Plain line that answers are used only to check eligibility and that HaqPath does not ask for Aadhaar numbers, bank details or document scans. Disclaimer: 'HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.'"
+          }
+        ],
+        "shows": [
+          {
+            "item": "Current follow-up question",
+            "details": "Only one question at a time, the highest-value unanswered one. Each has its answer options and a marker for optional or required."
+          },
+          {
+            "item": "Answered details so far",
+            "details": "Profile details from the first sentence and earlier answers, listed in the order they were captured, each with an edit control."
+          },
+          {
+            "item": "Question progress",
+            "details": "Count of questions answered out of the 2–4 needed, with a skipped optional question shown as skipped rather than answered."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Parent",
+            "action": "Answers the current question by choosing an option or typing a reply, then taps Next.",
+            "result": "The answer is saved to the profile, the next highest-value unanswered question appears, or the flow ends when no more questions are needed."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Answers the current question by choosing an option or typing a reply, then taps Next.",
+            "result": "The answer is saved to the profile, the next highest-value unanswered question appears, or the flow ends when no more questions are needed."
+          },
+          {
+            "who": "Parent",
+            "action": "Skips an optional question.",
+            "result": "The question is marked skipped, no answer is stored, and the next question appears. Schemes that depend on the skipped detail show as 'May qualify' with that detail listed to verify."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Skips an optional question.",
+            "result": "The question is marked skipped, no answer is stored, and the next question appears. Schemes that depend on the skipped detail show as 'May qualify' with that detail listed to verify."
+          },
+          {
+            "who": "Parent",
+            "action": "Edits an item in 'What we understood so far'.",
+            "result": "The new value replaces the old one and the flow moves on from the current question."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Edits an item in 'What we understood so far'.",
+            "result": "The new value replaces the old one and the flow moves on from the current question."
+          },
+          {
+            "who": "Everyone",
+            "action": "Taps 'See my results' once enough answers are in.",
+            "result": "The matching rules run on the saved profile and the Results screen opens."
+          }
+        ],
+        "links": [
+          {
+            "to": "/results",
+            "label": "See my results",
+            "when": "After the required questions are answered or the rest are skipped, to see schemes grouped as Likely eligible, May qualify and Not currently eligible."
+          }
+        ],
+        "states": {
+          "empty": "If no question can be asked because the profile is complete, show 'Thanks, we have what we need' with the 'See my results' button.",
+          "loading": "While the next question is being chosen, show a small spinner with 'Preparing your next question'.",
+          "error": "If an answer cannot be saved, show 'We could not save that. Please try again' and keep the typed answer on screen."
+        },
+        "notes": "Ask at most 4 questions in total; stop at 2 if the profile is already complete. Only ask for details the eligibility rules use, such as class, institution type, household income band, state residence and any scheme-specific category. Never ask for Aadhaar numbers, bank details or document uploads. Optional questions must always have a visible skip control. Use simple language and large tap targets at 360px width. Use 'Likely eligible' and 'May qualify' wording only, never 'approved' or 'guaranteed'."
+      },
+      "basis": "[\"Follow-up Question Flow\",\"Asks only the highest-value unanswered question next, with optional questions that can be skipped.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"answer 2–4 simple questions or skip optional ones\"],[\"Parent\",\"answer 2–4 simple questions or skip optional ones\"]]]",
+      "at": "2026-11-21T08:22:38.809Z"
+    },
+    "/results": {
+      "detail": {
+        "purpose": "Shows the schemes that match the family's answers, grouped as Likely eligible, May qualify, or Not currently eligible, each with a plain reason. Parents and students come here to review the groups, open a scheme, and see what changes the result when one answer changes.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'Your scheme results'. Short line: 'Based on the answers you gave. Final eligibility is decided by the relevant authority.' Large Read aloud button."
+          },
+          {
+            "area": "Your answers summary",
+            "contents": "Compact list of the family's answers used for matching, such as class, institution type, annual income, and state. Each answer has a Change button (Parent only)."
+          },
+          {
+            "area": "Likely eligible group",
+            "contents": "Heading 'Likely eligible' with a count. Scheme cards, each with the scheme name, a short description, a green Likely eligible label, a one-line 'Why this may fit' reason, and an 'Open' button."
+          },
+          {
+            "area": "May qualify group",
+            "contents": "Heading 'May qualify' with a count. Scheme cards, each with the name, short description, an amber May qualify label, a one-line reason, a line saying what needs confirming, and an 'Open' button."
+          },
+          {
+            "area": "Not currently eligible group",
+            "contents": "Heading 'Not currently eligible' with a count. Scheme cards in a calmer style, each with the name, a respectful reason for not matching, and an 'Open' button to see the full rule."
+          },
+          {
+            "area": "Change result panel",
+            "contents": "Shown after a Parent changes an answer. Names the scheme whose result changed, the old and new result, and the rule that caused the change. Includes a 'Close' button."
+          },
+          {
+            "area": "Trust footer",
+            "contents": "The disclaimer 'HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.' and the line 'Last verified on [date]' for the catalogue."
+          }
+        ],
+        "shows": [
+          {
+            "item": "Family answers used for matching",
+            "details": "Class level, institution type, annual household income, state, and any other answers given. Shown in the order asked. No ID numbers, bank details, or document scans."
+          },
+          {
+            "item": "Scheme cards in Likely eligible",
+            "details": "Grouped under the Likely eligible heading. Each card shows name, short description, status label, and the reason it matched."
+          },
+          {
+            "item": "Scheme cards in May qualify",
+            "details": "Grouped under the May qualify heading. Each card shows name, short description, status label, the reason it may fit, and the requirement still to confirm."
+          },
+          {
+            "item": "Scheme cards in Not currently eligible",
+            "details": "Grouped under the Not currently eligible heading. Each card shows name, short description, and a respectful reason explaining which rule was not met."
+          },
+          {
+            "item": "Group counts",
+            "details": "A count beside each group heading showing how many schemes are in that group."
+          },
+          {
+            "item": "Last verified date",
+            "details": "'Last verified on [date]' shown prominently for the scheme catalogue."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Everyone",
+            "action": "Read the results aloud using the Read aloud button, in English or the regional language.",
+            "result": "The page reads the group headings, scheme names, and reasons aloud. Reading can be stopped."
+          },
+          {
+            "who": "Everyone",
+            "action": "Tap a scheme card's Open button.",
+            "result": "The scheme's detail screen opens showing why it matched, what needs checking, documents, deadline, how to apply, and the official source."
+          },
+          {
+            "who": "Parent",
+            "action": "Tap Change next to an answer, such as institution type, and select a new value.",
+            "result": "The results update immediately. The Change result panel shows which scheme moved to a different group and the rule that caused it."
+          },
+          {
+            "who": "Parent",
+            "action": "Close the Change result panel.",
+            "result": "The panel closes and the updated groups remain on the screen."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Review which schemes they may qualify for across the three groups.",
+            "result": "They see the groups and reasons on this screen without changing any answers."
+          }
+        ],
+        "links": [
+          {
+            "to": "/schemes/[id]",
+            "label": "Open",
+            "when": "When the person wants to see the full reason, required documents, deadline, how to apply, and the official source for one scheme."
+          }
+        ],
+        "states": {
+          "empty": "If no scheme falls into a group, that group shows one line saying no schemes are in this group for these answers.",
+          "loading": "While matching runs, show a calm placeholder for each group with a short 'Checking schemes' message.",
+          "error": "If results cannot load, show a short message in plain language with a Try again button."
+        },
+        "notes": "Matching is deterministic and uses the stored rules; AI is not used to decide groups. Use only the labels 'Likely eligible' and 'May qualify'; never say approved or guaranteed. Every card must show its reason in plain language. Not currently eligible reasons must be respectful and never blaming. Only the Parent may change answers on this screen. Show no Aadhaar, bank, or document data. Demo profiles are fictional."
+      },
+      "basis": "[\"Results\",\"Schemes grouped as Likely eligible, May qualify, or Not currently eligible, each with a respectful reason.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"check which schemes they may qualify for, open a scheme, read aloud\"],[\"Parent\",\"review grouped schemes, change one answer to see which result changes and which rule caused it, read aloud\"]]]",
+      "at": "2026-11-21T08:22:54.146Z"
+    },
+    "/schemes/{}": {
+      "detail": {
+        "purpose": "Shows one scholarship scheme in plain language: why it matched this family, what still needs checking, the documents, deadline, application steps and official source. Parents and students come here from the Results screen before deciding what to do next.",
+        "layout": [
+          {
+            "area": "Back link and status",
+            "contents": "'Back to results' link. Status label: Likely eligible, May qualify, or Not currently eligible, with its icon."
+          },
+          {
+            "area": "Scheme header",
+            "contents": "Scheme name, short description, state, beneficiary group (Class 11–12 low-income students), and estimated benefit."
+          },
+          {
+            "area": "Last verified banner",
+            "contents": "'Last verified on [date]' shown prominently, with the official source name."
+          },
+          {
+            "area": "Why this may fit",
+            "contents": "Plain-language list of the matched rules, each showing the family's answer next to the rule, for example 'Class 11 — scheme covers Class 11–12'."
+          },
+          {
+            "area": "What we still need to verify",
+            "contents": "List of rules that need confirmation, such as income proof or category, each with a short note on how to confirm it. Shown only when items exist."
+          },
+          {
+            "area": "Why this may not fit",
+            "contents": "Respectful list of rules the family does not meet, or the reason the scheme is not currently available. Shown only when items exist."
+          },
+          {
+            "area": "Documents, deadline and how to apply",
+            "contents": "Required documents list, deadline date with days left, numbered application steps, and an 'Official website' button that opens the official source."
+          },
+          {
+            "area": "Actions and disclaimer",
+            "contents": "'Read aloud' button, 'Save to my checklist' button, and the disclaimer: 'HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.'"
+          }
+        ],
+        "shows": [
+          {
+            "item": "Eligibility status",
+            "details": "One of Likely eligible, May qualify, or Not currently eligible. Never 'approved' or 'guaranteed'."
+          },
+          {
+            "item": "Matched rules (Why this may fit)",
+            "details": "Each rule as a plain sentence, with the family's answer beside it, in rule order."
+          },
+          {
+            "item": "Verification items (What we still need to verify)",
+            "details": "Each open requirement with the reason it is open and how to confirm it."
+          },
+          {
+            "item": "Non-matching rules (Why this may not fit)",
+            "details": "Each unmet rule with a respectful explanation. Shown when the scheme is May qualify or Not currently eligible."
+          },
+          {
+            "item": "Required documents",
+            "details": "Document names only, as a list. No uploads and no document scans."
+          },
+          {
+            "item": "Deadline",
+            "details": "Date of the scheme deadline and days remaining."
+          },
+          {
+            "item": "Application steps",
+            "details": "Numbered steps in simple language, from the scheme's application steps data."
+          },
+          {
+            "item": "Official source",
+            "details": "Official website name and link, with the last verified date."
+          },
+          {
+            "item": "Estimated benefit",
+            "details": "The published estimated benefit amount or description for the scheme."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Parent",
+            "action": "Reads the matched rules, open items and documents for the scheme",
+            "result": "Stays on this screen; can open the official website or go back to results"
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Taps 'Save to my checklist'",
+            "result": "The scheme is added to the personal checklist with status Not started, then the screen opens the checklist"
+          },
+          {
+            "who": "Everyone",
+            "action": "Taps 'Read aloud'",
+            "result": "The status, matched rules, open items, documents, deadline and steps are read aloud in the chosen language"
+          },
+          {
+            "who": "Everyone",
+            "action": "Taps 'Official website'",
+            "result": "The official scheme page opens in a new tab; HaqPath does not submit anything"
+          }
+        ],
+        "links": [
+          {
+            "to": "/results",
+            "label": "Back to results",
+            "when": "The person wants to return to the grouped list of schemes"
+          },
+          {
+            "to": "/document-checklist-and-application-steps",
+            "label": "Save to my checklist",
+            "when": "The student wants to keep this scheme on the personal checklist after the save is confirmed"
+          },
+          {
+            "to": "/privacy-and-how-haqpath-decides",
+            "label": "How HaqPath decides",
+            "when": "The person wants to know how this result was reached and what data is not collected"
+          }
+        ],
+        "states": {
+          "empty": "If the scheme id is not found, show 'This scheme is not in the current list' with a button back to results.",
+          "loading": "Show a light skeleton of the header and sections while the scheme data loads.",
+          "error": "If the scheme data cannot load, show 'We could not load this scheme. Try again' with a retry button and the back link."
+        },
+        "notes": "The official website button opens an external official URL and is not an in-app route. Matched and non-matching rules must come from the scheme's stored eligibility rules, not AI text. Show the disclaimer on every scheme. Do not show Aadhaar, bank or document-scan fields. Read-aloud must work offline with the bundled demo data. Tap targets at least 44px on a 360px-wide screen."
+      },
+      "basis": "[\"Scheme Detail\",\"Shows why a scheme matched, what still needs verification, required documents, deadline, how to apply, and the official source.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"see why it matched and what still needs verification, then save it to their checklist\"],[\"Parent\",\"see why it matched, what still needs checking, documents, deadline and official source\"]]]",
+      "at": "2026-11-21T08:22:54.157Z"
+    },
+    "/deadline-and-progress-tracker": {
+      "detail": {
+        "purpose": "Shows each saved scheme's deadline as a countdown and lets the student record how far along their application is, from Not started to Awaiting outcome. Parents come here to check how much time is left for each scheme.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'Deadlines and progress'. A short line: 'Track each scheme from start to outcome.' Back link to the Results screen."
+          },
+          {
+            "area": "Progress key",
+            "contents": "Four labelled steps in order: Not started, Documents ready, Applied, Awaiting outcome. Each has an icon and a plain-language label."
+          },
+          {
+            "area": "Scheme deadline list",
+            "contents": "One card per saved scheme. Each card shows the scheme name, a deadline countdown (for example 'Closes in 12 days' or the closing date), the current progress status with its label, and a row of the four progress steps with the current one highlighted. A large 'Update progress' button is on the card (student only). A 'View checklist' link sits below."
+          },
+          {
+            "area": "Deadline notice",
+            "contents": "Shown above the list when a deadline is within a short period (for example 7 days). Reads 'Closing soon' in plain words and names the scheme."
+          },
+          {
+            "area": "Footer note",
+            "contents": "'Last verified on [date]' for the scheme data, and the line: 'HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.' A Read aloud button for the page."
+          }
+        ],
+        "shows": [
+          {
+            "item": "Saved schemes",
+            "details": "Only schemes in the saved checklist, one card each, in the order they were saved."
+          },
+          {
+            "item": "Deadline countdown",
+            "details": "Days left until each scheme's deadline, with the closing date beside it. Schemes past their deadline show 'Deadline passed' instead of a countdown."
+          },
+          {
+            "item": "Progress status",
+            "details": "Current step for each scheme: Not started, Documents ready, Applied, or Awaiting outcome. Shown as a label and as the highlighted step on the four-step track."
+          },
+          {
+            "item": "Last verified date",
+            "details": "The date the scheme's rules and deadline were last checked, shown prominently on each card or in the footer."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Parent",
+            "action": "Views the deadline countdown for each saved scheme.",
+            "result": "Sees how many days remain. No change is saved."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Updates a scheme's progress from Not started to Documents ready, Applied or Awaiting outcome.",
+            "result": "The new status is saved to that scheme's checklist and the card shows the new step."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Opens a scheme's checklist from its card.",
+            "result": "Goes to the document checklist for that scheme."
+          },
+          {
+            "who": "Everyone",
+            "action": "Opens a scheme's name.",
+            "result": "Goes to that scheme's detail screen."
+          }
+        ],
+        "links": [
+          {
+            "to": "/results",
+            "label": "Back to results",
+            "when": "Parent or student wants to return to the grouped scheme list."
+          },
+          {
+            "to": "/schemes/[id]",
+            "label": "Scheme name on each card",
+            "when": "Someone wants to check the scheme's rules, deadline and official source."
+          },
+          {
+            "to": "/document-checklist-and-application-steps",
+            "label": "View checklist",
+            "when": "Student wants to see the documents or steps for that scheme before updating its progress."
+          }
+        ],
+        "states": {
+          "empty": "No schemes saved yet. Shows 'Save a checklist from your results to track deadlines here' with a button to Results.",
+          "loading": "Shows placeholder cards while saved schemes and deadlines load.",
+          "error": "Shows 'We could not load your progress. Please try again.' with a Try again button; saved progress is not changed."
+        },
+        "notes": "Only the Low-income Student can change progress; the Parent sees countdowns only. Progress changes are made by the student as they work, and HaqPath does not submit anything to government portals. Use 'Likely eligible' and 'May qualify' wording only; never say approved or guaranteed. Data is fictional/demo only."
+      },
+      "basis": "[\"Deadline and Progress Tracker\",\"Shows deadline countdowns and tracks each scheme's progress from Not started to Awaiting outcome.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"update progress from Not started to Documents ready, Applied and Awaiting outcome\"],[\"Parent\",\"see deadline countdowns for each scheme\"]]]",
+      "at": "2026-11-21T08:23:08.302Z"
+    },
+    "/document-checklist-and-application-steps": {
+      "detail": {
+        "purpose": "Shows the personalised document list and step-by-step application guide for the schemes a person has chosen, so they can get ready and apply. Parents review it and share a summary with family; low-income Class 11–12 students save it and tick off items as they go.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'Your checklist and how to apply'; one line saying the steps come from official sources; Read aloud button; language toggle"
+          },
+          {
+            "area": "Progress summary",
+            "contents": "Count of documents ready out of total and steps done out of total; current status for each scheme (Not started, Documents ready, Applied, Awaiting outcome)"
+          },
+          {
+            "area": "Scheme checklist cards",
+            "contents": "One card per saved scheme: scheme name, Last verified on [date], deadline, and a Documents needed list with a tick box for each document"
+          },
+          {
+            "area": "Application steps",
+            "contents": "Numbered steps for each scheme in plain language, each with a tick box; the last step links to the official source"
+          },
+          {
+            "area": "Save and share bar",
+            "contents": "Save checklist button; Share this checklist with family button that creates a text summary"
+          },
+          {
+            "area": "Disclaimer",
+            "contents": "Text: HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority."
+          }
+        ],
+        "shows": [
+          {
+            "item": "Saved schemes",
+            "details": "Each scheme the person has saved, in the order saved or by deadline; scheme name and short description"
+          },
+          {
+            "item": "Required documents per scheme",
+            "details": "Document names from the scheme's required documents list, each with a tick box; names only, no uploads or scans"
+          },
+          {
+            "item": "Application steps per scheme",
+            "details": "Steps in order from the scheme's application steps; each with a tick box"
+          },
+          {
+            "item": "Deadline per scheme",
+            "details": "Date of the scheme's deadline shown on its card"
+          },
+          {
+            "item": "Last verified date",
+            "details": "Last verified on [date] shown prominently on each scheme card"
+          },
+          {
+            "item": "Official source",
+            "details": "Link to the scheme's official URL on each card"
+          },
+          {
+            "item": "Progress counts",
+            "details": "Documents ticked out of total and steps ticked out of total, per scheme and overall"
+          },
+          {
+            "item": "Progress status",
+            "details": "Current stage per scheme: Not started, Documents ready, Applied, or Awaiting outcome"
+          }
+        ],
+        "actions": [
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Ticks off documents and steps as they are ready or done",
+            "result": "Tick state is saved to the personal checklist and the counts update"
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Saves the personalised checklist",
+            "result": "The checklist is saved so the student can return to it and track progress"
+          },
+          {
+            "who": "Parent",
+            "action": "Reviews the documents and steps for each scheme",
+            "result": "Parent sees what is needed, the deadline, and the official source for each scheme"
+          },
+          {
+            "who": "Parent",
+            "action": "Shares the checklist with family",
+            "result": "A plain text summary is created with scheme names, documents, steps, and deadlines, without sensitive details, ready to send"
+          },
+          {
+            "who": "Everyone",
+            "action": "Taps Read aloud",
+            "result": "The checklist and instructions are read out loud in the chosen language"
+          },
+          {
+            "who": "Everyone",
+            "action": "Opens the official source link on a scheme card",
+            "result": "The official scheme page opens in a new view outside HaqPath"
+          }
+        ],
+        "links": [
+          {
+            "to": "/schemes/[id]",
+            "label": "Scheme name on a card",
+            "when": "When the person wants to see why the scheme matched or what still needs checking"
+          },
+          {
+            "to": "/deadline-and-progress-tracker",
+            "label": "View deadlines and progress",
+            "when": "When the person wants countdowns and a full progress view across schemes"
+          },
+          {
+            "to": "/results",
+            "label": "Back to results",
+            "when": "When the person wants to add or review other schemes before working on the checklist"
+          },
+          {
+            "to": "/privacy-and-how-haqpath-decides",
+            "label": "How HaqPath decides",
+            "when": "When the person wants to understand the rules behind the checklist or what data is not collected"
+          }
+        ],
+        "states": {
+          "empty": "No schemes saved yet: a short message says to pick schemes from Results first, with a button to Results.",
+          "loading": "Checklist shows placeholder cards while the saved checklist and scheme data load.",
+          "error": "A short message says the checklist could not be loaded or saved, with a Try again button."
+        },
+        "notes": "Checklist covers only the schemes the person has saved. Documents are names only: no upload, no document scans, no Aadhaar or bank details. The summary shared with family must leave out sensitive details. HaqPath does not submit applications; steps direct the person to the official portal. Use Likely eligible and May qualify wording only; never say approved or guaranteed. The disclaimer must appear on this screen."
+      },
+      "basis": "[\"Document Checklist and Application Steps\",\"A personalised document checklist and step-by-step application guide that can be saved and shared as a text summary.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[[\"Low-income Student in Class 11–12\",\"save a personalised checklist and tick off documents and steps\"],[\"Parent\",\"review documents and steps, share the checklist summary with family\"]]]",
+      "at": "2026-11-21T08:23:10.324Z"
+    },
+    "/privacy-and-how-haqpath-decides": {
+      "detail": {
+        "purpose": "Explains to a student how HaqPath decides which schemes may fit, what data it uses, and what data it never collects. The student comes here to check that the app is trustworthy before acting on its results.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'How HaqPath decides' with one plain line saying the app uses published rules, not guesses, and explains each result."
+          },
+          {
+            "area": "How we decide",
+            "contents": "Short numbered steps: 1) Your one-sentence description is read to pick out details such as class and school type. 2) Your answers to 2–4 follow-up questions are added. 3) Each scheme's published rules are checked one by one. 4) Each result shows which rule it passed or failed and what still needs checking."
+          },
+          {
+            "area": "Result labels",
+            "contents": "Plain definitions of Likely eligible, May qualify and Not currently eligible, with a note that HaqPath never says 'approved' or 'guaranteed'."
+          },
+          {
+            "area": "Data we use",
+            "contents": "List of the details HaqPath uses: the situation sentence, class level, school type, household income range, state of residence and the answers to follow-up questions. Also the progress you mark on your checklist."
+          },
+          {
+            "area": "Data we do not collect",
+            "contents": "List stating HaqPath does not collect Aadhaar or other ID numbers, bank account details, or scans or uploads of documents. Notes that all profiles are fictional or demo data."
+          },
+          {
+            "area": "Disclaimer and sources",
+            "contents": "The disclaimer 'HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.' Plus a line saying each scheme shows its official source and the date it was last verified."
+          },
+          {
+            "area": "Navigation",
+            "contents": "Button 'Back to results' and a link 'Start a new check'."
+          }
+        ],
+        "shows": [
+          {
+            "item": "How decisions are made",
+            "details": "Four numbered steps in fixed order, written in simple language."
+          },
+          {
+            "item": "Result categories",
+            "details": "Likely eligible, May qualify and Not currently eligible, each with a one-line meaning."
+          },
+          {
+            "item": "Data HaqPath uses",
+            "details": "Situation sentence, class level, school type, income range, state, follow-up answers, checklist progress."
+          },
+          {
+            "item": "Data HaqPath does not collect",
+            "details": "Aadhaar or other ID numbers, bank details, document scans or uploads."
+          },
+          {
+            "item": "Disclaimer",
+            "details": "Fixed guidance text stating final eligibility is decided by the relevant authority."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Reads how decisions are made and what data is and is not collected.",
+            "result": "Stays on this page; no data is changed."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Taps 'Back to results'.",
+            "result": "Opens the Results screen."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Taps 'Start a new check'.",
+            "result": "Opens the Tell Us About Your Situation screen to begin again."
+          }
+        ],
+        "links": [
+          {
+            "to": "/results",
+            "label": "Back to results",
+            "when": "The student has read the explanation and wants to return to their scheme groups."
+          },
+          {
+            "to": "/tell-us-about-your-situation",
+            "label": "Start a new check",
+            "when": "The student wants to describe a different situation or start over."
+          }
+        ],
+        "states": {
+          "empty": "",
+          "loading": "Text appears at once with no loading step.",
+          "error": "If the page cannot load, show a short message with a retry button."
+        },
+        "notes": "Use only the fixed wording from the requirements for the disclaimer and result labels. Never use 'approved' or 'guaranteed'. State that no Aadhaar, bank details or document scans are collected, and that all demo profiles are fictional. Text must fit 360px width with large tap targets and simple language."
+      },
+      "basis": "[\"Privacy and How HaqPath Decides\",\"Explains how HaqPath decides eligibility and what data it does not collect.\",[\"Low-income Student in Class 11–12\"],[[\"Low-income Student in Class 11–12\",\"read how HaqPath decides and what data it does not collect\"]]]",
+      "at": "2026-11-21T08:23:21.979Z"
+    },
+    "/demo-mode": {
+      "detail": {
+        "purpose": "A judge-only switch that loads preloaded fictional personas so the full HaqPath journey can be shown without typing real family details. Used by parents and students who reach it while demonstrating the app.",
+        "layout": [
+          {
+            "area": "Page header",
+            "contents": "Heading 'Demo Mode' with one line saying these are fictional family profiles for judges to try."
+          },
+          {
+            "area": "Demo notice",
+            "contents": "Short plain-language note that all profiles are made up, that no real personal data is used, and that no Aadhaar, bank or document details are entered."
+          },
+          {
+            "area": "Persona cards",
+            "contents": "One large card per preloaded fictional persona, starting with Lakshmi's family: a parent describing a daughter in Class 11 at a government institution with low household income. Each card shows the persona's name, a short one-line situation, and a large 'Load this profile' button."
+          },
+          {
+            "area": "Demo switch",
+            "contents": "A clear on/off style switch labelled 'Demo mode' that turns preloaded data on or off for the current visit."
+          },
+          {
+            "area": "Back link",
+            "contents": "Text link 'Back to Welcome' at the bottom."
+          }
+        ],
+        "shows": [
+          {
+            "item": "Preloaded fictional personas",
+            "details": "Each card: persona name, one-line situation, and class level. Lakshmi's family is listed first."
+          },
+          {
+            "item": "Demo switch state",
+            "details": "Shows whether demo mode is on or off for this visit."
+          }
+        ],
+        "actions": [
+          {
+            "who": "Parent",
+            "action": "Turns the demo switch on and loads a persona card such as Lakshmi's family.",
+            "result": "The fictional profile is loaded and the visitor goes to the results screen."
+          },
+          {
+            "who": "Low-income Student in Class 11–12",
+            "action": "Turns the demo switch on and loads a persona card.",
+            "result": "The fictional profile is loaded and the visitor goes to the results screen."
+          },
+          {
+            "who": "Everyone",
+            "action": "Turns the demo switch off.",
+            "result": "Preloaded profiles are cleared and the app returns to normal input flow."
+          }
+        ],
+        "links": [
+          {
+            "to": "/results",
+            "label": "Load this profile",
+            "when": "After a persona is loaded, to see its matching schemes grouped by result."
+          },
+          {
+            "to": "/",
+            "label": "Back to Welcome",
+            "when": "To leave demo mode and return to language selection and the trust statement."
+          }
+        ],
+        "states": {
+          "empty": "If no persona is available, shows 'No demo profiles are loaded yet' and the Back to Welcome link.",
+          "loading": "While a persona loads, its card shows a short 'Loading profile' message and the button is disabled.",
+          "error": "If a persona cannot load from the stored data, shows 'This profile could not load. Try again or use the built-in copy' and keeps the persona cards visible."
+        },
+        "notes": "Judge-only switch; all profiles are fictional and anonymous. Demo data is stored separately from application code. Must work fully with preloaded fictional data if internet access fails. No real user data is entered on this screen."
+      },
+      "basis": "[\"Demo Mode\",\"A judge-only switch that loads preloaded fictional personas.\",[\"Low-income Student in Class 11–12\",\"Parent\"],[]]",
+      "at": "2026-11-21T08:23:23.373Z"
+    }
+  }
+}

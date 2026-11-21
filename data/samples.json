@@ -1,0 +1,73 @@
+{
+  "samples": [
+    {
+      "id": "lakshmi",
+      "name": "Lakshmi",
+      "blurb": "Inter 2nd year, BC-B, ₹1.1L, rural",
+      "text": "I'm Lakshmi, in Inter 2nd year in a government college near Warangal. My father is a daily wage worker, we are BC-B, family income around 1.1 lakh. I got 72% in 10th.",
+      "profile": {
+        "education_level": "inter",
+        "year": 2,
+        "community": "BC",
+        "annual_income": 110000,
+        "gender": "female",
+        "area": "rural",
+        "district": "Warangal",
+        "disability": false,
+        "marks_percent": 72,
+        "college_type": "government"
+      },
+      "expected_likely": [
+        "ts-postmatric-bc-ebc",
+        "ts-rtf"
+      ]
+    },
+    {
+      "id": "ravi",
+      "name": "Ravi",
+      "blurb": "B.Tech 1st year, SC, ₹80k",
+      "text": "Ravi here, B.Tech 1st year at a private engineering college in Hyderabad. We are SC, family income is about 80,000 a year. I scored 85% in Inter.",
+      "profile": {
+        "education_level": "professional",
+        "year": 1,
+        "community": "SC",
+        "annual_income": 80000,
+        "gender": "male",
+        "area": "urban",
+        "district": "Hyderabad",
+        "disability": false,
+        "marks_percent": 85,
+        "college_type": "private"
+      },
+      "expected_likely": [
+        "ts-postmatric-sc-st",
+        "ts-rtf",
+        "central-sector",
+        "pm-vidyalaxmi"
+      ]
+    },
+    {
+      "id": "ayesha",
+      "name": "Ayesha",
+      "blurb": "Degree 2nd year, Minority, ₹1.6L",
+      "text": "मैं आयशा हूँ, हैदराबाद में B.Com 2nd year कर रही हूँ, हम minority हैं, family income 1.6 लाख है। Inter में 68% आए थे।",
+      "profile": {
+        "education_level": "degree",
+        "year": 2,
+        "community": "Minority",
+        "annual_income": 160000,
+        "gender": "female",
+        "area": "urban",
+        "district": "Hyderabad",
+        "disability": false,
+        "marks_percent": 68,
+        "college_type": "private"
+      },
+      "expected_likely": [
+        "ts-postmatric-minority",
+        "ts-rtf",
+        "pm-vidyalaxmi"
+      ]
+    }
+  ]
+}

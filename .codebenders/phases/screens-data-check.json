@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "basis": "aeb6b51f1a351c97",
+  "at": "2026-11-21T09:21:00.471Z",
+  "fields": 42,
+  "missing": [
+    {
+      "key": "intake_sessions.user_id",
+      "screens": [
+        "Demo Mode",
+        "Follow-up Question Flow",
+        "Results",
+        "Scheme Detail",
+        "Tell Us About Your Situation"
+      ],
+      "example": "u1"
+    },
+    {
+      "key": "parent_profiles.child_user_id",
+      "screens": [
+        "Deadline and Progress Tracker",
+        "Demo Mode",
+        "Document Checklist and Application Steps"
+      ],
+      "example": "u3"
+    },
+    {
+      "key": "student_profiles.school_name",
+      "screens": [
+        "Demo Mode"
+      ],
+      "example": "Government Girls Higher Secondary School, Madurai"
+    },
+    {
+      "key": "student_profiles.user_id",
+      "screens": [
+        "Demo Mode",
+        "Follow-up Question Flow"
+      ],
+      "example": "u3"
+    }
+  ],
+  "decisions": {}
+}

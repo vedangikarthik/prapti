@@ -1,0 +1,26 @@
+{
+  "integrations": [
+    {
+      "id": "upstash",
+      "category": "database",
+      "sdk": "Upstash Redis",
+      "env_vars": [
+        "UPSTASH_REDIS_REST_URL",
+        "UPSTASH_REDIS_REST_TOKEN"
+      ],
+      "usage_files": [],
+      "accepted": true
+    },
+    {
+      "id": "openai",
+      "category": "ai",
+      "sdk": "OpenAI",
+      "env_vars": [
+        "OPENAI_API_KEY"
+      ],
+      "usage_files": [],
+      "accepted": true
+    }
+  ],
+  "suggested": []
+}

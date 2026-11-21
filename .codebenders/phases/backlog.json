@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "bl-mwq775j2-7",
+      "title": "Choose a language and read the trust statement on a welcome screen",
+      "detail": "There is no welcome page at /, so nobody sees language selection or the trust statement first. The PRD asks for \"Welcome screen: language selection and simple trust statement.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "S",
+      "tokens": 22553,
+      "status": "complete",
+      "note": "app/page.tsx now serves a welcome screen at / with the LanguageSelector (components/LanguageSelector.tsx, persisted via lib/language-storage.ts), the trust statement, and a Continue link to /intake; the regional language label is still a placeholder that needs replacing before launch."
+    },
+    {
+      "id": "bl-mwq775j2-8",
+      "title": "Describe my situation in one short sentence by typing",
+      "detail": "The conversational intake screen at /tell-us-about-your-situation is missing. The PRD asks to \"Start with plain language, not a long form.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120037,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-9",
+      "title": "Have my typed sentence understood as class, institution, state and income",
+      "detail": "POST /api/my/profiles is missing, so a typed sentence cannot become a profile. The PRD asks to \"Extract profile details from the user's message.\"",
+      "step": "atlas",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120044,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-a",
+      "title": "Speak my situation into the microphone and confirm the transcript",
+      "detail": "POST /api/speech-transcriptions is missing, so voice input does not work. The PRD asks to \"Include microphone input and typed input.\"",
+      "step": "atlas",
+      "source": "build",
+      "priority": "medium",
+      "effort": "M",
+      "tokens": 120039,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-b",
+      "title": "Answer 2–4 follow-up questions one at a time and skip optional ones",
+      "detail": "The follow-up flow at /follow-up-question-flow is missing. The PRD asks to \"Answer only 2–4 simple follow-up questions\" and to \"Let users skip optional questions.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120046,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-c",
+      "title": "Get the next most useful question, and save or skip each answer",
+      "detail": "The follow-up answer endpoints are missing: next-question, answers, skip and the answers list. Nothing picks the highest-value question or re-checks schemes after an answer.",
+      "step": "atlas",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120046,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-d",
+      "title": "See schemes grouped as Likely eligible, May qualify and Not currently eligible",
+      "detail": "The results screen at /results is missing, along with the endpoint that groups results. The PRD asks for \"schemes grouped as\" these three categories, each with a respectful reason.",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120053,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-e",
+      "title": "Read why a scheme fit, what still needs checking and why it may not fit",
+      "detail": "The scheme detail screen at /schemes/[id] is missing. The PRD asks for \"Why this may fit\", \"What we still need to verify\" and \"Why this may not fit\" on each result.",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120059,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-f",
+      "title": "Change one answer and see which scheme changes and which rule caused it",
+      "detail": "The \"What changes my result?\" interaction is missing: the PATCH endpoint for follow-up answers and the screen that shows previous status and changed rule. The PRD calls it the \"CRITICAL DEMO FEATURE.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120058,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-g",
+      "title": "Get deterministic eligibility results with reasons for every scheme",
+      "detail": "No rules engine exists, so no result, matched rule or failed rule is ever produced. The PRD requires \"Evaluate rules deterministically\" and \"Never hide decision logic behind AI.\"",
+      "step": "ble",
+      "source": "build",
+      "priority": "high",
+      "effort": "L",
+      "tokens": 204735,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-h",
+      "title": "Browse a curated catalogue of 8–12 verified schemes with rules, documents and steps",
+      "detail": "No scheme data, eligibility rules, required documents or application steps are stored, and the scheme tables are missing. The PRD asks for \"exactly 8–12 verified scholarship/education-benefit schemes.\"",
+      "step": "schema",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120052,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-i",
+      "title": "Save a personalised checklist of documents and steps for a scheme",
+      "detail": "The document checklist and application steps screen is missing, along with the endpoints to save and load a checklist. The PRD asks for a \"Personalised document checklist\" and \"Step-by-step application guide.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120054,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-j",
+      "title": "Tick off documents and steps as done on my checklist",
+      "detail": "The tick-off endpoint for checklist items is missing, so a person cannot mark a document or step as done. The PRD asks for a checklist that can be tracked.",
+      "step": "atlas",
+      "source": "build",
+      "priority": "high",
+      "effort": "S",
+      "tokens": 22550,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-k",
+      "title": "Track each scheme from Not started to Awaiting outcome with a deadline countdown",
+      "detail": "The deadline and progress tracker at /deadline-and-progress-tracker is missing, along with the stage-change endpoints. The PRD asks for \"Not started → Documents ready → Applied → Awaiting outcome.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120053,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-l",
+      "title": "Get a reminder before a scheme deadline",
+      "detail": "No reminder is sent before a deadline. The PRD asks for a \"Deadline countdown/reminder UI\" and the plan calls for deadline tracking.",
+      "step": "ble",
+      "source": "build",
+      "priority": "medium",
+      "effort": "M",
+      "tokens": 120037,
+      "status": "open",
+      "needsScheduler": true
+    },
+    {
+      "id": "bl-mwq775j2-m",
+      "title": "Share a plain-text checklist summary with family without sensitive details",
+      "detail": "The \"Share this checklist with family\" button and the summary endpoint are missing. The PRD asks for \"a simple shareable text summary, without exposing sensitive details.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "medium",
+      "effort": "S",
+      "tokens": 22546,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-n",
+      "title": "Read the privacy and \"How HaqPath decides\" explanation",
+      "detail": "The privacy and decision-explanation screen at /privacy-and-how-haqpath-decides is missing. The PRD requires the disclaimer \"Final eligibility is decided by the relevant authority.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "S",
+      "tokens": 22539,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-o",
+      "title": "Load fictional demo personas with one switch, without typing anything",
+      "detail": "The demo mode screen and the persona list and load endpoints are missing, so judges cannot run the demo without typing. The PRD asks for \"A judge-only demo-mode switch with preloaded fictional personas.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "high",
+      "effort": "M",
+      "tokens": 120055,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-p",
+      "title": "Have results and instructions read aloud",
+      "detail": "No read-aloud control exists on the results, scheme detail or checklist screens. The PRD asks for a \"Read-aloud button for results and instructions.\"",
+      "step": "pages",
+      "source": "build",
+      "priority": "medium",
+      "effort": "M",
+      "tokens": 120037,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-q",
+      "title": "Switch the whole interface between English and my regional language",
+      "detail": "No language toggle or translated interface text exists. The PRD asks for a \"Clear regional-language toggle\" and multilingual UI.",
+      "step": "pages",
+      "source": "build",
+      "priority": "medium",
+      "effort": "M",
+      "tokens": 120037,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-r",
+      "title": "See results, reasons and steps rewritten in simple language",
+      "detail": "The text rewrite endpoints for results, rules, steps and interface text are missing. The PRD asks for \"Very simple language.\"",
+      "step": "atlas",
+      "source": "build",
+      "priority": "medium",
+      "effort": "S",
+      "tokens": 22537,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-s",
+      "title": "Record my relationship to the child and my town for the family record",
+      "detail": "The parent record and its endpoints are missing, so a parent cannot add their relationship or town. The plan lists this as part of the parent persona's flow.",
+      "step": "pages",
+      "source": "build",
+      "priority": "medium",
+      "effort": "S",
+      "tokens": 22553,
+      "status": "open"
+    },
+    {
+      "id": "bl-mwq775j2-t",
+      "title": "Start a new check from scratch and clear my earlier answers",
+      "detail": "No reset action exists, so a person cannot clear the session and begin again. The plan lists a reset endpoint for this.",
+      "step": "pages",
+      "source": "build",
+      "priority": "medium",
+      "effort": "S",
+      "tokens": 22542,
+      "status": "open"
+    }
+  ],
+  "leftOut": {
+    "at": "2026-11-21T08:59:15.885Z",
+    "items": [],
+    "deferred": []
+  },
+  "builtScanAt": "2026-11-21T09:20:56.510Z"
+}

@@ -1,0 +1,61 @@
+:root {
+  /* Colours */
+  --bg: #F7F6F2;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE6;
+  --ink: #15171C;
+  --ink-2: #4A4F59;
+  --ink-3: #8A8F98;
+  --line: #E2DFD6;
+  --brand: #0F6B4F;
+  --brand-hover: #0B5740;
+  --brand-soft: #E3F1EA;
+  --likely: #1E8A5A;
+  --likely-bg: #E3F4EA;
+  --maybe: #B26A00;
+  --maybe-bg: #FDF1DC;
+  --no: #6B7079;
+  --no-bg: #EEEEEC;
+  --urgent: #C2410C;
+  --urgent-bg: #FDE9DF;
+  --focus: #2563EB; /* focus ring only */
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Radii */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-sheet: 24px;
+  --radius-chip: 999px;
+
+  /* Motion */
+  --dur-fast: 150ms;   /* hover / press */
+  --dur-card: 250ms;   /* cards */
+  --dur-sheet: 300ms;  /* sheets */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-card: 0ms;
+    --dur-sheet: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

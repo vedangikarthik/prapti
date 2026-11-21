@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "createdAt": "2026-11-21T07:02:10.139Z",
+  "updatedAt": "2026-11-21T09:20:25.079Z",
+  "phases": {
+    "prd": {
+      "updatedAt": "2026-11-21T07:51:28.022Z",
+      "committed": true
+    },
+    "persona": {
+      "updatedAt": "2026-11-21T07:51:31.752Z",
+      "committed": true
+    },
+    "brand-guided": {
+      "updatedAt": "2026-11-21T08:24:10.587Z",
+      "committed": true
+    },
+    "pages": {
+      "updatedAt": "2026-11-21T09:20:08.057Z",
+      "committed": true
+    },
+    "architecture": {
+      "updatedAt": "2026-11-21T09:02:29.181Z",
+      "committed": true
+    },
+    "stack": {
+      "updatedAt": "2026-11-21T09:02:32.297Z",
+      "committed": true
+    },
+    "apis": {
+      "updatedAt": "2026-11-21T09:02:37.022Z",
+      "committed": true
+    },
+    "ble": {
+      "updatedAt": "2026-11-21T09:02:38.363Z",
+      "committed": true
+    },
+    "schema": {
+      "updatedAt": "2026-11-21T09:18:25.032Z",
+      "committed": true
+    },
+    "atlas": {
+      "updatedAt": "2026-11-21T09:19:25.364Z",
+      "committed": true
+    },
+    "generate": {
+      "updatedAt": "2026-11-21T09:20:25.079Z",
+      "committed": true
+    }
+  },
+  "settings": {},
+  "flow": {
+    "prd": {
+      "hash": "eb30b92f1ac86be0",
+      "builtFrom": {}
+    },
+    "persona": {
+      "hash": "33e050b788da7630",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0"
+      }
+    },
+    "brand": {
+      "hash": "e9572efc4370fcd2",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0"
+      }
+    },
+    "pages": {
+      "hash": "81da7d42b58e56bb",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0",
+        "persona": "33e050b788da7630"
+      }
+    },
+    "architecture": {
+      "hash": "8925f02f30f59155",
+      "parts": {
+        "architecture": "9beac2b2c755ad62"
+      },
+      "builtFrom": {}
+    },
+    "stack": {
+      "hash": "a66a38ce4f2e6d64",
+      "parts": {
+        "databaseKind": "684a0cfa7ca53b79"
+      },
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0",
+        "architecture": "d101c795853d3cfa"
+      }
+    },
+    "apis": {
+      "hash": "c3fb9ed8507db089",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0"
+      }
+    },
+    "ble": {
+      "hash": "780ed06b14a9356b",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0",
+        "persona": "33e050b788da7630",
+        "pages": "81da7d42b58e56bb",
+        "apis": "c3fb9ed8507db089"
+      }
+    },
+    "schema": {
+      "hash": "d585c46060428924",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0",
+        "persona": "33e050b788da7630",
+        "pages": "81da7d42b58e56bb",
+        "stack": "a43f1be7b52d5edb",
+        "apis": "c3fb9ed8507db089",
+        "ble": "780ed06b14a9356b"
+      }
+    },
+    "atlas": {
+      "hash": "651e0b84c5930972",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0",
+        "persona": "33e050b788da7630",
+        "pages": "81da7d42b58e56bb",
+        "stack": "a43f1be7b52d5edb",
+        "apis": "c3fb9ed8507db089",
+        "ble": "780ed06b14a9356b",
+        "schema": "d585c46060428924"
+      }
+    },
+    "generate": {
+      "hash": "4657f1299918b600",
+      "builtFrom": {
+        "prd": "eb30b92f1ac86be0",
+        "persona": "33e050b788da7630",
+        "brand": "e9572efc4370fcd2",
+        "pages": "81da7d42b58e56bb",
+        "architecture": "8925f02f30f59155",
+        "stack": "a66a38ce4f2e6d64",
+        "apis": "c3fb9ed8507db089",
+        "ble": "780ed06b14a9356b",
+        "schema": "d585c46060428924",
+        "atlas": "651e0b84c5930972"
+      }
+    }
+  }
+}

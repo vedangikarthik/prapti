@@ -1,0 +1,1189 @@
+{
+  "version": 1,
+  "state": "Telangana",
+  "audience": "students",
+  "schemes": [
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "ts-postmatric-sc-st",
+      "name_en": "Telangana Post-Matric Scholarship (SC / ST)",
+      "name_te": "తెలంగాణ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ (SC / ST)",
+      "name_hi": "तेलंगाना पोस्ट-मैट्रिक छात्रवृत्ति (SC / ST)",
+      "run_by": "Telangana",
+      "category": "scholarship",
+      "summary_en": "Monthly maintenance support for SC and ST students studying after Class 10.",
+      "benefit_text": "Maintenance allowance up to ₹20,000 a year",
+      "benefit_max_inr": 20000,
+      "rules": [
+        {
+          "field": "community",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST"
+          ],
+          "text_en": "Open to SC / ST students — you said {user_value}.",
+          "text_te": "SC / ST విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "SC / ST छात्रों के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "inter",
+            "iti_polytechnic",
+            "degree",
+            "professional",
+            "pg"
+          ],
+          "text_en": "For students in Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG — you are in {user_value}.",
+          "text_te": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 200000,
+          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Caste certificate",
+          "hint": "Get it from: Mee Seva centre, about 7–15 days",
+          "needed_if": {
+            "field": "community",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST",
+              "BC",
+              "EBC"
+            ]
+          }
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Bonafide / study certificate",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Passport-size photo",
+          "hint": "Recent, plain background"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Get your certificates ready",
+          "detail": "Income and caste certificates must be from this academic year.",
+          "link": null
+        },
+        {
+          "title": "Register on Telangana ePASS",
+          "detail": "Open ePASS, choose Post-Matric / SC/ST registration, and fill in your details.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Fill the application and upload documents",
+          "detail": "Check your name matches your certificates exactly.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Submit and print the application",
+          "detail": "Take the printout and copies of documents to your college.",
+          "link": null
+        },
+        {
+          "title": "College verifies and forwards it",
+          "detail": "Ask the scholarship desk at your college to confirm it is forwarded.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Use 'Application status' on ePASS with your application ID.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        }
+      ],
+      "after_apply": "Your college verifies the application first, then the welfare department. Check status on ePASS every 2 weeks. Money goes straight to the bank account. If rejected, the status shows the reason: fix it (usually an old certificate or a name mismatch) and ask your college about re-submission.",
+      "source_name": "Telangana ePASS",
+      "source_url": "https://telanganaepass.cgg.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "ts-postmatric-bc-ebc",
+      "name_en": "Telangana Post-Matric Scholarship (BC / EBC)",
+      "name_te": "తెలంగాణ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ (BC / EBC)",
+      "name_hi": "तेलंगाना पोस्ट-मैट्रिक छात्रवृत्ति (BC / EBC)",
+      "run_by": "Telangana",
+      "category": "scholarship",
+      "summary_en": "Maintenance support for BC and EBC students studying after Class 10.",
+      "benefit_text": "Maintenance allowance up to ₹20,000 a year",
+      "benefit_max_inr": 20000,
+      "rules": [
+        {
+          "field": "community",
+          "op": "in",
+          "value": [
+            "BC",
+            "EBC"
+          ],
+          "text_en": "Open to BC / EBC students — you said {user_value}.",
+          "text_te": "BC / EBC విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "BC / EBC छात्रों के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "inter",
+            "iti_polytechnic",
+            "degree",
+            "professional",
+            "pg"
+          ],
+          "text_en": "For students in Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG — you are in {user_value}.",
+          "text_te": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 150000,
+          "text_en": "Family income up to ₹1,50,000 a year (rural) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹1,50,000 లోపు (rural) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹1,50,000 तक (rural) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "area",
+              "op": "eq",
+              "value": "rural"
+            }
+          ]
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 200000,
+          "text_en": "Family income up to ₹2,00,000 a year (urban) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు (urban) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक (urban) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "area",
+              "op": "eq",
+              "value": "urban"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Caste certificate",
+          "hint": "Get it from: Mee Seva centre, about 7–15 days",
+          "needed_if": {
+            "field": "community",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST",
+              "BC",
+              "EBC"
+            ]
+          }
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Bonafide / study certificate",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Passport-size photo",
+          "hint": "Recent, plain background"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Get your certificates ready",
+          "detail": "Income and caste certificates must be from this academic year.",
+          "link": null
+        },
+        {
+          "title": "Register on Telangana ePASS",
+          "detail": "Open ePASS, choose Post-Matric / BC/EBC registration, and fill in your details.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Fill the application and upload documents",
+          "detail": "Check your name matches your certificates exactly.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Submit and print the application",
+          "detail": "Take the printout and copies of documents to your college.",
+          "link": null
+        },
+        {
+          "title": "College verifies and forwards it",
+          "detail": "Ask the scholarship desk at your college to confirm it is forwarded.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Use 'Application status' on ePASS with your application ID.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        }
+      ],
+      "after_apply": "Your college verifies the application first, then the welfare department. Check status on ePASS every 2 weeks. Money goes straight to the bank account. If rejected, the status shows the reason: fix it (usually an old certificate or a name mismatch) and ask your college about re-submission.",
+      "source_name": "Telangana ePASS",
+      "source_url": "https://telanganaepass.cgg.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "ts-postmatric-minority",
+      "name_en": "Telangana Post-Matric Scholarship (Minorities)",
+      "name_te": "తెలంగాణ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ (మైనారిటీలు)",
+      "name_hi": "तेलंगाना पोस्ट-मैट्रिक छात्रवृत्ति (अल्पसंख्यक)",
+      "run_by": "Telangana",
+      "category": "scholarship",
+      "summary_en": "Maintenance support for minority community students studying after Class 10.",
+      "benefit_text": "Maintenance allowance up to ₹20,000 a year",
+      "benefit_max_inr": 20000,
+      "rules": [
+        {
+          "field": "community",
+          "op": "in",
+          "value": [
+            "Minority"
+          ],
+          "text_en": "Open to Minority students — you said {user_value}.",
+          "text_te": "Minority విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "Minority छात्रों के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "inter",
+            "iti_polytechnic",
+            "degree",
+            "professional",
+            "pg"
+          ],
+          "text_en": "For students in Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG — you are in {user_value}.",
+          "text_te": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 200000,
+          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Minority community self-declaration",
+          "hint": "Simple signed form; your college can help",
+          "needed_if": {
+            "field": "community",
+            "op": "eq",
+            "value": "Minority"
+          }
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Bonafide / study certificate",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Passport-size photo",
+          "hint": "Recent, plain background"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Get your certificates ready",
+          "detail": "Income and caste certificates must be from this academic year.",
+          "link": null
+        },
+        {
+          "title": "Register on Telangana ePASS",
+          "detail": "Open ePASS, choose Post-Matric / Minority registration, and fill in your details.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Fill the application and upload documents",
+          "detail": "Check your name matches your certificates exactly.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Submit and print the application",
+          "detail": "Take the printout and copies of documents to your college.",
+          "link": null
+        },
+        {
+          "title": "College verifies and forwards it",
+          "detail": "Ask the scholarship desk at your college to confirm it is forwarded.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Use 'Application status' on ePASS with your application ID.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        }
+      ],
+      "after_apply": "Your college verifies the application first, then the welfare department. Check status on ePASS every 2 weeks. Money goes straight to the bank account. If rejected, the status shows the reason: fix it (usually an old certificate or a name mismatch) and ask your college about re-submission.",
+      "source_name": "Telangana ePASS",
+      "source_url": "https://telanganaepass.cgg.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "ts-rtf",
+      "name_en": "Telangana Reimbursement of Tuition Fee (RTF)",
+      "name_te": "తెలంగాణ ట్యూషన్ ఫీజు రీయింబర్స్‌మెంట్ (RTF)",
+      "name_hi": "तेलंगाना ट्यूशन फीस प्रतिपूर्ति (RTF)",
+      "run_by": "Telangana",
+      "category": "fee reimbursement",
+      "summary_en": "The government pays your college tuition fee directly to the college.",
+      "benefit_text": "College tuition fee paid, up to ₹35,000 a year",
+      "benefit_max_inr": 35000,
+      "rules": [
+        {
+          "field": "community",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST",
+            "BC",
+            "EBC",
+            "Minority"
+          ],
+          "text_en": "Open to SC / ST / BC / EBC / Minority students — you said {user_value}.",
+          "text_te": "SC / ST / BC / EBC / Minority విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "SC / ST / BC / EBC / Minority छात्रों के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "inter",
+            "iti_polytechnic",
+            "degree",
+            "professional",
+            "pg"
+          ],
+          "text_en": "For students in Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG — you are in {user_value}.",
+          "text_te": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Inter (11–12), ITI / Polytechnic, Degree, Engineering / Medical / Professional, PG में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 200000,
+          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 150000,
+          "text_en": "Family income up to ₹1,50,000 a year (BC / EBC, rural) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹1,50,000 లోపు (BC / EBC, rural) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹1,50,000 तक (BC / EBC, rural) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "area",
+              "op": "eq",
+              "value": "rural"
+            },
+            {
+              "field": "community",
+              "op": "in",
+              "value": [
+                "BC",
+                "EBC"
+              ]
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Caste certificate",
+          "hint": "Get it from: Mee Seva centre, about 7–15 days",
+          "needed_if": {
+            "field": "community",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST",
+              "BC",
+              "EBC"
+            ]
+          }
+        },
+        {
+          "name": "Minority community self-declaration",
+          "hint": "Simple signed form; your college can help",
+          "needed_if": {
+            "field": "community",
+            "op": "eq",
+            "value": "Minority"
+          }
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Admission letter / fee receipt",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Get your certificates ready",
+          "detail": "Income and caste certificates must be from this academic year.",
+          "link": null
+        },
+        {
+          "title": "Register on Telangana ePASS",
+          "detail": "Open ePASS, choose Post-Matric / Fee reimbursement registration, and fill in your details.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Fill the application and upload documents",
+          "detail": "Check your name matches your certificates exactly.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Submit and print the application",
+          "detail": "Take the printout and copies of documents to your college.",
+          "link": null
+        },
+        {
+          "title": "College verifies and forwards it",
+          "detail": "Ask the scholarship desk at your college to confirm it is forwarded.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Use 'Application status' on ePASS with your application ID.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        }
+      ],
+      "after_apply": "Your college verifies the application first, then the welfare department. Check status on ePASS every 2 weeks. Money goes straight to the bank account. If rejected, the status shows the reason: fix it (usually an old certificate or a name mismatch) and ask your college about re-submission.",
+      "source_name": "Telangana ePASS",
+      "source_url": "https://telanganaepass.cgg.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "ts-prematric",
+      "name_en": "Telangana Pre-Matric Scholarship (Class 9–10)",
+      "name_te": "తెలంగాణ ప్రీ-మెట్రిక్ స్కాలర్‌షిప్ (9–10 తరగతి)",
+      "name_hi": "तेलंगाना प्री-मैट्रिक छात्रवृत्ति (कक्षा 9–10)",
+      "run_by": "Telangana",
+      "category": "scholarship",
+      "summary_en": "Yearly support for SC, ST, BC and minority students in Class 9 and 10.",
+      "benefit_text": "Up to ₹3,500 a year",
+      "benefit_max_inr": 3500,
+      "rules": [
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_9",
+            "class_10"
+          ],
+          "text_en": "For students in Class 9, Class 10 — you are in {user_value}.",
+          "text_te": "Class 9, Class 10 చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Class 9, Class 10 में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "community",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST",
+            "BC",
+            "Minority"
+          ],
+          "text_en": "Open to SC / ST / BC / Minority students — you said {user_value}.",
+          "text_te": "SC / ST / BC / Minority విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "SC / ST / BC / Minority छात्रों के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 200000,
+          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Caste certificate",
+          "hint": "Get it from: Mee Seva centre, about 7–15 days",
+          "needed_if": {
+            "field": "community",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST",
+              "BC",
+              "EBC"
+            ]
+          }
+        },
+        {
+          "name": "Minority community self-declaration",
+          "hint": "Simple signed form; your college can help",
+          "needed_if": {
+            "field": "community",
+            "op": "eq",
+            "value": "Minority"
+          }
+        },
+        {
+          "name": "Bonafide / study certificate",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Get your certificates ready",
+          "detail": "Income and caste certificates must be from this academic year.",
+          "link": null
+        },
+        {
+          "title": "Register on Telangana ePASS",
+          "detail": "Open ePASS, choose Post-Matric / Pre-Matric registration, and fill in your details.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Fill the application and upload documents",
+          "detail": "Check your name matches your certificates exactly.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        },
+        {
+          "title": "Submit and print the application",
+          "detail": "Take the printout and copies of documents to your college.",
+          "link": null
+        },
+        {
+          "title": "College verifies and forwards it",
+          "detail": "Ask the scholarship desk at your college to confirm it is forwarded.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Use 'Application status' on ePASS with your application ID.",
+          "link": "https://telanganaepass.cgg.gov.in"
+        }
+      ],
+      "after_apply": "Your college verifies the application first, then the welfare department. Check status on ePASS every 2 weeks. Money goes straight to the bank account. If rejected, the status shows the reason: fix it (usually an old certificate or a name mismatch) and ask your college about re-submission.",
+      "source_name": "Telangana ePASS",
+      "source_url": "https://telanganaepass.cgg.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "nmms",
+      "name_en": "National Means-cum-Merit Scholarship (NMMS)",
+      "name_te": "నేషనల్ మీన్స్-కమ్-మెరిట్ స్కాలర్‌షిప్ (NMMS)",
+      "name_hi": "राष्ट्रीय साधन-सह-योग्यता छात्रवृत्ति (NMMS)",
+      "run_by": "Central",
+      "category": "scholarship",
+      "summary_en": "₹12,000 a year from Class 9 to 12 for bright students in government schools, after a selection exam in Class 8.",
+      "benefit_text": "₹12,000 a year (Class 9–12)",
+      "benefit_max_inr": 12000,
+      "rules": [
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_9"
+          ],
+          "text_en": "For students in Class 9 — you are in {user_value}.",
+          "text_te": "Class 9 చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Class 9 में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "college_type",
+          "op": "eq",
+          "value": "government",
+          "text_en": "Must study in a government or aided school — you said {user_value}.",
+          "text_te": "ప్రభుత్వ లేదా ఎయిడెడ్ పాఠశాలలో చదవాలి — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "सरकारी या सहायता प्राप्त स्कूल में पढ़ना ज़रूरी — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 350000,
+          "text_en": "Family income up to ₹3,50,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹3,50,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹3,50,000 तक — आपने बताया लगभग {user_value}।"
+        },
+        {
+          "field": "marks_percent",
+          "op": "gte",
+          "value": 55,
+          "text_en": "Needs at least 55% in Class 8 — you said {user_value}.",
+          "text_te": "కనీసం 55% మార్కులు అవసరం — మీరు చెప్పింది {user_value}.",
+          "text_hi": "कम से कम 55% अंक चाहिए — आपने बताया {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Caste certificate",
+          "hint": "Get it from: Mee Seva centre, about 7–15 days",
+          "needed_if": {
+            "field": "community",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST",
+              "BC",
+              "EBC"
+            ]
+          }
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Bonafide / study certificate",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Do One-Time Registration (OTR) on the National Scholarship Portal",
+          "detail": "Use your own mobile number.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Find 'NMMS' and fill the application",
+          "detail": "Keep your marks memo and income certificate ready to upload.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Submit before the deadline",
+          "detail": "Download the submitted form for your records.",
+          "link": null
+        },
+        {
+          "title": "Institute and district verification",
+          "detail": "Ask your school/college to verify it on the portal; this is often where applications get stuck.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Log in to NSP and check 'Application status'.",
+          "link": "https://scholarships.gov.in"
+        }
+      ],
+      "after_apply": "Your institute must verify the form on NSP, then the district/state. Check status every 2 weeks. If it is 'pending at institute', remind your college office. If rejected, read the reason and apply again in the next cycle.",
+      "source_name": "National Scholarship Portal",
+      "source_url": "https://scholarships.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "central-sector",
+      "name_en": "Central Sector Scholarship for College & University Students",
+      "name_te": "కాలేజీ & యూనివర్సిటీ విద్యార్థులకు సెంట్రల్ సెక్టార్ స్కాలర్‌షిప్",
+      "name_hi": "कॉलेज और विश्वविद्यालय छात्रों के लिए केंद्रीय क्षेत्र छात्रवृत्ति",
+      "run_by": "Central",
+      "category": "scholarship",
+      "summary_en": "For top scorers in Class 12 who join a regular degree course.",
+      "benefit_text": "₹12,000 a year (UG), ₹20,000 a year (PG)",
+      "benefit_max_inr": 20000,
+      "rules": [
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "degree",
+            "professional",
+            "pg"
+          ],
+          "text_en": "For students in Degree, Engineering / Medical / Professional, PG — you are in {user_value}.",
+          "text_te": "Degree, Engineering / Medical / Professional, PG చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Degree, Engineering / Medical / Professional, PG में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "marks_percent",
+          "op": "gte",
+          "value": 80,
+          "text_en": "Needs at least 80% in Class 12 (top 20%) — you said {user_value}.",
+          "text_te": "కనీసం 80% మార్కులు అవసరం — మీరు చెప్పింది {user_value}.",
+          "text_hi": "कम से कम 80% अंक चाहिए — आपने बताया {user_value}।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 450000,
+          "text_en": "Family income up to ₹4,50,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹4,50,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹4,50,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Admission letter / fee receipt",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Do One-Time Registration (OTR) on the National Scholarship Portal",
+          "detail": "Use your own mobile number.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Find 'Central Sector Scheme of Scholarships' and fill the application",
+          "detail": "Keep your marks memo and income certificate ready to upload.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Submit before the deadline",
+          "detail": "Download the submitted form for your records.",
+          "link": null
+        },
+        {
+          "title": "Institute and district verification",
+          "detail": "Ask your school/college to verify it on the portal; this is often where applications get stuck.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Log in to NSP and check 'Application status'.",
+          "link": "https://scholarships.gov.in"
+        }
+      ],
+      "after_apply": "Your institute must verify the form on NSP, then the district/state. Check status every 2 weeks. If it is 'pending at institute', remind your college office. If rejected, read the reason and apply again in the next cycle.",
+      "source_name": "National Scholarship Portal",
+      "source_url": "https://scholarships.gov.in"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "aicte-pragati",
+      "name_en": "AICTE Pragati Scholarship for Girls",
+      "name_te": "విద్యార్థినులకు AICTE ప్రగతి స్కాలర్‌షిప్",
+      "name_hi": "छात्राओं के लिए AICTE प्रगति छात्रवृत्ति",
+      "run_by": "Central",
+      "category": "scholarship",
+      "summary_en": "₹50,000 a year for girls in AICTE-approved diploma or degree technical courses.",
+      "benefit_text": "₹50,000 a year",
+      "benefit_max_inr": 50000,
+      "rules": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female",
+          "text_en": "For girl students — you said {user_value}.",
+          "text_te": "విద్యార్థినులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "छात्राओं के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "iti_polytechnic",
+            "professional"
+          ],
+          "text_en": "For students in ITI / Polytechnic, Engineering / Medical / Professional — you are in {user_value}.",
+          "text_te": "ITI / Polytechnic, Engineering / Medical / Professional చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "ITI / Polytechnic, Engineering / Medical / Professional में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "year",
+          "op": "lte",
+          "value": 2,
+          "text_en": "Only for year 1 to 2 of the course — you are in year {user_value}.",
+          "text_te": "కోర్సు 1 నుండి 2 సంవత్సరం వారికి మాత్రమే — మీరు {user_value} సంవత్సరం.",
+          "text_hi": "केवल कोर्स के वर्ष 1 से 2 के लिए — आप वर्ष {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 800000,
+          "text_en": "Family income up to ₹8,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹8,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹8,00,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Caste certificate",
+          "hint": "Get it from: Mee Seva centre, about 7–15 days",
+          "needed_if": {
+            "field": "community",
+            "op": "in",
+            "value": [
+              "SC",
+              "ST",
+              "BC",
+              "EBC"
+            ]
+          }
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Admission letter / fee receipt",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Passport-size photo",
+          "hint": "Recent, plain background"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Do One-Time Registration (OTR) on the National Scholarship Portal",
+          "detail": "Use your own mobile number.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Find 'AICTE Pragati' and fill the application",
+          "detail": "Keep your marks memo and income certificate ready to upload.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Submit before the deadline",
+          "detail": "Download the submitted form for your records.",
+          "link": null
+        },
+        {
+          "title": "Institute and district verification",
+          "detail": "Ask your school/college to verify it on the portal; this is often where applications get stuck.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Log in to NSP and check 'Application status'.",
+          "link": "https://scholarships.gov.in"
+        }
+      ],
+      "after_apply": "Your institute must verify the form on NSP, then the district/state. Check status every 2 weeks. If it is 'pending at institute', remind your college office. If rejected, read the reason and apply again in the next cycle.",
+      "source_name": "AICTE / National Scholarship Portal",
+      "source_url": "https://www.aicte-india.org/schemes/students-development-schemes"
+    },
+    {
+      "deadline": "2026-12-31",
+      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "last_verified": null,
+      "id": "aicte-saksham",
+      "name_en": "AICTE Saksham Scholarship (Students with Disability)",
+      "name_te": "AICTE సక్షమ్ స్కాలర్‌షిప్ (దివ్యాంగ విద్యార్థులు)",
+      "name_hi": "AICTE सक्षम छात्रवृत्ति (दिव्यांग छात्र)",
+      "run_by": "Central",
+      "category": "scholarship",
+      "summary_en": "₹50,000 a year for students with 40%+ disability in AICTE-approved technical courses.",
+      "benefit_text": "₹50,000 a year",
+      "benefit_max_inr": 50000,
+      "rules": [
+        {
+          "field": "disability",
+          "op": "eq",
+          "value": true,
+          "text_en": "For students with 40% or more disability — you said {user_value}.",
+          "text_te": "40% లేదా అంతకంటే ఎక్కువ వైకల్యం ఉన్న విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "40% या अधिक दिव्यांगता वाले छात्रों के लिए — आपने बताया: {user_value}।"
+        },
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "iti_polytechnic",
+            "professional"
+          ],
+          "text_en": "For students in ITI / Polytechnic, Engineering / Medical / Professional — you are in {user_value}.",
+          "text_te": "ITI / Polytechnic, Engineering / Medical / Professional చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "ITI / Polytechnic, Engineering / Medical / Professional में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 800000,
+          "text_en": "Family income up to ₹8,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹8,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹8,00,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Disability certificate (40% or more)",
+          "hint": "Get it from: SADAREM camp / government hospital"
+        },
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Admission letter / fee receipt",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Do One-Time Registration (OTR) on the National Scholarship Portal",
+          "detail": "Use your own mobile number.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Find 'AICTE Saksham' and fill the application",
+          "detail": "Keep your marks memo and income certificate ready to upload.",
+          "link": "https://scholarships.gov.in"
+        },
+        {
+          "title": "Submit before the deadline",
+          "detail": "Download the submitted form for your records.",
+          "link": null
+        },
+        {
+          "title": "Institute and district verification",
+          "detail": "Ask your school/college to verify it on the portal; this is often where applications get stuck.",
+          "link": null
+        },
+        {
+          "title": "Track your status",
+          "detail": "Log in to NSP and check 'Application status'.",
+          "link": "https://scholarships.gov.in"
+        }
+      ],
+      "after_apply": "Your institute must verify the form on NSP, then the district/state. Check status every 2 weeks. If it is 'pending at institute', remind your college office. If rejected, read the reason and apply again in the next cycle.",
+      "source_name": "AICTE / National Scholarship Portal",
+      "source_url": "https://www.aicte-india.org/schemes/students-development-schemes"
+    },
+    {
+      "deadline": null,
+      "deadline_note": "No fixed deadline — apply before your fees are due. VERIFY limits on the official site.",
+      "last_verified": null,
+      "id": "pm-vidyalaxmi",
+      "name_en": "PM-Vidyalaxmi Education Loan",
+      "name_te": "పీఎం-విద్యాలక్ష్మి విద్యా రుణం",
+      "name_hi": "पीएम-विद्यालक्ष्मी शिक्षा ऋण",
+      "run_by": "Central",
+      "category": "loan",
+      "summary_en": "A collateral-free education loan with interest help for students at listed quality institutions. This is a loan you repay, not free money.",
+      "benefit_text": "Loan with 3% interest help on up to ₹10 lakh",
+      "benefit_max_inr": 0,
+      "rules": [
+        {
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "degree",
+            "professional",
+            "pg"
+          ],
+          "text_en": "For students in Degree, Engineering / Medical / Professional, PG — you are in {user_value}.",
+          "text_te": "Degree, Engineering / Medical / Professional, PG చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
+          "text_hi": "Degree, Engineering / Medical / Professional, PG में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 800000,
+          "text_en": "Family income up to ₹8,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹8,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹8,00,000 तक — आपने बताया लगभग {user_value}।"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Income certificate (current year)",
+          "hint": "Get it from: Mee Seva centre, about 7 days"
+        },
+        {
+          "name": "Admission letter / fee receipt",
+          "hint": "Get it from: your college office"
+        },
+        {
+          "name": "Marks memo of your last exam",
+          "hint": "Your school or board marks sheet"
+        },
+        {
+          "name": "Bank passbook front page (account in student's name)",
+          "hint": "Any bank; account must be linked for direct transfer"
+        },
+        {
+          "name": "Aadhaar card (show it on the official portal only)",
+          "hint": "Never share the number here or with middlemen"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Check your institute is on the PM-Vidyalaxmi list",
+          "detail": "Only listed institutions qualify.",
+          "link": "https://pmvidyalaxmi.co.in"
+        },
+        {
+          "title": "Register and fill the common loan application",
+          "detail": "One form reaches several banks.",
+          "link": "https://pmvidyalaxmi.co.in"
+        },
+        {
+          "title": "Pick a bank and upload documents",
+          "detail": "Compare interest rates before choosing.",
+          "link": null
+        },
+        {
+          "title": "Track the bank's decision on the portal",
+          "detail": "Banks usually reply within a few weeks.",
+          "link": "https://pmvidyalaxmi.co.in"
+        }
+      ],
+      "after_apply": "The bank reviews your application on the portal. Interest help applies only if family income is within the limit. Only borrow what you need.",
+      "source_name": "PM-Vidyalaxmi portal",
+      "source_url": "https://pmvidyalaxmi.co.in"
+    }
+  ]
+}

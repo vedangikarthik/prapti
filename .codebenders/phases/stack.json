@@ -1,0 +1,27 @@
+{
+  "frontend": {
+    "framework": "Next.js",
+    "language": "TypeScript",
+    "version": "15"
+  },
+  "backend": {
+    "framework": "FastAPI",
+    "language": "Python",
+    "version": "0.115"
+  },
+  "database": {
+    "system": "mysql",
+    "orm": "prisma",
+    "version": "8",
+    "connection": {
+      "hasSecret": true,
+      "kind": "fields"
+    }
+  },
+  "package_manager": "npm",
+  "testing": {
+    "unit": "Vitest",
+    "e2e": "Playwright"
+  },
+  "source_files": []
+}

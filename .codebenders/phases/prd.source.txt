@@ -1,0 +1,208 @@
+We are building a project for the “Citizens and Public Services” challenge:
+
+A person describes their situation in simple language. The product identifies public schemes they are likely eligible for, explains why, lists documents, gives official application steps, and helps them follow up.
+
+Our goal is not merely to make a working app. Our goal is to maximize the chance of winning the hackathon by demonstrating:
+1. clear social impact,
+2. a narrow and credible user problem,
+3. a technically real product rather than a chatbot mock-up,
+4. trustworthy, explainable recommendations,
+5. a polished mobile-first demo,
+6. a believable path to real-world adoption.
+
+PROJECT NAME:
+HaqPath — “Know what support you can claim.”
+
+ONE-LINE PITCH:
+HaqPath helps families discover and act on the public benefits they are likely eligible for through a simple multilingual conversation, transparent rule-based matching, official sources, and personalised application checklists.
+
+STRICT SCOPE — DO NOT EXPAND BEYOND THIS:
+- Geography: [STATE]
+- User group: low-income students in Classes 11–12
+- Language: English + [REGIONAL LANGUAGE]
+- Catalogue: exactly 8–12 verified scholarship/education-benefit schemes
+- User data: fictional/demo profiles only
+- Platform: mobile-first web application
+
+DO NOT build:
+- a generic all-India scheme search engine,
+- a generic AI chatbot,
+- a document upload system,
+- Aadhaar or sensitive-ID collection,
+- actual form submission to government portals,
+- an admin dashboard unless all core user flows are complete.
+
+THE WINNING PRODUCT PRINCIPLE:
+AI may make the conversation natural, multilingual, and accessible. However, eligibility recommendations must come from transparent, deterministic rules stored as editable data. Every recommendation must explain its reasoning in plain language.
+
+CORE USER STORY:
+Lakshmi is a parent in [STATE]. Her daughter is in Class 11 at a government institution. Their household income is low, but Lakshmi does not know which scholarships exist, which documents are needed, or where to apply.
+
+Lakshmi should be able to:
+1. Speak or type one short sentence in English or [REGIONAL LANGUAGE].
+2. Answer only 2–4 simple follow-up questions.
+3. See schemes grouped as:
+   - Likely eligible
+   - May be eligible — one or more details need confirmation
+   - Not currently eligible — with a respectful explanation
+4. Open each scheme and understand:
+   - why it matched,
+   - which requirements still need verification,
+   - which documents are needed,
+   - the deadline,
+   - how to apply,
+   - the official source.
+5. Save a personalised checklist and track progress:
+   Not started → Documents ready → Applied → Awaiting outcome.
+
+MANDATORY PRODUCT FEATURES:
+1. Conversational intake
+   - Start with plain language, not a long form.
+   - Extract profile details from the user’s message.
+   - Ask only the highest-value unanswered question next.
+   - Include microphone input and typed input.
+   - Let users skip optional questions.
+
+2. Explainable eligibility matching
+   - Store eligibility as editable JSON/database rules.
+   - Evaluate rules deterministically.
+   - For each result, show:
+     “Why this may fit”
+     “What we still need to verify”
+     “Why this may not fit”
+   - Never hide decision logic behind AI.
+
+3. Trust layer
+   - Use “Likely eligible” and “May qualify”; never say “approved” or “guaranteed.”
+   - Show an official source link for every scheme.
+   - Show “Last verified on [date]” prominently.
+   - Include the disclaimer:
+     “HaqPath provides guidance based on published rules. Final eligibility is decided by the relevant authority.”
+   - Do not collect Aadhaar numbers, bank details, document scans, or sensitive identity data.
+
+4. Action layer
+   - Personalised document checklist.
+   - Step-by-step application guide.
+   - Deadline countdown/reminder UI.
+   - Progress tracker.
+   - “Share this checklist with family” button that produces a simple shareable text summary, without exposing sensitive details.
+
+5. Accessibility layer
+   - Large tap targets.
+   - Very simple language.
+   - Read-aloud button for results and instructions.
+   - Low-data visual design.
+   - Clear regional-language toggle.
+
+USE THIS DATA MODEL FOR EACH SCHEME:
+{
+  id,
+  name,
+  short_description,
+  state,
+  beneficiary_group,
+  official_url,
+  last_verified_at,
+  deadline,
+  estimated_benefit,
+  eligibility_rules,
+  required_documents,
+  application_steps,
+  plain_language_explanation,
+  common_rejection_risks
+}
+
+ELIGIBILITY RULE EXAMPLE:
+{
+  state: ["[STATE]"],
+  class_levels: ["11", "12"],
+  institution_types: ["government", "government_aided"],
+  max_annual_income: 250000,
+  category_requirements: ["optional or scheme-specific"],
+  required_conditions: ["resident of the state"]
+}
+
+REQUIRED SCREENS:
+1. Welcome screen: language selection and simple trust statement.
+2. Conversational “Tell us about your situation” screen.
+3. Follow-up-question flow.
+4. Results screen with likely / possible / unavailable categories.
+5. Scheme detail screen with transparent rule explanation.
+6. Document checklist and application steps.
+7. Deadline and progress tracker.
+8. Privacy and “How HaqPath decides” screen.
+9. A judge-only demo-mode switch with preloaded fictional personas.
+
+TECHNICAL ARCHITECTURE:
+- Next.js + TypeScript + Tailwind CSS.
+- Supabase or Firebase for structured scheme data and anonymous demo profiles.
+- Deterministic rules engine written in TypeScript.
+- AI used only for language understanding, translation, simple-language rewriting, and optional voice transcription.
+- All scheme data must be stored separately from application code so rules can be updated without rewriting the product.
+
+CRITICAL DEMO FEATURE:
+Add a “What changes my result?” interaction.
+For example, when Lakshmi changes her institution from “government” to “private,” immediately show which scheme no longer matches and explain which rule changed.
+This proves the product uses real eligibility logic rather than generic AI text.
+
+DESIGN DIRECTION:
+- Calm, trustworthy, human, public-service design.
+- Do not make it look like a banking or corporate dashboard.
+- Use a warm primary colour, accessible contrast, simple illustrations/icons, and very clear status labels.
+- Optimize every screen for a 360px-wide mobile device first.
+- Make the result screen visually impressive enough for a live demo.
+
+BUILD PRIORITY:
+Priority 1:
+- polished end-to-end Lakshmi demo;
+- deterministic matching;
+- transparent explanations;
+- real-looking scheme data;
+- official links and verification dates.
+
+Priority 2:
+- multilingual UI;
+- voice input;
+- read-aloud output;
+- reminders and sharing.
+
+Priority 3:
+- advanced AI features;
+- analytics;
+- admin interfaces;
+- extra user groups or states.
+
+ACCEPTANCE TESTS:
+The final app is complete only if:
+1. A judge can complete Lakshmi’s journey in under 90 seconds.
+2. The app shows at least two likely matches and one possible match.
+3. Every result explains why it appeared.
+4. Every result has a document checklist, deadline, and official source.
+5. Changing a profile answer visibly changes at least one eligibility result.
+6. The app never uses guaranteed-eligibility language.
+7. The app looks excellent on mobile.
+8. The demo works entirely with preloaded fictional data if internet access fails.
+
+FINAL DELIVERABLES:
+1. Working responsive app.
+2. Curated dataset of 8–12 schemes.
+3. README with setup instructions and data-source notes.
+4. One-page architecture explanation.
+5. 60-second live-demo script.
+6. Five-slide pitch outline:
+   - Problem
+   - User story
+   - Product demo
+   - Trust and technology
+   - Impact and scale
+7. A short judge-facing explanation of why rule-based explainability is safer than an AI-only eligibility chatbot.
+
+FINAL PITCH:
+“HaqPath turns confusing public-benefit rules into a clear, explainable next step—so families can find the support they may be entitled to, without paying middlemen or giving away sensitive identity data.”
+
+Begin by proposing:
+1. the selected state and language,
+2. the 8–12 scheme dataset structure,
+3. the screen-by-screen UX plan,
+4. the technical implementation sequence,
+5. the first working version of the app.

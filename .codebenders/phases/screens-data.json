@@ -1,0 +1,883 @@
+{
+  "version": 1,
+  "data": {
+    "currency": "INR",
+    "today": "2026-11-21",
+    "collections": {
+      "users": [
+        {
+          "id": "u1",
+          "name": "Lakshmi Selvam",
+          "email": "lakshmi.selvam@mailbox.in",
+          "persona": "Parent"
+        },
+        {
+          "id": "u2",
+          "name": "Ravi Pandian",
+          "email": "ravi.pandian@mailbox.in",
+          "persona": "Parent"
+        },
+        {
+          "id": "u3",
+          "name": "Divya Selvam",
+          "email": "divya.selvam@mailbox.in",
+          "persona": "Low-income Student in Class 11–12"
+        },
+        {
+          "id": "u4",
+          "name": "Arun Pandian",
+          "email": "arun.pandian@mailbox.in",
+          "persona": "Low-income Student in Class 11–12"
+        }
+      ],
+      "parent_profiles": [
+        {
+          "id": "pp1",
+          "user_id": "u1",
+          "relationship": "mother",
+          "child_user_id": "u3",
+          "town": "Madurai",
+          "state": "Tamil Nadu"
+        },
+        {
+          "id": "pp2",
+          "user_id": "u2",
+          "relationship": "father",
+          "child_user_id": "u4",
+          "town": "Tiruchirappalli",
+          "state": "Tamil Nadu"
+        }
+      ],
+      "student_profiles": [
+        {
+          "id": "sp1",
+          "user_id": "u3",
+          "class_level": "11",
+          "school_name": "Government Girls Higher Secondary School, Madurai",
+          "institution_type": "government"
+        },
+        {
+          "id": "sp2",
+          "user_id": "u4",
+          "class_level": "12",
+          "school_name": "Aided Higher Secondary School, Tiruchirappalli",
+          "institution_type": "government_aided"
+        }
+      ],
+      "intake_sessions": [
+        {
+          "id": "is1",
+          "user_id": "u1",
+          "situation_text": "My daughter is in Class 11 at a government school in Madurai, Tamil Nadu, and our household income is very low.",
+          "input_method": "typed",
+          "language": "en",
+          "class_level": "11",
+          "institution_type": "government",
+          "state": "Tamil Nadu",
+          "income_level": "very_low",
+          "created_at": "2026-11-18T10:20"
+        },
+        {
+          "id": "is2",
+          "user_id": "u2",
+          "situation_text": "My son is in Class 12 at an aided school in Tiruchirappalli, Tamil Nadu, and our income is low.",
+          "input_method": "voice",
+          "language": "en",
+          "class_level": "12",
+          "institution_type": "government_aided",
+          "state": "Tamil Nadu",
+          "income_level": "low",
+          "created_at": "2026-11-15T16:05"
+        },
+        {
+          "id": "is3",
+          "user_id": "u3",
+          "situation_text": "I am in Class 11 at a government girls school in Madurai, Tamil Nadu, and my family income is very low.",
+          "input_method": "typed",
+          "language": "en",
+          "class_level": "11",
+          "institution_type": "government",
+          "state": "Tamil Nadu",
+          "income_level": "very_low",
+          "created_at": "2026-11-19T18:30"
+        },
+        {
+          "id": "is4",
+          "user_id": "u4",
+          "situation_text": "I am in Class 12 at an aided higher secondary school in Tiruchirappalli, Tamil Nadu. We are a low-income family.",
+          "input_method": "voice",
+          "language": "en",
+          "class_level": "12",
+          "institution_type": "government_aided",
+          "state": "Tamil Nadu",
+          "income_level": "low",
+          "created_at": "2026-11-14T10:55"
+        }
+      ],
+      "follow_up_answers": [
+        {
+          "id": "fa1",
+          "intake_session_id": "is1",
+          "question_key": "household_income_annual",
+          "answer": "180000",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 1
+        },
+        {
+          "id": "fa2",
+          "intake_session_id": "is1",
+          "question_key": "category",
+          "answer": "scheduled_caste",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 2
+        },
+        {
+          "id": "fa3",
+          "intake_session_id": "is1",
+          "question_key": "resident_of_tamil_nadu",
+          "answer": "yes",
+          "requirement": "optional",
+          "status": "answered",
+          "captured_order": 3
+        },
+        {
+          "id": "fa4",
+          "intake_session_id": "is1",
+          "question_key": "selected_in_merit_test",
+          "answer": "",
+          "requirement": "optional",
+          "status": "skipped",
+          "captured_order": 4
+        },
+        {
+          "id": "fa5",
+          "intake_session_id": "is2",
+          "question_key": "household_income_annual",
+          "answer": "210000",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 1
+        },
+        {
+          "id": "fa6",
+          "intake_session_id": "is2",
+          "question_key": "category",
+          "answer": "backward_class",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 2
+        },
+        {
+          "id": "fa7",
+          "intake_session_id": "is2",
+          "question_key": "resident_of_tamil_nadu",
+          "answer": "yes",
+          "requirement": "optional",
+          "status": "answered",
+          "captured_order": 3
+        },
+        {
+          "id": "fa8",
+          "intake_session_id": "is3",
+          "question_key": "household_income_annual",
+          "answer": "180000",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 1
+        },
+        {
+          "id": "fa9",
+          "intake_session_id": "is3",
+          "question_key": "category",
+          "answer": "scheduled_caste",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 2
+        },
+        {
+          "id": "fa10",
+          "intake_session_id": "is3",
+          "question_key": "resident_of_tamil_nadu",
+          "answer": "yes",
+          "requirement": "optional",
+          "status": "answered",
+          "captured_order": 3
+        },
+        {
+          "id": "fa11",
+          "intake_session_id": "is4",
+          "question_key": "household_income_annual",
+          "answer": "210000",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 1
+        },
+        {
+          "id": "fa12",
+          "intake_session_id": "is4",
+          "question_key": "category",
+          "answer": "backward_class",
+          "requirement": "required",
+          "status": "answered",
+          "captured_order": 2
+        },
+        {
+          "id": "fa13",
+          "intake_session_id": "is4",
+          "question_key": "resident_of_tamil_nadu",
+          "answer": "yes",
+          "requirement": "optional",
+          "status": "answered",
+          "captured_order": 3
+        },
+        {
+          "id": "fa14",
+          "intake_session_id": "is4",
+          "question_key": "passed_previous_hsc",
+          "answer": "",
+          "requirement": "optional",
+          "status": "skipped",
+          "captured_order": 4
+        }
+      ],
+      "schemes": [
+        {
+          "id": "s1",
+          "name": "Pudhumai Penn Scheme",
+          "short_description": "Monthly support for girls studying in Class 11 and 12 in government and government-aided schools.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Girls in government and aided schools, Class 11-12",
+          "official_url": "https://www.tn.gov.in",
+          "last_verified_at": "2026-11-02",
+          "deadline": "2026-12-15",
+          "estimated_benefit": "Rs 1,000 per month while studying, as published by the state",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided"
+            ],
+            "max_annual_income": 250000,
+            "gender_requirements": [
+              "female"
+            ],
+            "category_requirements": [],
+            "required_conditions": [
+              "resident of Tamil Nadu"
+            ]
+          },
+          "required_documents": [
+            "School bonafide certificate",
+            "Family income certificate",
+            "Bank passbook first page"
+          ],
+          "application_steps": [
+            "Get the school bonafide certificate from your headmaster.",
+            "Get a family income certificate from the revenue office.",
+            "Open the official Tamil Nadu portal and create a student account.",
+            "Fill in the form and keep your papers ready for checking by the school.",
+            "Track the status on the same portal."
+          ],
+          "plain_language_explanation": "If your daughter is a girl in Class 11 or 12 at a government or aided school, and your household income is within the published limit, she may qualify. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Household income above the published limit",
+            "School type is not government or government-aided",
+            "Papers do not show the same student name"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Post Matric Scholarship for Scheduled Caste Students",
+          "short_description": "Tuition and living support for Scheduled Caste students in Class 11 and 12.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Scheduled Caste students in government and aided schools, Class 11-12",
+          "official_url": "https://scholarships.gov.in",
+          "last_verified_at": "2026-10-28",
+          "deadline": "2026-11-28",
+          "estimated_benefit": "Tuition fee reimbursement and maintenance allowance at published state rates",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided"
+            ],
+            "max_annual_income": 250000,
+            "gender_requirements": [],
+            "category_requirements": [
+              "scheduled_caste"
+            ],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "community certificate issued by the revenue office"
+            ]
+          },
+          "required_documents": [
+            "Community certificate",
+            "Family income certificate",
+            "School bonafide certificate"
+          ],
+          "application_steps": [
+            "Get the community certificate from the revenue office.",
+            "Ask your school to confirm your class and enrolment.",
+            "Register on the national scholarship portal.",
+            "Fill the application and submit it before the deadline.",
+            "Check the status on the portal after submitting."
+          ],
+          "plain_language_explanation": "Students from Scheduled Caste families in Class 11 or 12 at government or aided schools may qualify if household income is within the published limit. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Community certificate missing or expired",
+            "Household income above the published limit",
+            "Application submitted after the deadline"
+          ]
+        },
+        {
+          "id": "s3",
+          "name": "Post Matric Scholarship for Backward and Most Backward Classes",
+          "short_description": "Tuition and living support for Backward Class and Most Backward Class students in Class 11 and 12.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Backward Class and Most Backward Class students, Class 11-12",
+          "official_url": "https://scholarships.gov.in",
+          "last_verified_at": "2026-10-30",
+          "deadline": "2027-01-31",
+          "estimated_benefit": "Tuition fee reimbursement and maintenance allowance at published state rates",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided"
+            ],
+            "max_annual_income": 250000,
+            "gender_requirements": [],
+            "category_requirements": [
+              "backward_class",
+              "most_backward_class"
+            ],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "community certificate issued by the revenue office"
+            ]
+          },
+          "required_documents": [
+            "Community certificate",
+            "Family income certificate",
+            "School bonafide certificate"
+          ],
+          "application_steps": [
+            "Get the community certificate from the revenue office.",
+            "Ask your school to confirm your class and enrolment.",
+            "Register on the national scholarship portal.",
+            "Fill the application and submit it before the deadline.",
+            "Check the status on the portal after submitting."
+          ],
+          "plain_language_explanation": "Students from Backward Class or Most Backward Class families in Class 11 or 12 at government or aided schools may qualify if household income is within the published limit. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Community category not listed in the published rules",
+            "Household income above the published limit",
+            "School details not matching the enrolment record"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "PM YASASVI Scholarship for OBC Students",
+          "short_description": "Yearly scholarship for Other Backward Class students in Class 11 and 12.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Other Backward Class students, Class 11-12",
+          "official_url": "https://scholarships.gov.in",
+          "last_verified_at": "2026-11-05",
+          "deadline": "2026-12-05",
+          "estimated_benefit": "Fixed yearly scholarship amount for Class 11-12 as published",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided"
+            ],
+            "max_annual_income": 250000,
+            "gender_requirements": [],
+            "category_requirements": [
+              "backward_class"
+            ],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "community certificate issued by the revenue office"
+            ]
+          },
+          "required_documents": [
+            "Community certificate",
+            "Family income certificate",
+            "Previous year marksheet"
+          ],
+          "application_steps": [
+            "Get the community certificate from the revenue office.",
+            "Collect your previous year marksheet from school.",
+            "Register on the national scholarship portal.",
+            "Fill the application and submit it before the deadline.",
+            "Track the status on the portal."
+          ],
+          "plain_language_explanation": "Students from Other Backward Class families in Class 11 or 12 at government or aided schools may qualify if household income is within the published limit. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Household income above the published limit",
+            "Previous year marksheet missing",
+            "Application submitted after the deadline"
+          ]
+        },
+        {
+          "id": "s5",
+          "name": "National Means-cum-Merit Scholarship",
+          "short_description": "Merit-based yearly support for students who were selected in an earlier merit test and continue in Class 11 and 12.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Continuing merit-selected students, Class 11-12",
+          "official_url": "https://scholarships.gov.in",
+          "last_verified_at": "2026-11-10",
+          "deadline": "2026-12-20",
+          "estimated_benefit": "Yearly scholarship amount as published for Class 11-12",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided"
+            ],
+            "max_annual_income": 350000,
+            "gender_requirements": [],
+            "category_requirements": [],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "selected in the Class 8 merit test under the scheme"
+            ]
+          },
+          "required_documents": [
+            "Scheme selection letter",
+            "Family income certificate",
+            "School bonafide certificate"
+          ],
+          "application_steps": [
+            "Find your scheme selection letter from school.",
+            "Get a family income certificate from the revenue office.",
+            "Ask your school to confirm your enrolment.",
+            "Submit the renewal form on the official portal.",
+            "Check the status on the portal."
+          ],
+          "plain_language_explanation": "Students who were selected through the merit test in earlier classes and continue in Class 11 or 12 at government or aided schools may qualify. The relevant authority confirms the selection.",
+          "common_rejection_risks": [
+            "No record of merit test selection",
+            "Household income above the published limit",
+            "Renewal form not submitted on time"
+          ]
+        },
+        {
+          "id": "s6",
+          "name": "Private School Higher Secondary Support Grant",
+          "short_description": "One-time grant for low-income students in Class 11 and 12 at private schools.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Low-income students in private schools, Class 11-12",
+          "official_url": "https://www.tn.gov.in",
+          "last_verified_at": "2026-11-01",
+          "deadline": "2026-11-24",
+          "estimated_benefit": "One-time grant of Rs 5,000 as published",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "private"
+            ],
+            "max_annual_income": 200000,
+            "gender_requirements": [],
+            "category_requirements": [],
+            "required_conditions": [
+              "resident of Tamil Nadu"
+            ]
+          },
+          "required_documents": [
+            "School fee receipt",
+            "Family income certificate",
+            "Bank passbook first page"
+          ],
+          "application_steps": [
+            "Get the school fee receipt from your school office.",
+            "Get a family income certificate from the revenue office.",
+            "Open the official portal and create an account.",
+            "Fill in the form and submit it before the deadline."
+          ],
+          "plain_language_explanation": "Students in Class 11 or 12 at private schools whose household income is within the published limit may qualify. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "School is government or government-aided, not private",
+            "Household income above the published limit",
+            "Deadline already passed"
+          ]
+        },
+        {
+          "id": "s7",
+          "name": "Central Sector Scholarship for College Students",
+          "short_description": "Scholarship for students who have passed Class 12 and join a college course.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Students who passed Class 12 and join college",
+          "official_url": "https://scholarships.gov.in",
+          "last_verified_at": "2026-11-08",
+          "deadline": "2026-12-31",
+          "estimated_benefit": "Yearly scholarship amount for college study as published",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided",
+              "private"
+            ],
+            "max_annual_income": 800000,
+            "gender_requirements": [],
+            "category_requirements": [],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "Class 12 board marks above the published minimum"
+            ]
+          },
+          "required_documents": [
+            "Class 12 marksheet",
+            "Family income certificate",
+            "Bank passbook first page"
+          ],
+          "application_steps": [
+            "Collect your Class 12 marksheet after results.",
+            "Get a family income certificate from the revenue office.",
+            "Register on the national scholarship portal.",
+            "Fill the application and submit it before the deadline.",
+            "Check the status on the portal."
+          ],
+          "plain_language_explanation": "Students who have finished Class 12 with the published minimum marks and join a college may qualify. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Class 12 marks below the published minimum",
+            "Not yet in Class 12 or results not published",
+            "Household income above the published limit"
+          ]
+        },
+        {
+          "id": "s8",
+          "name": "Free Bus Pass for Government School Students",
+          "short_description": "Free bus travel between home and school for students of government schools.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Students of government schools, Class 11-12",
+          "official_url": "https://www.tn.gov.in",
+          "last_verified_at": "2026-10-20",
+          "deadline": "2027-03-31",
+          "estimated_benefit": "Free bus travel between home and school on government buses",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government"
+            ],
+            "gender_requirements": [],
+            "category_requirements": [],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "school identity card issued"
+            ]
+          },
+          "required_documents": [
+            "School identity card",
+            "School bonafide certificate"
+          ],
+          "application_steps": [
+            "Ask your school for the bonafide certificate.",
+            "Get the school identity card from your school office.",
+            "Visit the bus pass counter with both papers.",
+            "Collect the pass after verification."
+          ],
+          "plain_language_explanation": "Students in Class 11 or 12 at government schools in Tamil Nadu may get a free bus pass. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "School is not a government school",
+            "School identity card not issued",
+            "Living outside the published route area"
+          ]
+        },
+        {
+          "id": "s9",
+          "name": "Minority Students Post Matric Scholarship",
+          "short_description": "Tuition and living support for minority community students in Class 11 and 12.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Minority community students in government and aided schools, Class 11-12",
+          "official_url": "https://scholarships.gov.in",
+          "last_verified_at": "2026-10-25",
+          "deadline": "2026-12-10",
+          "estimated_benefit": "Tuition fee reimbursement and maintenance allowance as published",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "11",
+              "12"
+            ],
+            "institution_types": [
+              "government",
+              "government_aided"
+            ],
+            "max_annual_income": 200000,
+            "gender_requirements": [],
+            "category_requirements": [
+              "minority"
+            ],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "minority community certificate"
+            ]
+          },
+          "required_documents": [
+            "Minority community certificate",
+            "Family income certificate",
+            "School bonafide certificate"
+          ],
+          "application_steps": [
+            "Get the minority community certificate.",
+            "Ask your school to confirm your enrolment.",
+            "Register on the national scholarship portal.",
+            "Submit the application before the deadline.",
+            "Check the status on the portal."
+          ],
+          "plain_language_explanation": "Students from minority communities in Class 11 or 12 at government or aided schools may qualify if household income is within the published limit. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Minority community certificate missing",
+            "Household income above the published limit",
+            "Application submitted after the deadline"
+          ]
+        },
+        {
+          "id": "s10",
+          "name": "Higher Secondary Merit Scholarship for Government School Students",
+          "short_description": "One-time merit award for top-ranked Class 12 students of government schools.",
+          "state": "Tamil Nadu",
+          "beneficiary_group": "Top-ranked Class 12 students of government schools",
+          "official_url": "https://www.tn.gov.in",
+          "last_verified_at": "2026-10-15",
+          "deadline": "2026-11-10",
+          "estimated_benefit": "One-time merit award as published",
+          "eligibility_rules": {
+            "state": [
+              "Tamil Nadu"
+            ],
+            "class_levels": [
+              "12"
+            ],
+            "institution_types": [
+              "government"
+            ],
+            "gender_requirements": [],
+            "category_requirements": [],
+            "required_conditions": [
+              "resident of Tamil Nadu",
+              "ranked in the top group of the Class 12 board results"
+            ]
+          },
+          "required_documents": [
+            "Class 12 marksheet",
+            "School bonafide certificate"
+          ],
+          "application_steps": [
+            "Collect your Class 12 marksheet.",
+            "Ask your school to confirm your ranking.",
+            "Submit the merit award form on the official portal.",
+            "Check the result list published by the department."
+          ],
+          "plain_language_explanation": "Top-ranked Class 12 students of government schools may receive a one-time merit award. The relevant authority makes the final decision.",
+          "common_rejection_risks": [
+            "Board result not in the top group",
+            "Application submitted after the deadline",
+            "School is not a government school"
+          ]
+        }
+      ],
+      "saved_schemes": [
+        {
+          "id": "ss1",
+          "user_id": "u3",
+          "scheme_id": "s1",
+          "saved_at": "2026-11-19T18:40",
+          "progress_status": "documents_ready"
+        },
+        {
+          "id": "ss2",
+          "user_id": "u3",
+          "scheme_id": "s2",
+          "saved_at": "2026-11-20T09:15",
+          "progress_status": "not_started"
+        },
+        {
+          "id": "ss3",
+          "user_id": "u4",
+          "scheme_id": "s4",
+          "saved_at": "2026-11-14T11:00",
+          "progress_status": "applied"
+        },
+        {
+          "id": "ss4",
+          "user_id": "u4",
+          "scheme_id": "s7",
+          "saved_at": "2026-11-21T07:30",
+          "progress_status": "not_started"
+        },
+        {
+          "id": "ss5",
+          "user_id": "u1",
+          "scheme_id": "s1",
+          "saved_at": "2026-11-18T20:10",
+          "progress_status": "documents_ready"
+        },
+        {
+          "id": "ss6",
+          "user_id": "u1",
+          "scheme_id": "s2",
+          "saved_at": "2026-11-18T20:12",
+          "progress_status": "not_started"
+        }
+      ],
+      "checklist_items": [
+        {
+          "id": "ci1",
+          "saved_scheme_id": "ss1",
+          "item_type": "document",
+          "label": "School bonafide certificate",
+          "ticked": true
+        },
+        {
+          "id": "ci2",
+          "saved_scheme_id": "ss1",
+          "item_type": "document",
+          "label": "Family income certificate",
+          "ticked": false
+        },
+        {
+          "id": "ci3",
+          "saved_scheme_id": "ss1",
+          "item_type": "document",
+          "label": "Bank passbook first page",
+          "ticked": false
+        },
+        {
+          "id": "ci4",
+          "saved_scheme_id": "ss1",
+          "item_type": "step",
+          "label": "Get the school bonafide certificate from your headmaster.",
+          "ticked": true
+        },
+        {
+          "id": "ci5",
+          "saved_scheme_id": "ss1",
+          "item_type": "step",
+          "label": "Open the official Tamil Nadu portal and create a student account.",
+          "ticked": false
+        },
+        {
+          "id": "ci6",
+          "saved_scheme_id": "ss2",
+          "item_type": "document",
+          "label": "Community certificate",
+          "ticked": false
+        },
+        {
+          "id": "ci7",
+          "saved_scheme_id": "ss2",
+          "item_type": "document",
+          "label": "Family income certificate",
+          "ticked": false
+        },
+        {
+          "id": "ci8",
+          "saved_scheme_id": "ss2",
+          "item_type": "step",
+          "label": "Ask your school to confirm your class and enrolment.",
+          "ticked": false
+        },
+        {
+          "id": "ci9",
+          "saved_scheme_id": "ss3",
+          "item_type": "document",
+          "label": "Community certificate",
+          "ticked": true
+        },
+        {
+          "id": "ci10",
+          "saved_scheme_id": "ss3",
+          "item_type": "document",
+          "label": "Family income certificate",
+          "ticked": true
+        },
+        {
+          "id": "ci11",
+          "saved_scheme_id": "ss3",
+          "item_type": "step",
+          "label": "Register on the national scholarship portal.",
+          "ticked": true
+        },
+        {
+          "id": "ci12",
+          "saved_scheme_id": "ss3",
+          "item_type": "step",
+          "label": "Track the status on the portal.",
+          "ticked": false
+        }
+      ]
+    },
+    "viewers": {
+      "Parent": "u1",
+      "Low-income Student in Class 11–12": "u3"
+    }
+  },
+  "covers": {
+    "/": "2acb0879edaa4064",
+    "/tell-us-about-your-situation": "94590b16c702a73c",
+    "/follow-up-question-flow": "a090ccd8bdd61614",
+    "/results": "168fe17dbb5ee982",
+    "/schemes/{}": "f9af0ba2a4b9044c",
+    "/document-checklist-and-application-steps": "f8647429a66f9790",
+    "/deadline-and-progress-tracker": "f74774e6e8169f6a",
+    "/privacy-and-how-haqpath-decides": "2bdabdd4ce207180",
+    "/demo-mode": "8832b22e4ab7fde5"
+  },
+  "at": "2026-11-21T08:26:34.248Z"
+}

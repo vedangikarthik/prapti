@@ -1,0 +1,15 @@
+{
+  "prdHash": "c4d61756434787c0b2b625cb41aa621d4703726c",
+  "generatedAt": "2026-11-21T07:25:04.344Z",
+  "agent_type": "brand-preview-html",
+  "style": "saas",
+  "designSpec": {
+    "layout_archetype": "Marketing hero above a dashboard-style results view",
+    "nav_pattern": "Sticky top bar with logo, text links, language toggle and account avatar",
+    "surface": "Warm off-white background with white card surfaces",
+    "card_treatment": "1px border with subtle shadow, status badge and progress bar per scheme",
+    "density": "Comfortable, information-dense cards with generous spacing",
+    "elevation": "Restrained: small shadow on cards, larger only for emphasis",
+    "radius_language": "Consistent rounded rectangles with pill badges and avatars"
+  }
+}

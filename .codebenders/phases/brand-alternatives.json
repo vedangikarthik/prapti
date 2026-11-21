@@ -1,0 +1,114 @@
+{
+  "prdHash": "c4d61756434787c0b2b625cb41aa621d4703726c",
+  "brief": "",
+  "alternatives": [
+    {
+      "id": "sunlit-verandah",
+      "label": "Sunlit Verandah",
+      "colors": {
+        "primary": "#A34A28",
+        "secondary": "#E39A1E",
+        "accent": "#F2C14E",
+        "bg": "#FBF5E6",
+        "surface": "#FFFDF6",
+        "text": "#2B180E",
+        "muted": "#5C4334",
+        "success": "#3D7A37",
+        "danger": "#A4262C"
+      },
+      "typography": {
+        "font_family": "Noto Sans",
+        "font_family_heading": "Mukta",
+        "font_family_mono": "Noto Sans Mono"
+      },
+      "spacing": {
+        "base": "4px"
+      },
+      "radius": {
+        "base": "12px"
+      },
+      "reason": "Warm terracotta and saffron on a cream verandah palette with deep brown text at high contrast gives HaqPath a calm, human, public-service feel that is clearly distinct from banking or corporate dashboards, while the humanist Noto Sans and Mukta type stays legible for first-time, mobile-first users."
+    },
+    {
+      "id": "ledger-of-hope",
+      "label": "Ledger of Hope",
+      "colors": {
+        "primary": "#1B2A4A",
+        "secondary": "#4A6078",
+        "accent": "#E8A317",
+        "bg": "#F4F6F8",
+        "surface": "#FDFEFF",
+        "text": "#14202F",
+        "muted": "#5B6676",
+        "success": "#2E7D5B",
+        "danger": "#B3261E"
+      },
+      "typography": {
+        "font_family": "Source Sans 3, system-ui, sans-serif",
+        "font_family_heading": "Fraunces, Georgia, serif",
+        "font_family_mono": "IBM Plex Mono, ui-monospace, monospace"
+      },
+      "spacing": {
+        "base": "4px"
+      },
+      "radius": {
+        "base": "8px"
+      },
+      "reason": "A cool paper-white ground, ink-navy structure, and marigold reserved for deadlines and status give HaqPath an official, ledger-like calm that makes verified rules feel checkable rather than promotional."
+    },
+    {
+      "id": "monsoon-courtyard",
+      "label": "Monsoon Courtyard",
+      "colors": {
+        "primary": "#4E6A55",
+        "secondary": "#A65E45",
+        "accent": "#C98B6B",
+        "bg": "#F4F1EA",
+        "surface": "#FBF9F4",
+        "text": "#2E2A26",
+        "muted": "#6B645B",
+        "success": "#3F7A4E",
+        "danger": "#A8442E"
+      },
+      "typography": {
+        "font_family": "Nunito, system-ui, sans-serif",
+        "font_family_heading": "Nunito, system-ui, sans-serif",
+        "font_family_mono": "JetBrains Mono, ui-monospace, monospace"
+      },
+      "spacing": {
+        "base": "4px"
+      },
+      "radius": {
+        "base": "8px"
+      },
+      "reason": "Muted sage and clay tones on a warm off-white ground give a calm, human public-service feel rather than a corporate banking look, while warm charcoal text and deep sage primary keep contrast above WCAG AA for low-literacy and low-light reading on small screens."
+    },
+    {
+      "id": "classroom-lantern",
+      "label": "Classroom Lantern",
+      "colors": {
+        "primary": "#2B2A6E",
+        "secondary": "#4B47A6",
+        "accent": "#F6B93B",
+        "bg": "#F7F1E1",
+        "surface": "#FFFBF2",
+        "text": "#1D1B3F",
+        "muted": "#6A6789",
+        "success": "#2F7D4E",
+        "danger": "#B42318"
+      },
+      "typography": {
+        "font_family": "Nunito Sans, system-ui, sans-serif",
+        "font_family_heading": "Baloo 2, Nunito Sans, sans-serif",
+        "font_family_mono": "JetBrains Mono, ui-monospace, monospace"
+      },
+      "spacing": {
+        "base": "4px"
+      },
+      "radius": {
+        "base": "8px"
+      },
+      "reason": "Deep indigo header bands with a lantern-yellow highlight and cream content panels give strong figure-ground contrast and a calm, warm, student-friendly public-service feel that is clearly distinct from a banking dashboard."
+    }
+  ]
+}
