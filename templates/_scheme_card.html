@@ -2,7 +2,7 @@
 {% macro badge(status) -%}
 {% set ico = {'likely': 'check-circle', 'maybe': 'help-circle', 'no': 'minus-circle'}[status] %}
 {% set txt = {'likely': 'Likely eligible', 'maybe': 'Might be eligible', 'no': 'Not a match right now'}[status] %}
-<span class="badge badge-{{ status }}">{{ icon(ico, 14) }}{{ txt }}</span>
+<span class="badge badge-{{ status }}">{{ icon(ico, 16) }}{{ txt }}</span>
 {%- endmacro %}
 
 {% macro rule_icon(status) -%}
@@ -13,33 +13,36 @@
 {% macro deadline_text(m) -%}
 {% if m.deadline and m.days_left is not none %}
   {% if m.days_left < 0 %}<span class="deadline">Closed for this year</span>
-  {% elif m.days_left <= 7 %}<span class="deadline deadline-urgent">{{ icon('clock', 14) }}Apply by {{ nice_date(m.deadline) }} · {{ m.days_left }} day{{ '' if m.days_left == 1 else 's' }} left</span>
-  {% else %}<span class="deadline">{{ icon('clock', 14) }}Apply by {{ nice_date(m.deadline) }}</span>{% endif %}
-{% else %}<span class="deadline">{{ icon('clock', 14) }}No fixed date</span>{% endif %}
+  {% elif m.days_left <= 7 %}<span class="deadline deadline-urgent">{{ icon('clock', 16) }}Apply by {{ nice_date(m.deadline) }}, {{ m.days_left }} day{{ '' if m.days_left == 1 else 's' }} left</span>
+  {% else %}<span class="deadline">{{ icon('clock', 16) }}Apply by {{ nice_date(m.deadline) }}</span>{% endif %}
+{% else %}<span class="deadline">{{ icon('clock', 16) }}No fixed last date</span>{% endif %}
 {%- endmacro %}
 
 {% macro scheme_card(m, i=0) -%}
-<a class="scheme-card" href="/scheme/{{ m.id }}" style="--i: {{ i }}">
-  <div class="scheme-card-top">
-    {{ badge(m.status) }}
-    {% if m.category == 'loan' %}<span class="scheme-amount scheme-amount-loan">Loan</span>
-    {% elif m.benefit_max_inr %}<span class="scheme-amount">up to ₹{{ '{:,}'.format(m.benefit_max_inr) }}</span>{% endif %}
+<a class="slip scheme-card scheme-{{ m.status }}" href="/scheme/{{ m.id }}" style="--i: {{ i }}">
+  <div class="scheme-main">
+    <div class="scheme-card-top">
+      {{ badge(m.status) }}
+      {% if m.category == 'loan' %}<span class="scheme-amount scheme-amount-loan">Loan</span>
+      {% elif m.benefit_max_inr %}<span class="scheme-amount"><span class="upto">up to</span> ₹{{ '{:,}'.format(m.benefit_max_inr) }}</span>{% endif %}
+    </div>
+    <h3 class="scheme-name">{{ m.name }}</h3>
+    <p class="scheme-summary">{{ m.benefit_text }}</p>
+    {% if m.status == 'no' and m.failed %}
+      <p class="scheme-why">{{ rule_icon('fail') }}<span>{{ m.failed[0].text }}</span></p>
+    {% elif m.status == 'maybe' %}
+      <p class="scheme-why">{{ rule_icon('unknown') }}<span>Check one thing: {{ m.missing_labels | join(', ') }}</span></p>
+    {% else %}
+      <p class="scheme-why">
+        <span class="why-dots" aria-hidden="true">{% for r in m.reasons %}<span class="why-dot why-{{ r.status }}"></span>{% endfor %}</span>
+        <span>{{ m.passed_count }} of {{ m.rule_count }} rules match</span>
+      </p>
+    {% endif %}
   </div>
-  <h3 class="scheme-name">{{ m.name }}</h3>
-  <p class="scheme-summary">{{ m.benefit_text }}</p>
-  {% if m.status == 'no' and m.failed %}
-    <p class="scheme-why scheme-why-no">{{ rule_icon('fail') }}<span>{{ m.failed[0].text }}</span></p>
-  {% elif m.status == 'maybe' %}
-    <p class="scheme-why scheme-why-maybe">{{ rule_icon('unknown') }}<span>Check one thing: {{ m.missing_labels | join(', ') }}</span></p>
-  {% else %}
-    <p class="scheme-why">
-      <span class="why-dots" aria-hidden="true">{% for r in m.reasons %}<span class="why-dot why-{{ r.status }}"></span>{% endfor %}</span>
-      <span>Why: {{ m.passed_count }} of {{ m.rule_count }} rules match</span>
-    </p>
-  {% endif %}
-  <div class="scheme-card-foot">
+  <div class="perforation" aria-hidden="true"></div>
+  <div class="scheme-stub">
     {{ deadline_text(m) }}
-    <span class="see-details">See details {{ icon('arrow-right', 16) }}</span>
+    <span class="see-details">See details {{ icon('arrow-right', 18) }}</span>
   </div>
 </a>
 {%- endmacro %}

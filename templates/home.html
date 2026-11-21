@@ -1,52 +1,120 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
+{% block page_class %}page-home{% endblock %}
 {% block content %}
-<section class="hero">
-  <h1 class="t-display">Find the scholarships you can claim.</h1>
-  <p class="lede">Tell us about yourself in your own words. No forms, no ID numbers, free forever.</p>
+<section class="hero-field">
+  <div class="slip slip-hero" data-ground="field">
+    <div class="slip-body">
+      <h1 class="hero-title">Scholarships you can&nbsp;claim.</h1>
+      <p class="hero-lead">Tell us about yourself in your own words, in English, Telugu or Hindi. No forms, no ID numbers, and it is free.</p>
 
-  <form class="ask" action="/find" method="post" data-ask>
-    <label class="visually-hidden" for="ask-text">Describe your situation</label>
-    <div class="ask-box">
-      <textarea id="ask-text" name="text" rows="5" required
-        data-examples='["I&#39;m in Inter 2nd year in Warangal, my father is a daily wage worker, we are BC, income around 1 lakh.", "నేను డిగ్రీ మొదటి సంవత్సరం, మా ఊరు నల్గొండ, మేము SC, మా ఆదాయం 80 వేలు.", "मैं हैदराबाद में B.Tech कर रही हूँ, हम minority हैं, family income 1.5 लाख है।"]'
-        placeholder="I'm in Inter 2nd year in Warangal, my father is a daily wage worker, we are BC, income around 1 lakh.">{{ text }}</textarea>
-      <p class="ask-hint">Say your class or course, community, family income and where you live. Skip anything you don't know.</p>
+      <form class="ask" action="/find" method="post" data-ask>
+        <label class="visually-hidden" for="ask-text">Describe your situation</label>
+        <textarea id="ask-text" name="text" rows="4" required
+          data-examples='["I&#39;m in Inter 2nd year in Warangal, my father is a daily wage worker, we are BC, income around 1 lakh.", "నేను డిగ్రీ మొదటి సంవత్సరం, మా ఊరు నల్గొండ, మేము SC, మా ఆదాయం 80 వేలు.", "मैं हैदराबाद में B.Tech कर रही हूँ, हम minority हैं, family income 1.5 लाख है।"]'
+          placeholder="I'm in Inter 2nd year in Warangal, my father is a daily wage worker, we are BC, income around 1 lakh.">{{ text }}</textarea>
+        <p class="ask-hint">Say your class or course, community, family income and where you live. Skip anything you don't know.</p>
+        <div class="ask-actions">
+          <button type="submit" class="btn btn-primary">Find my schemes {{ icon('arrow-right', 20) }}</button>
+          <div class="mic-row" data-mic-row hidden>
+            <button type="button" class="mic" data-mic aria-pressed="false" aria-label="Tap and speak">{{ icon('mic', 22) }}</button>
+            <span class="mic-label" data-mic-label>Tap and speak</span>
+          </div>
+        </div>
+      </form>
     </div>
 
-    <div class="mic-row" data-mic-row hidden>
-      <button type="button" class="mic" data-mic aria-pressed="false" aria-label="Tap and speak">
-        {{ icon('mic', 24) }}
-      </button>
-      <span class="mic-label" data-mic-label>Tap and speak</span>
+    <div class="perforation" aria-hidden="true"></div>
+
+    <div class="slip-stub">
+      <h2 class="stub-title">Or try a sample student</h2>
+      <div class="sample-row">
+        {% for s in samples %}
+        <form action="/find" method="post" class="sample-form">
+          <input type="hidden" name="sample" value="{{ s.id }}">
+          <button type="submit" class="sample-card">
+            <span class="sample-name">{{ s.name }}</span>
+            <span class="sample-blurb">{{ s.blurb }}</span>
+            {{ icon('arrow-right', 18, 'sample-arrow') }}
+          </button>
+        </form>
+        {% endfor %}
+      </div>
     </div>
-
-    <button type="submit" class="btn btn-primary btn-block">Find my schemes</button>
-  </form>
-</section>
-
-<section class="samples" aria-labelledby="samples-title">
-  <h2 id="samples-title" class="section-title">Or try a sample student</h2>
-  <div class="sample-grid">
-    {% for s in samples %}
-    <form action="/find" method="post" class="sample-form">
-      <input type="hidden" name="sample" value="{{ s.id }}">
-      <button type="submit" class="sample-card">
-        <span class="sample-avatar" aria-hidden="true">{{ s.name[0] }}</span>
-        <span class="sample-text">
-          <span class="sample-name">{{ s.name }}</span>
-          <span class="sample-blurb">{{ s.blurb }}</span>
-        </span>
-        {{ icon('arrow-right', 20, 'sample-arrow') }}
-      </button>
-    </form>
-    {% endfor %}
   </div>
 </section>
 
-<ul class="trust" aria-label="Our promise">
-  <li>{{ icon('shield-check', 20) }}<span>No ID numbers needed</span></li>
-  <li>{{ icon('landmark', 20) }}<span>Official sources only</span></li>
-  <li>{{ icon('ban', 20) }}<span>Never pay a middleman</span></li>
-</ul>
+<section class="moments" aria-labelledby="moments-title">
+  <div class="moments-head">
+    <h2 id="moments-title" class="section-head-title">From your words to a filed form</h2>
+  </div>
+  <div class="moments-row" data-reveal-group>
+    <article class="moment">
+      <h3 class="moment-title">You say it plainly</h3>
+      <p class="moment-text">Your class, your community, what the family earns, where you live. Type it or say it, the way you would tell a teacher.</p>
+      <img class="moment-pic" src="{{ url_for('static', filename='img/dept-of-telugu-osmania-university-class-room.jpg') }}" width="1400" height="663" alt="An empty classroom in the Department of Telugu, Osmania University, with a blackboard and a teacher's chair" loading="lazy" decoding="async" style="--rise: 24px">
+    </article>
+    <article class="moment">
+      <h3 class="moment-title">We show the rule</h3>
+      <p class="moment-text">Every match comes with the rule it rests on: “Family income up to ₹1,50,000, you said ₹1,10,000.” No black box.</p>
+      <img class="moment-pic" src="{{ url_for('static', filename='img/architectural-elements-of-ou-college-of-arts.jpg') }}" width="1400" height="979" alt="A carved stone window on the Arts College building, Osmania University" loading="lazy" decoding="async" style="--rise: 96px">
+    </article>
+    <article class="moment">
+      <h3 class="moment-title">You collect, apply, track</h3>
+      <p class="moment-text">A checklist of the certificates you need and where to get them, the steps on the official portal, and a reminder before the last date.</p>
+      <img class="moment-pic" src="{{ url_for('static', filename='img/corridor-in-ground-floor-of-ou-arts.jpg') }}" width="1400" height="932" alt="The ground-floor corridor of the Osmania University Arts College, with stone pillars and red doors" loading="lazy" decoding="async" style="--rise: 56px">
+    </article>
+  </div>
+</section>
+
+<section class="sheet-band" aria-labelledby="sheet-title">
+  <img class="sheet-ground" src="{{ url_for('static', filename='img/a-torana-gate-to-sacred-precinct-warangal.jpg') }}" width="1400" height="1867" alt="The carved Kakatiya stone gateway at Warangal Fort, the arch on Telangana's state emblem" loading="lazy" decoding="async">
+  <div class="sheet">
+    <h2 id="sheet-title" class="sheet-title">The schemes we check</h2>
+    <p class="sheet-note">Checked against public sources on 21 November 2026. Each one links to its official page.</p>
+    {% for group, label in [('Telangana', 'Telangana Government · ePASS'), ('Central', 'Government of India · NSP, AICTE')] %}
+    <div class="sheet-group">
+      <h3 class="sheet-group-title">{{ label }}</h3>
+      <ul class="sheet-list">
+        {% for s in schemes if s.run_by == group %}
+        <li>
+          <a class="sheet-item" href="/scheme/{{ s.id }}">
+            <span class="sheet-name">{{ s.name_en | replace('Telangana ', '') }}</span>
+            <span class="sheet-amount">{% if s.category == 'loan' %}Loan{% elif s.benefit_max_inr %}₹{{ '{:,}'.format(s.benefit_max_inr) }}{% endif %}</span>
+            <span class="sheet-desc">{{ s.summary_en.split('.')[0] }}.</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+    <p class="sheet-foot">Amounts are the most a year, before any course or hostel rules.</p>
+  </div>
+</section>
+
+<section class="faq" aria-labelledby="faq-title">
+  <h2 id="faq-title" class="section-head-title">What people ask first</h2>
+  <div class="faq-list">
+    <details>
+      <summary>Do I need to share my Aadhaar number?</summary>
+      <p>No. Arhata never asks for Aadhaar, PAN, bank or ration card numbers. If you type one by mistake, we remove it before reading your message. You show your Aadhaar only on the official portal.</p>
+    </details>
+    <details>
+      <summary>Does “likely eligible” mean I will get it?</summary>
+      <p>No. It means your details meet every rule we know of. The scheme authority makes the final decision after checking your documents.</p>
+    </details>
+    <details>
+      <summary>Is this a government website?</summary>
+      <p>No. It is a free guide that points you to the official portals: Telangana ePASS, the National Scholarship Portal, AICTE and PM-Vidyalaxmi.</p>
+    </details>
+    <details>
+      <summary>What if the rules change?</summary>
+      <p>Every scheme's rules are stored as data with the date they were last checked. When a government order changes a limit, we update one number and every result follows.</p>
+    </details>
+    <details>
+      <summary>Someone is charging me to apply. Should I pay?</summary>
+      <p>Never pay anyone to apply for a government scholarship. The application is free. A Mee Seva centre charges only the official certificate fee.</p>
+    </details>
+  </div>
+</section>
 {% endblock %}

@@ -1,26 +1,45 @@
+/* Arhata design tokens.
+   Direction: "the page is the object" — every result is the paper slip a student
+   carries to the Mee Seva counter. Bone ground, chocolate ink, one green. */
 :root {
-  /* Colours */
-  --bg: #F7F6F2;
-  --surface: #FFFFFF;
-  --surface-2: #EFEDE6;
-  --ink: #15171C;
-  --ink-2: #4A4F59;
-  --ink-3: #8A8F98;
-  --line: #E2DFD6;
-  --brand: #0F6B4F;
-  --brand-hover: #0B5740;
-  --brand-soft: #E3F1EA;
-  --likely: #1E8A5A;
-  --likely-bg: #E3F4EA;
-  --maybe: #B26A00;
-  --maybe-bg: #FDF1DC;
-  --no: #6B7079;
-  --no-bg: #EEEEEC;
-  --urgent: #C2410C;
-  --urgent-bg: #FDE9DF;
-  --focus: #2563EB; /* focus ring only */
+  /* Colour: paper, ink, one green */
+  --bg: #e5e1d8;          /* bone ground */
+  --paper: #f3f2ee;       /* the slip */
+  --surface: #f3f2ee;     /* alias kept for older rules */
+  --surface-2: #dad5ca;   /* tone step: chips, inset panels */
+  --surface-3: #cfc8bb;   /* deeper step: pressed, tracks */
+  --ink: #2a1d17;         /* chocolate */
+  --ink-2: #5a4a40;       /* soft ink, secondary text */
+  --ink-3: #7a6a5f;       /* hints (only on paper or bone) */
+  --brand: #456f3a;       /* the one green: action + one large field */
+  --brand-hover: #385d2f;
+  --brand-ink: #ffffff;
+  --brand-soft: #dfe6d4;
+  --field: #456f3a;
+  --field-ink: #ffffff;
+  --field-ink-2: #dfe9d8;
 
-  /* Spacing */
+  /* Status, mixed from the same inks */
+  --likely: #3b6332;
+  --likely-bg: #dfe6d4;
+  --maybe: #7d4f0c;
+  --maybe-bg: #ecdfc4;
+  --no: #5a4a40;
+  --no-bg: #dad5ca;
+  --urgent: #a3261b;
+  --urgent-bg: #f1d9d2;
+  --focus: #1f4fd1;       /* focus ring only */
+
+  /* Type */
+  --font-display: "Young Serif", "Noto Serif Telugu", "Noto Serif Devanagari", Georgia, serif;
+  --font-text: "Source Serif 4", "Noto Serif Telugu", "Noto Serif Devanagari", Georgia, serif;
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);   /* 13–14px */
+  --step-body: clamp(1.0625rem, 1.02rem + 0.25vw, 1.1875rem);   /* 17–19px */
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);         /* 20–26px */
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);                /* 32–64px */
+  --step-hero: clamp(2.25rem, 1.2rem + 5.4vw, 6rem);             /* 44–96px */
+
+  /* Space */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -30,17 +49,19 @@
   --space-7: 48px;
   --space-8: 64px;
   --space-9: 96px;
+  --gutter: clamp(16px, 4vw, 32px);
 
-  /* Radii */
-  --radius-control: 10px;
-  --radius-card: 16px;
-  --radius-sheet: 24px;
+  /* Shape: square paper, round punch-holes, fully round chips */
+  --radius-control: 0px;
+  --radius-card: 0px;
+  --radius-sheet: 0px;
   --radius-chip: 999px;
+  --notch: 11px;
 
   /* Motion */
-  --dur-fast: 150ms;   /* hover / press */
-  --dur-card: 250ms;   /* cards */
-  --dur-sheet: 300ms;  /* sheets */
+  --dur-fast: 150ms;
+  --dur-card: 420ms;
+  --dur-sheet: 300ms;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -54,6 +75,7 @@
   *::before,
   *::after {
     animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0ms !important;
     scroll-behavior: auto !important;

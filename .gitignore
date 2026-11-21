@@ -20,3 +20,4 @@ __pycache__/
 .codebenders/backend-session.json
 .codebenders/dev-server.json
 .DS_Store
+.taste-skill/

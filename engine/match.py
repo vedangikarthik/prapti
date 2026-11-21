@@ -1,4 +1,4 @@
-"""Hakku rules engine.
+"""Arhata rules engine.
 
 Plain, explainable matching: every scheme's rules live in data/schemes.json.
 No AI here and no scheme rules in Python.

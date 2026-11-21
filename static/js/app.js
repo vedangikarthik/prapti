@@ -1,6 +1,34 @@
-// Hakku client scripts: rotating examples, voice input, edit panel, checklist, tracker.
+// Arhata client scripts: rotating examples, voice input, edit panel, checklist, tracker.
 (function () {
   "use strict";
+
+  // ---------- Entrances: heading, then text, then picture (content stays visible without script) ----------
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    document.documentElement.classList.add("js");
+    var groups = document.querySelectorAll(".moments, .sheet, .faq, .detail-section, .source-box, .footer-card");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("is-in"); });
+        if (e.target.hasAttribute("data-reveal")) e.target.classList.add("is-in");
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -10% 0px" });
+    groups.forEach(function (g) {
+      var parts = g.querySelectorAll("h2, h3, p, img, li, details, .chip-row, .sheet-item, .btn, .moment-pic");
+      if (!parts.length) { g.setAttribute("data-reveal", ""); }
+      parts.forEach(function (el, i) {
+        el.setAttribute("data-reveal", "");
+        el.style.setProperty("--d", Math.min(i, 8) * 75 + "ms");
+      });
+      io.observe(g);
+    });
+    // Safety: never leave content hidden.
+    setTimeout(function () {
+      document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("is-in"); });
+    }, 4000);
+  }
 
   function store(key, value) {
     try {
@@ -109,7 +137,7 @@
   // ---------- Scheme detail: checklist ----------
   var list = document.querySelector("[data-checklist]");
   if (list) {
-    var key = "hakku:docs:" + list.dataset.checklist;
+    var key = "arhata:docs:" + list.dataset.checklist;
     var saved = store(key) || [];
     var boxes = list.querySelectorAll("input[type=checkbox]");
     var progressText = document.querySelector("[data-doc-progress]");
@@ -135,7 +163,7 @@
   var trackBtn = document.querySelector("[data-track]");
   var head = document.querySelector("[data-scheme-id]");
   if (trackBtn && head) {
-    var tracked = store("hakku:tracker") || [];
+    var tracked = store("arhata:tracker") || [];
     var id = head.dataset.schemeId;
     function setTracked(isTracked) {
       trackBtn.disabled = isTracked;
@@ -143,11 +171,11 @@
     }
     setTracked(tracked.some(function (t) { return t.id === id; }));
     trackBtn.addEventListener("click", function () {
-      tracked = store("hakku:tracker") || [];
+      tracked = store("arhata:tracker") || [];
       if (!tracked.some(function (t) { return t.id === id; })) {
         tracked.push({ id: id, name: head.dataset.schemeName, deadline: head.dataset.deadline || null,
                        status: "not_started", added: new Date().toISOString().slice(0, 10) });
-        store("hakku:tracker", tracked);
+        store("arhata:tracker", tracked);
       }
       setTracked(true);
       toast("Added to your tracker");
@@ -156,7 +184,7 @@
 
   // ---------- Nav dot: any tracked deadline within 7 days ----------
   var dot = document.querySelector(".nav-dot");
-  var all = store("hakku:tracker") || [];
+  var all = store("arhata:tracker") || [];
   var soon = all.some(function (t) {
     if (!t.deadline || t.status === "received") return false;
     var days = (new Date(t.deadline) - new Date()) / 86400000;

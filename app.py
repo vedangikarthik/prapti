@@ -12,7 +12,7 @@ from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, format_value,
 
 app = Flask(__name__)
 # The session only holds the student's answers (never ID numbers) on their own device.
-app.secret_key = os.environ.get("SECRET_KEY", "hakku-dev-only-change-me")
+app.secret_key = os.environ.get("SECRET_KEY", "arhata-dev-only-change-me")
 
 # Options for the "Edit my details" form (value, label).
 FIELD_OPTIONS = {
@@ -112,7 +112,7 @@ def inject_helpers():
 
 @app.route("/")
 def index():
-    return render_template("home.html", samples=load_samples(), page="find",
+    return render_template("home.html", samples=load_samples(), schemes=load_schemes(), page="find",
                            text=session.get("text", ""))
 
 
@@ -208,7 +208,7 @@ def api_ics(scheme_id):
     if not ics:
         abort(404)
     return Response(ics, mimetype="text/calendar",
-                    headers={"Content-Disposition": f"attachment; filename=hakku-{scheme_id}.ics"})
+                    headers={"Content-Disposition": f"attachment; filename=arhata-{scheme_id}.ics"})
 
 
 if __name__ == "__main__":

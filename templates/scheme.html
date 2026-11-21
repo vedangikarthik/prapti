@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
 {% from "_scheme_card.html" import badge, rule_icon with context %}
-{% block title %}{{ s.name_en }} – Hakku{% endblock %}
+{% block title %}{{ s.name_en }} – Arhata{% endblock %}
 {% block content %}
 <a class="back-link" href="{{ '/results' if has_profile else '/' }}">{{ icon('arrow-left', 20) }}{{ 'All my schemes' if has_profile else 'Home' }}</a>
 
-<header class="detail-head" data-scheme-id="{{ s.id }}" data-scheme-name="{{ s.name_en }}" data-deadline="{{ s.deadline or '' }}">
+{% set nm = s.name_en | replace('Telangana ', '') %}
+{% if nm | length > 34 and ' for ' in nm %}{% set parts = nm.split(' for ', 1) %}{% set title, sub = parts[0], 'for ' ~ parts[1] %}
+{% elif nm | length > 34 and ' (' in nm %}{% set parts = nm.split(' (', 1) %}{% set title, sub = parts[0], '(' ~ parts[1] %}
+{% else %}{% set title, sub = nm, '' %}{% endif %}
+<header class="slip scalloped detail-head" data-scheme-id="{{ s.id }}" data-scheme-name="{{ s.name_en }}" data-deadline="{{ s.deadline or '' }}">
   {% if has_profile %}{{ badge(m.status) }}{% endif %}
-  <h1 class="detail-title">{{ s.name_en }}</h1>
+  <h1 class="detail-title">{{ title }}</h1>
+  {% if sub %}<p class="detail-sub">{{ sub }}</p>{% endif %}
   <p class="detail-runby">{{ icon('landmark', 16) }}{{ 'Telangana Government' if s.run_by == 'Telangana' else 'Government of India' }} · {{ s.category | capitalize }}</p>
   <p class="detail-benefit">{{ s.benefit_text }}</p>
   <p class="detail-summary">{{ s.summary_en }}</p>
@@ -29,7 +34,7 @@
 </section>
 {% endif %}
 
-<section class="deadline-box {% if m.days_left is not none and 0 <= m.days_left <= 7 %}deadline-box-urgent{% endif %}" aria-labelledby="dl-title">
+<section class="slip deadline-box {% if m.days_left is not none and 0 <= m.days_left <= 7 %}deadline-box-urgent{% endif %}" aria-labelledby="dl-title">
   <div class="deadline-main">
     {{ icon('clock', 24) }}
     <div>
@@ -43,6 +48,7 @@
       {% if s.deadline_note %}<p class="deadline-note">{{ s.deadline_note }}</p>{% endif %}
     </div>
   </div>
+  <div class="perforation" aria-hidden="true"></div>
   <div class="deadline-actions">
     <button type="button" class="btn btn-primary" data-track>{{ icon('bookmark-plus', 20) }}Add to my tracker</button>
     {% if s.deadline and m.days_left is not none and m.days_left >= 0 %}
@@ -100,6 +106,6 @@
 </aside>
 
 <a class="btn btn-secondary btn-block share-btn"
-   href="https://wa.me/?text={{ (s.name_en ~ ' – official details: ' ~ s.source_url ~ '  (found on Hakku, a free guide. Never pay anyone to apply.)') | urlencode }}"
+   href="https://wa.me/?text={{ (s.name_en ~ ' – official details: ' ~ s.source_url ~ '  (found on Arhata, a free guide. Never pay anyone to apply.)') | urlencode }}"
    target="_blank" rel="noopener">{{ icon('message-circle', 20) }}Send to WhatsApp</a>
 {% endblock %}
