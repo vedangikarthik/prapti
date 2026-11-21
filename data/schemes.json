@@ -5,17 +5,26 @@
   "schemes": [
     {
       "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline_note": "Tentative last date for 2026-27 (reported by Buddy4Study). Confirm on the ePASS portal.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "medium",
+        "sources": [
+          "https://www.buddy4study.com/article/telangana-post-matric-scholarship",
+          "https://leverageedu.com/discover/indian-scholarships/telangana-epass-scholarship/"
+        ],
+        "note": "Limits from 2026-27 guides; official ePASS notice not readable online."
+      },
       "id": "ts-postmatric-sc-st",
       "name_en": "Telangana Post-Matric Scholarship (SC / ST)",
       "name_te": "తెలంగాణ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ (SC / ST)",
       "name_hi": "तेलंगाना पोस्ट-मैट्रिक छात्रवृत्ति (SC / ST)",
       "run_by": "Telangana",
       "category": "scholarship",
-      "summary_en": "Monthly maintenance support for SC and ST students studying after Class 10.",
-      "benefit_text": "Maintenance allowance up to ₹20,000 a year",
-      "benefit_max_inr": 20000,
+      "summary_en": "Monthly maintenance money for SC and ST students studying after Class 10, paid to your bank account.",
+      "benefit_text": "Maintenance ₹325–₹1,500 a month for 10 months (depends on course and hostel)",
+      "benefit_max_inr": 15000,
       "rules": [
         {
           "field": "community",
@@ -45,10 +54,32 @@
         {
           "field": "annual_income",
           "op": "lte",
+          "value": 250000,
+          "text_en": "Family income up to ₹2,50,000 a year (SC) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,50,000 లోపు (SC) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,50,000 तक (SC) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "community",
+              "op": "eq",
+              "value": "SC"
+            }
+          ]
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
           "value": 200000,
-          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
-          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
-          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+          "text_en": "Family income up to ₹2,00,000 a year (ST) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు (ST) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक (ST) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "community",
+              "op": "eq",
+              "value": "ST"
+            }
+          ]
         }
       ],
       "documents": [
@@ -129,17 +160,26 @@
     },
     {
       "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline_note": "Tentative last date for 2026-27 (reported by Buddy4Study). Confirm on the ePASS portal.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "medium",
+        "sources": [
+          "https://www.buddy4study.com/article/telangana-post-matric-scholarship",
+          "https://leverageedu.com/discover/indian-scholarships/telangana-epass-scholarship/"
+        ],
+        "note": "Limits from 2026-27 guides; official ePASS notice not readable online."
+      },
       "id": "ts-postmatric-bc-ebc",
       "name_en": "Telangana Post-Matric Scholarship (BC / EBC)",
       "name_te": "తెలంగాణ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ (BC / EBC)",
       "name_hi": "तेलंगाना पोस्ट-मैट्रिक छात्रवृत्ति (BC / EBC)",
       "run_by": "Telangana",
       "category": "scholarship",
-      "summary_en": "Maintenance support for BC and EBC students studying after Class 10.",
-      "benefit_text": "Maintenance allowance up to ₹20,000 a year",
-      "benefit_max_inr": 20000,
+      "summary_en": "Monthly maintenance money for BC and EBC students studying after Class 10.",
+      "benefit_text": "Maintenance ₹325–₹1,500 a month for 10 months (depends on course and hostel)",
+      "benefit_max_inr": 15000,
       "rules": [
         {
           "field": "community",
@@ -275,17 +315,26 @@
     },
     {
       "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline_note": "Tentative last date for 2026-27 (reported by Buddy4Study). Confirm on the ePASS portal.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "medium",
+        "sources": [
+          "https://www.buddy4study.com/article/telangana-post-matric-scholarship",
+          "https://leverageedu.com/discover/indian-scholarships/telangana-epass-scholarship/"
+        ],
+        "note": "Limits from 2026-27 guides; official ePASS notice not readable online."
+      },
       "id": "ts-postmatric-minority",
       "name_en": "Telangana Post-Matric Scholarship (Minorities)",
       "name_te": "తెలంగాణ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ (మైనారిటీలు)",
       "name_hi": "तेलंगाना पोस्ट-मैट्रिक छात्रवृत्ति (अल्पसंख्यक)",
       "run_by": "Telangana",
       "category": "scholarship",
-      "summary_en": "Maintenance support for minority community students studying after Class 10.",
-      "benefit_text": "Maintenance allowance up to ₹20,000 a year",
-      "benefit_max_inr": 20000,
+      "summary_en": "Monthly maintenance money for minority community students studying after Class 10.",
+      "benefit_text": "Maintenance ₹325–₹1,500 a month for 10 months (depends on course and hostel)",
+      "benefit_max_inr": 15000,
       "rules": [
         {
           "field": "community",
@@ -314,10 +363,32 @@
         {
           "field": "annual_income",
           "op": "lte",
+          "value": 150000,
+          "text_en": "Family income up to ₹1,50,000 a year (rural) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹1,50,000 లోపు (rural) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹1,50,000 तक (rural) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "area",
+              "op": "eq",
+              "value": "rural"
+            }
+          ]
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
           "value": 200000,
-          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
-          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
-          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+          "text_en": "Family income up to ₹2,00,000 a year (urban) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు (urban) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक (urban) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "area",
+              "op": "eq",
+              "value": "urban"
+            }
+          ]
         }
       ],
       "documents": [
@@ -393,17 +464,26 @@
     },
     {
       "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline_note": "Tentative last date for 2026-27 (reported by Buddy4Study). Confirm on the ePASS portal.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "medium",
+        "sources": [
+          "https://www.buddy4study.com/article/telangana-post-matric-scholarship",
+          "https://leverageedu.com/discover/indian-scholarships/telangana-epass-scholarship/"
+        ],
+        "note": "Limits from 2026-27 guides; official ePASS notice not readable online."
+      },
       "id": "ts-rtf",
       "name_en": "Telangana Reimbursement of Tuition Fee (RTF)",
       "name_te": "తెలంగాణ ట్యూషన్ ఫీజు రీయింబర్స్‌మెంట్ (RTF)",
       "name_hi": "तेलंगाना ट्यूशन फीस प्रतिपूर्ति (RTF)",
       "run_by": "Telangana",
       "category": "fee reimbursement",
-      "summary_en": "The government pays your college tuition fee directly to the college.",
-      "benefit_text": "College tuition fee paid, up to ₹35,000 a year",
-      "benefit_max_inr": 35000,
+      "summary_en": "The government pays your college tuition fee directly to the college. Full fee for most courses; for BC/EBC some courses need a government college, EAMCET rank up to 10,000 or ECET rank up to 1,000.",
+      "benefit_text": "Tuition fee paid to college (degree up to ₹20,000 a year; professional courses more)",
+      "benefit_max_inr": 20000,
       "rules": [
         {
           "field": "community",
@@ -436,18 +516,40 @@
         {
           "field": "annual_income",
           "op": "lte",
+          "value": 250000,
+          "text_en": "Family income up to ₹2,50,000 a year (SC) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,50,000 లోపు (SC) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,50,000 तक (SC) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "community",
+              "op": "eq",
+              "value": "SC"
+            }
+          ]
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
           "value": 200000,
-          "text_en": "Family income up to ₹2,00,000 a year — you said about {user_value}.",
-          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
-          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक — आपने बताया लगभग {user_value}।"
+          "text_en": "Family income up to ₹2,00,000 a year (ST) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు (ST) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक (ST) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "community",
+              "op": "eq",
+              "value": "ST"
+            }
+          ]
         },
         {
           "field": "annual_income",
           "op": "lte",
           "value": 150000,
-          "text_en": "Family income up to ₹1,50,000 a year (BC / EBC, rural) — you said about {user_value}.",
-          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹1,50,000 లోపు (BC / EBC, rural) — మీరు చెప్పింది సుమారు {user_value}.",
-          "text_hi": "पारिवारिक आय सालाना ₹1,50,000 तक (BC / EBC, rural) — आपने बताया लगभग {user_value}।",
+          "text_en": "Family income up to ₹1,50,000 a year (BC / EBC / Minority, rural) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹1,50,000 లోపు (BC / EBC / Minority, rural) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹1,50,000 तक (BC / EBC / Minority, rural) — आपने बताया लगभग {user_value}।",
           "only_if": [
             {
               "field": "area",
@@ -459,7 +561,32 @@
               "op": "in",
               "value": [
                 "BC",
-                "EBC"
+                "EBC",
+                "Minority"
+              ]
+            }
+          ]
+        },
+        {
+          "field": "annual_income",
+          "op": "lte",
+          "value": 200000,
+          "text_en": "Family income up to ₹2,00,000 a year (BC / EBC / Minority, urban) — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹2,00,000 లోపు (BC / EBC / Minority, urban) — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹2,00,000 तक (BC / EBC / Minority, urban) — आपने बताया लगभग {user_value}।",
+          "only_if": [
+            {
+              "field": "area",
+              "op": "eq",
+              "value": "urban"
+            },
+            {
+              "field": "community",
+              "op": "in",
+              "value": [
+                "BC",
+                "EBC",
+                "Minority"
               ]
             }
           ]
@@ -547,18 +674,26 @@
       "source_url": "https://telanganaepass.cgg.gov.in"
     },
     {
-      "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
+      "deadline": null,
+      "deadline_note": "2026-27 dates not announced yet. Check the ePASS portal.",
       "last_verified": null,
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "low",
+        "sources": [
+          "https://www.buddy4study.com/article/telangana-scholarship"
+        ],
+        "note": "Amounts from a guide; income limit for Class 9–10 not confirmed. VERIFY on ePASS."
+      },
       "id": "ts-prematric",
       "name_en": "Telangana Pre-Matric Scholarship (Class 9–10)",
       "name_te": "తెలంగాణ ప్రీ-మెట్రిక్ స్కాలర్‌షిప్ (9–10 తరగతి)",
       "name_hi": "तेलंगाना प्री-मैट्रिक छात्रवृत्ति (कक्षा 9–10)",
       "run_by": "Telangana",
       "category": "scholarship",
-      "summary_en": "Yearly support for SC, ST, BC and minority students in Class 9 and 10.",
-      "benefit_text": "Up to ₹3,500 a year",
-      "benefit_max_inr": 3500,
+      "summary_en": "Monthly support plus a book allowance for SC, ST, BC, EBC and minority students in Class 9 and 10.",
+      "benefit_text": "₹150–₹350 a month + ₹750–₹1,000 a year for books",
+      "benefit_max_inr": 4500,
       "rules": [
         {
           "field": "education_level",
@@ -578,11 +713,12 @@
             "SC",
             "ST",
             "BC",
+            "EBC",
             "Minority"
           ],
-          "text_en": "Open to SC / ST / BC / Minority students — you said {user_value}.",
-          "text_te": "SC / ST / BC / Minority విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
-          "text_hi": "SC / ST / BC / Minority छात्रों के लिए — आपने बताया: {user_value}।"
+          "text_en": "Open to SC / ST / BC / EBC / Minority students — you said {user_value}.",
+          "text_te": "SC / ST / BC / EBC / Minority విద్యార్థులకు — మీరు చెప్పింది: {user_value}.",
+          "text_hi": "SC / ST / BC / EBC / Minority छात्रों के लिए — आपने बताया: {user_value}।"
         },
         {
           "field": "annual_income",
@@ -671,16 +807,25 @@
       "source_url": "https://telanganaepass.cgg.gov.in"
     },
     {
-      "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline": null,
+      "deadline_note": "The 2026-27 NSP window closed on 31 Oct 2026. Next: register for the NMMS exam in Class 8.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "high",
+        "sources": [
+          "https://dsel.education.gov.in/sites/default/files/update/PIB2167076.pdf",
+          "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2317657"
+        ],
+        "note": "Income limit raised from ₹1.5L to ₹3.5L (PIB)."
+      },
       "id": "nmms",
       "name_en": "National Means-cum-Merit Scholarship (NMMS)",
       "name_te": "నేషనల్ మీన్స్-కమ్-మెరిట్ స్కాలర్‌షిప్ (NMMS)",
       "name_hi": "राष्ट्रीय साधन-सह-योग्यता छात्रवृत्ति (NMMS)",
       "run_by": "Central",
       "category": "scholarship",
-      "summary_en": "₹12,000 a year from Class 9 to 12 for bright students in government schools, after a selection exam in Class 8.",
+      "summary_en": "₹12,000 a year from Class 9 to 12 for government-school students who clear the NMMS exam in Class 8. Not for KV, NVS, Sainik or private schools.",
       "benefit_text": "₹12,000 a year (Class 9–12)",
       "benefit_max_inr": 12000,
       "rules": [
@@ -714,9 +859,39 @@
           "field": "marks_percent",
           "op": "gte",
           "value": 55,
-          "text_en": "Needs at least 55% in Class 8 — you said {user_value}.",
+          "text_en": "Needs at least 55% in Class 7 — you said {user_value}.",
           "text_te": "కనీసం 55% మార్కులు అవసరం — మీరు చెప్పింది {user_value}.",
-          "text_hi": "कम से कम 55% अंक चाहिए — आपने बताया {user_value}।"
+          "text_hi": "कम से कम 55% अंक चाहिए — आपने बताया {user_value}।",
+          "only_if": [
+            {
+              "field": "community",
+              "op": "in",
+              "value": [
+                "BC",
+                "EBC",
+                "Minority",
+                "OC"
+              ]
+            }
+          ]
+        },
+        {
+          "field": "marks_percent",
+          "op": "gte",
+          "value": 50,
+          "text_en": "Needs at least 50% in Class 7 (SC / ST) — you said {user_value}.",
+          "text_te": "కనీసం 50% మార్కులు అవసరం — మీరు చెప్పింది {user_value}.",
+          "text_hi": "कम से कम 50% अंक चाहिए — आपने बताया {user_value}।",
+          "only_if": [
+            {
+              "field": "community",
+              "op": "in",
+              "value": [
+                "SC",
+                "ST"
+              ]
+            }
+          ]
         }
       ],
       "documents": [
@@ -787,16 +962,26 @@
       "source_url": "https://scholarships.gov.in"
     },
     {
-      "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline": null,
+      "deadline_note": "2026-27 NSP window is open; last date not confirmed (2025-26 closed 31 Oct 2025, later extended). Check NSP.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "medium",
+        "sources": [
+          "https://scholarships.gov.in/public/schemeGuidelines/FAQ_DOHE_CSSS.pdf",
+          "https://myscheme.gov.in/schemes/csss-cus",
+          "https://www.goa.gov.in/wp-content/uploads/2025/09/CENTRAL-SECTOR-SCHEME.pdf"
+        ],
+        "note": "80% marks used as a stand-in for the 80th percentile cut-off, which varies by board."
+      },
       "id": "central-sector",
       "name_en": "Central Sector Scholarship for College & University Students",
       "name_te": "కాలేజీ & యూనివర్సిటీ విద్యార్థులకు సెంట్రల్ సెక్టార్ స్కాలర్‌షిప్",
       "name_hi": "कॉलेज और विश्वविद्यालय छात्रों के लिए केंद्रीय क्षेत्र छात्रवृत्ति",
       "run_by": "Central",
       "category": "scholarship",
-      "summary_en": "For top scorers in Class 12 who join a regular degree course.",
+      "summary_en": "For students in the top 20% of their Class 12 board who join a regular (not distance) degree course.",
       "benefit_text": "₹12,000 a year (UG), ₹20,000 a year (PG)",
       "benefit_max_inr": 20000,
       "rules": [
@@ -816,17 +1001,17 @@
           "field": "marks_percent",
           "op": "gte",
           "value": 80,
-          "text_en": "Needs at least 80% in Class 12 (top 20%) — you said {user_value}.",
+          "text_en": "Needs at least 80% in Class 12 (top 20% of your board) — you said {user_value}.",
           "text_te": "కనీసం 80% మార్కులు అవసరం — మీరు చెప్పింది {user_value}.",
           "text_hi": "कम से कम 80% अंक चाहिए — आपने बताया {user_value}।"
         },
         {
           "field": "annual_income",
           "op": "lte",
-          "value": 450000,
-          "text_en": "Family income up to ₹4,50,000 a year — you said about {user_value}.",
-          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹4,50,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
-          "text_hi": "पारिवारिक आय सालाना ₹4,50,000 तक — आपने बताया लगभग {user_value}।"
+          "value": 800000,
+          "text_en": "Family income up to ₹8,00,000 a year — you said about {user_value}.",
+          "text_te": "కుటుంబ ఆదాయం సంవత్సరానికి ₹8,00,000 లోపు — మీరు చెప్పింది సుమారు {user_value}.",
+          "text_hi": "पारिवारिक आय सालाना ₹8,00,000 तक — आपने बताया लगभग {user_value}।"
         }
       ],
       "documents": [
@@ -883,16 +1068,26 @@
       "source_url": "https://scholarships.gov.in"
     },
     {
-      "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline": "2026-11-30",
+      "deadline_note": "Official notice said 31 Oct 2026; reported extended to 30 Nov 2026. Confirm on NSP today.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "high",
+        "sources": [
+          "https://www.thapar.edu/upload/files/NOTICE-AICTE%20PRAGATI,%20SAKSHAM%20&%20SWANATH%20%202026-27.pdf",
+          "https://www.buddy4study.com/article/pragati-scholarship",
+          "https://www.myscheme.gov.in/schemes/sak-deg"
+        ],
+        "note": "AICTE notice dated 19 Jun 2026 gives last date 31 Oct 2026; Buddy4Study reports extension to 30 Nov 2026."
+      },
       "id": "aicte-pragati",
       "name_en": "AICTE Pragati Scholarship for Girls",
       "name_te": "విద్యార్థినులకు AICTE ప్రగతి స్కాలర్‌షిప్",
       "name_hi": "छात्राओं के लिए AICTE प्रगति छात्रवृत्ति",
       "run_by": "Central",
       "category": "scholarship",
-      "summary_en": "₹50,000 a year for girls in AICTE-approved diploma or degree technical courses.",
+      "summary_en": "₹50,000 a year for girls in the 1st year (or 2nd year lateral entry) of an AICTE-approved technical degree or diploma. Up to two girls per family.",
       "benefit_text": "₹50,000 a year",
       "benefit_max_inr": 50000,
       "rules": [
@@ -1004,16 +1199,26 @@
       "source_url": "https://www.aicte-india.org/schemes/students-development-schemes"
     },
     {
-      "deadline": "2026-12-31",
-      "deadline_note": "Placeholder date and limits — VERIFY on the official site before use.",
-      "last_verified": null,
+      "deadline": "2026-11-30",
+      "deadline_note": "Official notice said 31 Oct 2026; reported extended to 30 Nov 2026. Confirm on NSP today.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "medium",
+        "sources": [
+          "https://www.thapar.edu/upload/files/NOTICE-AICTE%20PRAGATI,%20SAKSHAM%20&%20SWANATH%20%202026-27.pdf",
+          "https://www.buddy4study.com/article/pragati-scholarship",
+          "https://www.myscheme.gov.in/schemes/sak-deg"
+        ],
+        "note": "AICTE notice dated 19 Jun 2026 gives last date 31 Oct 2026; Buddy4Study reports extension to 30 Nov 2026."
+      },
       "id": "aicte-saksham",
       "name_en": "AICTE Saksham Scholarship (Students with Disability)",
       "name_te": "AICTE సక్షమ్ స్కాలర్‌షిప్ (దివ్యాంగ విద్యార్థులు)",
       "name_hi": "AICTE सक्षम छात्रवृत्ति (दिव्यांग छात्र)",
       "run_by": "Central",
       "category": "scholarship",
-      "summary_en": "₹50,000 a year for students with 40%+ disability in AICTE-approved technical courses.",
+      "summary_en": "₹50,000 a year for students with 40%+ disability in the 1st year (or 2nd year lateral entry) of an AICTE-approved technical course.",
       "benefit_text": "₹50,000 a year",
       "benefit_max_inr": 50000,
       "rules": [
@@ -1035,6 +1240,14 @@
           "text_en": "For students in ITI / Polytechnic, Engineering / Medical / Professional — you are in {user_value}.",
           "text_te": "ITI / Polytechnic, Engineering / Medical / Professional చదువుతున్న విద్యార్థులకు — మీరు {user_value}.",
           "text_hi": "ITI / Polytechnic, Engineering / Medical / Professional में पढ़ने वाले छात्रों के लिए — आप {user_value} में हैं।"
+        },
+        {
+          "field": "year",
+          "op": "lte",
+          "value": 2,
+          "text_en": "Only for year 1 to 2 of the course — you are in year {user_value}.",
+          "text_te": "కోర్సు 1 నుండి 2 సంవత్సరం వారికి మాత్రమే — మీరు {user_value} సంవత్సరం.",
+          "text_hi": "केवल कोर्स के वर्ष 1 से 2 के लिए — आप वर्ष {user_value} में हैं।"
         },
         {
           "field": "annual_income",
@@ -1104,16 +1317,25 @@
     },
     {
       "deadline": null,
-      "deadline_note": "No fixed deadline — apply before your fees are due. VERIFY limits on the official site.",
-      "last_verified": null,
+      "deadline_note": "No fixed deadline. Apply before your fees are due.",
+      "last_verified": "2026-11-21",
+      "verification": {
+        "checked_on": "2026-11-21",
+        "confidence": "high",
+        "sources": [
+          "https://education.gov.in/sites/upload_files/mhrd/files/document-reports/PM_Vidyalaxmi_Scheme_Guidelines.pdf",
+          "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2071134"
+        ],
+        "note": "Families up to ₹4.5L in technical courses may get full interest help under PM-USP CSIS instead."
+      },
       "id": "pm-vidyalaxmi",
       "name_en": "PM-Vidyalaxmi Education Loan",
       "name_te": "పీఎం-విద్యాలక్ష్మి విద్యా రుణం",
       "name_hi": "पीएम-विद्यालक्ष्मी शिक्षा ऋण",
       "run_by": "Central",
       "category": "loan",
-      "summary_en": "A collateral-free education loan with interest help for students at listed quality institutions. This is a loan you repay, not free money.",
-      "benefit_text": "Loan with 3% interest help on up to ₹10 lakh",
+      "summary_en": "A collateral-free education loan for students at listed top institutions, with 3% interest help. This is a loan you repay, not free money. Not available if you already get another government scholarship or fee reimbursement.",
+      "benefit_text": "3% interest help on loans up to ₹10 lakh during the course + 1 year",
       "benefit_max_inr": 0,
       "rules": [
         {
@@ -1162,7 +1384,7 @@
       "steps": [
         {
           "title": "Check your institute is on the PM-Vidyalaxmi list",
-          "detail": "Only listed institutions qualify.",
+          "detail": "Only listed quality institutions (about 1,400) qualify.",
           "link": "https://pmvidyalaxmi.co.in"
         },
         {
@@ -1172,7 +1394,7 @@
         },
         {
           "title": "Pick a bank and upload documents",
-          "detail": "Compare interest rates before choosing.",
+          "detail": "Interest is capped at the bank's EBLR + 0.5%.",
           "link": null
         },
         {
@@ -1181,7 +1403,7 @@
           "link": "https://pmvidyalaxmi.co.in"
         }
       ],
-      "after_apply": "The bank reviews your application on the portal. Interest help applies only if family income is within the limit. Only borrow what you need.",
+      "after_apply": "The bank reviews your application on the portal. Interest help is limited to 1 lakh students a year and can be used once. Only borrow what you need.",
       "source_name": "PM-Vidyalaxmi portal",
       "source_url": "https://pmvidyalaxmi.co.in"
     }
