@@ -2605,3 +2605,238 @@ h3 {
     font-weight: 600;
   }
 }
+
+/* ---------- Ease of use: first-visit language, tap-only start, first step, read aloud ---------- */
+.lang-pick {
+  max-width: 880px;
+  margin: 0 auto var(--space-5);
+  color: var(--field-ink);
+}
+
+.lang-pick-title {
+  font-size: 17px;
+  text-align: center;
+}
+
+.lang-pick-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.lang-pick-btn {
+  display: grid;
+  place-items: center;
+  min-height: 64px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper);
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.lang-pick-btn:hover {
+  background: #ffffff;
+}
+
+.lang-pick-btn:active {
+  transform: scale(0.98);
+}
+
+.tap-start {
+  margin-top: var(--space-6);
+}
+
+.tap-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: 88px;
+  padding: var(--space-4) var(--space-5);
+  font: inherit;
+  text-align: left;
+  color: var(--brand-ink);
+  background: var(--brand);
+  border: 0;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.tap-btn:hover {
+  background: var(--brand-hover);
+}
+
+.tap-btn:active {
+  transform: scale(0.99);
+}
+
+.tap-btn .icon {
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.tap-btn:hover .icon {
+  transform: translateX(4px);
+}
+
+.tap-btn-text {
+  display: grid;
+  gap: 2px;
+}
+
+.tap-btn-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 1.2rem + 0.8vw, 28px);
+  line-height: 1.15;
+}
+
+:lang(te) .tap-btn-title,
+:lang(hi) .tap-btn-title {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.tap-btn-sub {
+  font-size: 17px;
+  color: var(--field-ink-2);
+}
+
+.or-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 var(--space-3);
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.or-line::before,
+.or-line::after {
+  content: "";
+  flex: 1;
+  height: 6px;
+  background: var(--surface-2);
+}
+
+.type-title {
+  font-family: var(--font-text);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.type-title + .ask {
+  margin-top: var(--space-3);
+}
+
+.next-step {
+  margin-top: var(--space-4);
+}
+
+.next-body {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5) clamp(20px, 4vw, 32px);
+}
+
+.next-title {
+  font-size: clamp(24px, 1.2rem + 1vw, 32px);
+  line-height: 1.1;
+}
+
+.next-text {
+  font-size: var(--step-lead);
+  line-height: 1.35;
+}
+
+.next-more {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.listen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 0;
+  border-radius: var(--radius-chip);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.listen-btn[hidden] {
+  display: none;
+}
+
+.listen-btn:hover {
+  background: var(--surface-3);
+}
+
+.listen-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.listen-on-field {
+  margin-top: var(--space-4);
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--field-ink);
+}
+
+.listen-on-field:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.help-note {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin-top: var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  background: var(--brand-soft);
+  font-size: 17px;
+  scroll-margin-top: 84px;
+}
+
+.help-note .icon {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--brand);
+}
+
+.q-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.q-nav .back-link {
+  margin-bottom: 0;
+}
+
+.back-btn {
+  padding: 0;
+  font: inherit;
+  font-size: 17px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}

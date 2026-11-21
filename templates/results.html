@@ -31,7 +31,21 @@
   {% else %}
   <p class="summary-sub">{{ t('res.before') }}</p>
   {% endif %}
+  <button type="button" class="listen-btn listen-on-field" data-speak="#speak-results" hidden>{{ icon('volume', 20) }}<span>{{ t('listen') }}</span></button>
 </section>
+
+{% if first %}
+<section class="slip next-step" aria-labelledby="next-title">
+  <div class="next-body">
+    <h2 id="next-title" class="next-title">{{ t('res.next_title') }}</h2>
+    <p class="next-text">{% if first.deadline %}{{ t('res.next_text', name=first.name, d=nice_date(first.deadline)) }}{% else %}{{ t('res.next_text_nodate', name=first.name) }}{% endif %}</p>
+    <a class="btn btn-primary btn-block" href="/scheme/{{ first.id }}#how">{{ t('res.next_btn') }} {{ icon('arrow-right', 20) }}</a>
+    {% if r.likely | length > 1 %}<p class="next-more">{{ t('res.next_more') }}</p>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+<div id="speak-results" hidden>{% if r.summary.likely_count %}{% if sample_name %}{{ t('res.who_name', name=sample_name, n=r.summary.likely_count) }}{% else %}{{ t('res.who_you', n=r.summary.likely_count) }}{% endif %} {{ r.summary.likely_value_text }}. {% for m in r.likely %}{{ m.name }}. {% endfor %}{% if first %}{{ t('res.next_title') }}: {% if first.deadline %}{{ t('res.next_text', name=first.name, d=nice_date(first.deadline)) }}{% else %}{{ t('res.next_text_nodate', name=first.name) }}{% endif %}{% endif %}{% else %}{{ t('res.none') }}. {{ t('res.try') }}{% endif %}</div>
 
 <section class="understood" aria-labelledby="understood-title">
   <div class="understood-head">

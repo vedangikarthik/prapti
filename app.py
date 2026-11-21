@@ -169,7 +169,7 @@ def inject_helpers():
         return date.fromisoformat(iso).strftime("%-d %b %Y")
 
     js_keys = {k: (v.get(lang) if v.get(lang) is not None else v.get("en")) for k, v in I18N.items()
-               if k.split(".")[0] in ("home", "soon", "det", "tr", "st", "adv", "nx", "dl")}
+               if k.split(".")[0] in ("home", "soon", "det", "tr", "st", "adv", "nx", "dl", "listen", "listen_stop")}
     return {"nice_date": nice_date, "lang": lang, "t": lambda key, **kw: tr(key, lang, **kw),
             "opt": lambda label: opt(label, lang), "js_text": js_keys}
 
@@ -186,6 +186,7 @@ def set_lang(code):
 @app.route("/")
 def index():
     return render_template("home.html", samples=load_samples(), schemes=load_schemes(), page="find",
+                           first_visit="lang" not in session,
                            text=session.get("text", ""))
 
 
@@ -212,9 +213,41 @@ def find():
         session.pop("sample_name", None)
         session["skipped"] = []
         session["asked"] = {}
+        session["history"] = []
         if pending_questions(result["profile"], []):
             return redirect(url_for("questions"))
     return redirect(url_for("results"))
+
+
+@app.route("/start", methods=["POST"])
+def start_questions():
+    """Tap-only path: no typing at all, just the questions that matter."""
+    session["profile"] = {k: None for k in PROFILE_KEYS}
+    session["text"] = ""
+    session["removed_id"] = False
+    session.pop("sample_name", None)
+    session["skipped"] = []
+    session["asked"] = {}
+    session["history"] = []
+    return redirect(url_for("questions"))
+
+
+@app.route("/questions/back", methods=["POST"])
+def questions_back():
+    history = list(session.get("history", []))
+    if not history:
+        return redirect(url_for("index"))
+    field = history.pop()
+    profile = dict(current_profile())
+    profile[field] = None
+    skipped = [f for f in session.get("skipped", []) if f != field]
+    asked = dict(session.get("asked", {}))
+    # forget the question on screen now and the one we go back to, so the count stays right
+    current = request.form.get("current")
+    asked.pop(current, None)
+    asked.pop(field, None)
+    session.update(profile=profile, skipped=skipped, asked=asked, history=history)
+    return redirect(url_for("questions"))
 
 
 def pending_questions(profile, skipped):
@@ -232,6 +265,7 @@ def questions():
     if request.method == "POST":
         field = request.form.get("field")
         if field in QUESTIONS:
+            session["history"] = list(session.get("history", [])) + [field]
             if request.form.get("skip"):
                 skipped.append(field)
             else:
@@ -253,7 +287,8 @@ def questions():
     q, why = tr("q." + field), tr("why." + field)
     return render_template("questions.html", page="find", field=field, question=q, why=why,
                            options=FIELD_OPTIONS[field], step=step, total=total,
-                           chips=understood_chips(profile, get_lang()), removed_id=session.get("removed_id", False))
+                           chips=understood_chips(profile, get_lang()), removed_id=session.get("removed_id", False),
+                           can_go_back=bool(session.get("history")))
 
 
 @app.route("/profile", methods=["POST"])
@@ -277,7 +312,8 @@ def results():
     lang = get_lang()
     result = match_all(profile, lang=lang)
     missing = [f for f in CHIP_FIELDS if profile.get(f) is None]
-    return render_template("results.html", page="find", r=result, profile=profile,
+    first = next((m for m in result["likely"] if m["category"] != "loan" and (m["days_left"] is None or m["days_left"] >= 0)), None)
+    return render_template("results.html", first=first, page="find", r=result, profile=profile,
                            chips=understood_chips(profile, lang), options=FIELD_OPTIONS,
                            field_label=FIELD_LABEL, chip_fields=CHIP_FIELDS, missing=missing,
                            selected=selected_options(profile),

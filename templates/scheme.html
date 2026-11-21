@@ -17,7 +17,13 @@
   <p class="detail-runby">{{ icon('landmark', 16) }}{{ t('gov.ts') if s.run_by == 'Telangana' else t('gov.in') }} · {{ s.category | capitalize }}</p>
   <p class="detail-benefit">{{ s.benefit_text }}</p>
   <p class="detail-summary">{{ s.summary_en }}</p>
+  <div class="detail-actions">
+    <a class="btn btn-primary" href="#how">{{ t('det.how_btn') }} {{ icon('arrow-right', 20) }}</a>
+    <a class="btn btn-secondary" href="{{ s.source_url }}" target="_blank" rel="noopener">{{ t('det.website') }} {{ icon('external-link', 18) }}</a>
+    <button type="button" class="listen-btn" data-speak="#speak-scheme" hidden>{{ icon('volume', 20) }}<span>{{ t('listen') }}</span></button>
+  </div>
 </header>
+<div id="speak-scheme" hidden>{{ s['name_' ~ lang] or s.name_en }}. {% for r in m.reasons %}{{ r.text }} {% endfor %}{% if s.deadline and m.days_left is not none and m.days_left >= 0 %}{{ t('dl.apply_by', d=nice_date(s.deadline)) }}.{% endif %} {{ t('det.help') }}</div>
 
 {% if has_profile %}
 <section class="detail-section" aria-labelledby="why-title">
@@ -80,6 +86,8 @@
     {% endfor %}
   </ul>
 </section>
+
+<p class="help-note" id="how">{{ icon('info', 20) }}<span>{{ t('det.help') }}</span></p>
 
 <section class="detail-section" aria-labelledby="steps-title">
   <h2 id="steps-title" class="section-title">{{ t('det.steps') }}</h2>

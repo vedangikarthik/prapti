@@ -190,6 +190,39 @@
     });
   }
 
+  // ---------- Read aloud (for people who find reading hard) ----------
+  if ("speechSynthesis" in window) {
+    var voiceLang = { te: "te-IN", hi: "hi-IN" }[document.documentElement.lang] || "en-IN";
+    var speaking = null;
+    document.querySelectorAll("[data-speak]").forEach(function (btn) {
+      btn.hidden = false;
+      var label = btn.querySelector("span");
+      btn.addEventListener("click", function () {
+        if (speaking === btn) {
+          window.speechSynthesis.cancel();
+          return;
+        }
+        window.speechSynthesis.cancel();
+        var src = document.querySelector(btn.dataset.speak);
+        if (!src) return;
+        var u = new SpeechSynthesisUtterance(src.textContent.replace(/\s+/g, " ").trim());
+        u.lang = voiceLang;
+        u.rate = 0.92;
+        var match = window.speechSynthesis.getVoices().filter(function (v) { return v.lang && v.lang.replace("_", "-").indexOf(voiceLang.slice(0, 2)) === 0; })[0];
+        if (match) u.voice = match;
+        u.onend = u.onerror = function () {
+          speaking = null;
+          btn.setAttribute("aria-pressed", "false");
+          if (label) label.textContent = T("listen");
+        };
+        speaking = btn;
+        btn.setAttribute("aria-pressed", "true");
+        if (label) label.textContent = T("listen_stop");
+        window.speechSynthesis.speak(u);
+      });
+    });
+  }
+
   // ---------- Offline notice ----------
   var offline = document.querySelector("[data-offline]");
   function net() { if (offline) offline.hidden = navigator.onLine !== false; }

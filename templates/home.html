@@ -3,10 +3,33 @@
 {% block page_class %}page-home{% endblock %}
 {% block content %}
 <section class="hero-field">
+  {% if first_visit %}
+  <nav class="lang-pick" aria-label="{{ t('lang.pick') }}">
+    <p class="lang-pick-title">Choose your language · మీ భాష ఎంచుకోండి · अपनी भाषा चुनिए</p>
+    <div class="lang-pick-row">
+      <a class="lang-pick-btn" href="/lang/te" lang="te">తెలుగు</a>
+      <a class="lang-pick-btn" href="/lang/hi" lang="hi">हिंदी</a>
+      <a class="lang-pick-btn" href="/lang/en" lang="en">English</a>
+    </div>
+  </nav>
+  {% endif %}
   <div class="slip slip-hero" data-ground="field">
     <div class="slip-body">
       <h1 class="hero-title">{{ t('home.title') }}</h1>
       <p class="hero-lead">{{ t('home.lead') }}</p>
+
+      <form action="/start" method="post" class="tap-start">
+        <button type="submit" class="tap-btn">
+          <span class="tap-btn-text">
+            <span class="tap-btn-title">{{ t('home.tap_btn') }}</span>
+            <span class="tap-btn-sub">{{ t('home.tap_sub') }}</span>
+          </span>
+          {{ icon('arrow-right', 28) }}
+        </button>
+      </form>
+
+      <p class="or-line" aria-hidden="true"><span>{{ t('home.or') }}</span></p>
+      <h2 class="type-title">{{ t('home.type_title') }}</h2>
 
       <form class="ask" action="/find" method="post" data-ask>
         <label class="visually-hidden" for="ask-text">{{ t('home.describe') }}</label>

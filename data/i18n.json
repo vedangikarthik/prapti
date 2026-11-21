@@ -51,9 +51,9 @@
     "hi": "छात्रवृत्तियाँ जो आपकी हैं।"
   },
   "home.lead": {
-    "en": "Tell us about yourself in your own words, in English, Telugu or Hindi. No forms, no ID numbers, and it is free.",
-    "te": "మీ గురించి మీ మాటల్లోనే చెప్పండి — తెలుగు, ఇంగ్లీష్ లేదా హిందీలో. ఫారాలు లేవు, ఐడీ నంబర్లు అక్కర్లేదు, పూర్తిగా ఉచితం.",
-    "hi": "अपने बारे में अपने शब्दों में बताइए — हिंदी, अंग्रेज़ी या तेलुगु में। कोई फ़ॉर्म नहीं, कोई आईडी नंबर नहीं, और यह मुफ़्त है।"
+    "en": "See which scholarships you can get and exactly how to apply. Free. No ID numbers.",
+    "te": "మీకు ఏ స్కాలర్‌షిప్‌లు వస్తాయో, ఎలా దరఖాస్తు చేయాలో చూడండి. ఉచితం. ఐడీ నంబర్లు అక్కర్లేదు.",
+    "hi": "देखिए कौन-सी छात्रवृत्तियाँ मिल सकती हैं और आवेदन कैसे करें। मुफ़्त। कोई आईडी नंबर नहीं।"
   },
   "home.describe": {
     "en": "Describe your situation",
@@ -1039,5 +1039,85 @@
     "en": "the official portal",
     "te": "అధికారిక పోర్టల్",
     "hi": "आधिकारिक पोर्टल"
+  },
+  "home.tap_btn": {
+    "en": "Answer simple questions",
+    "te": "సులభమైన ప్రశ్నలకు జవాబు ఇవ్వండి",
+    "hi": "आसान सवालों के जवाब दीजिए"
+  },
+  "home.tap_sub": {
+    "en": "Just tap. No typing. About one minute.",
+    "te": "నొక్కితే చాలు. టైప్ చేయక్కర్లేదు. సుమారు ఒక నిమిషం.",
+    "hi": "बस दबाइए। लिखना नहीं। लगभग एक मिनट।"
+  },
+  "home.or": {
+    "en": "or",
+    "te": "లేదా",
+    "hi": "या"
+  },
+  "home.type_title": {
+    "en": "Tell us in your own words",
+    "te": "మీ మాటల్లో చెప్పండి",
+    "hi": "अपने शब्दों में बताइए"
+  },
+  "lang.pick": {
+    "en": "Choose your language",
+    "te": "మీ భాష ఎంచుకోండి",
+    "hi": "अपनी भाषा चुनिए"
+  },
+  "listen": {
+    "en": "Listen",
+    "te": "వినండి",
+    "hi": "सुनिए"
+  },
+  "listen_stop": {
+    "en": "Stop",
+    "te": "ఆపండి",
+    "hi": "रोकिए"
+  },
+  "res.next_title": {
+    "en": "Your first step",
+    "te": "మీ మొదటి అడుగు",
+    "hi": "आपका पहला कदम"
+  },
+  "res.next_text": {
+    "en": "Apply for {name} before {d}.",
+    "te": "{d} లోపు {name} కోసం దరఖాస్తు చేయండి.",
+    "hi": "{d} से पहले {name} के लिए आवेदन करें।"
+  },
+  "res.next_text_nodate": {
+    "en": "Apply for {name}.",
+    "te": "{name} కోసం దరఖాస్తు చేయండి.",
+    "hi": "{name} के लिए आवेदन करें।"
+  },
+  "res.next_btn": {
+    "en": "Show me how to apply",
+    "te": "ఎలా దరఖాస్తు చేయాలో చూపించండి",
+    "hi": "आवेदन कैसे करें, दिखाइए"
+  },
+  "res.next_more": {
+    "en": "Then look at the other schemes below.",
+    "te": "తర్వాత క్రింద ఉన్న ఇతర పథకాలు చూడండి.",
+    "hi": "फिर नीचे बाकी योजनाएँ देखिए।"
+  },
+  "det.how_btn": {
+    "en": "How to apply",
+    "te": "ఎలా దరఖాస్తు చేయాలి",
+    "hi": "आवेदन कैसे करें"
+  },
+  "det.website": {
+    "en": "Official website",
+    "te": "అధికారిక వెబ్‌సైట్",
+    "hi": "आधिकारिक वेबसाइट"
+  },
+  "det.help": {
+    "en": "Stuck? Show this page at your college office or a Mee Seva centre. Help is free.",
+    "te": "సందేహమా? ఈ పేజీని మీ కాలేజీ ఆఫీసులో లేదా మీసేవ కేంద్రంలో చూపించండి. సహాయం ఉచితం.",
+    "hi": "अटक गए? यह पेज अपने कॉलेज ऑफ़िस या मी-सेवा केंद्र में दिखाइए। मदद मुफ़्त है।"
+  },
+  "q.back": {
+    "en": "Back",
+    "te": "వెనక్కి",
+    "hi": "पीछे"
   }
 }

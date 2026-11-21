@@ -2,7 +2,18 @@
 {% from "_icons.html" import icon %}
 {% block title %}{{ t('q.title') }} – Prapti{% endblock %}
 {% block content %}
-<a class="back-link" href="/">{{ icon('arrow-left', 20) }}{{ t('q.start_again') }}</a>
+<div class="q-nav">
+  {% if can_go_back %}
+  <form action="/questions/back" method="post">
+    <input type="hidden" name="current" value="{{ field }}">
+    <button type="submit" class="back-link back-btn">{{ icon('arrow-left', 20) }}{{ t('q.back') }}</button>
+  </form>
+  {% else %}
+  <a class="back-link" href="/">{{ icon('arrow-left', 20) }}{{ t('q.start_again') }}</a>
+  {% endif %}
+  <button type="button" class="listen-btn" data-speak="#speak-q" hidden>{{ icon('volume', 20) }}<span>{{ t('listen') }}</span></button>
+</div>
+<div id="speak-q" hidden>{{ question }} {{ why }} {% for value, label in options %}{{ opt(label) }}. {% endfor %}</div>
 
 {% if removed_id %}
 <div class="notice" role="status">

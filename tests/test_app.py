@@ -135,6 +135,32 @@ class TestFlow(unittest.TestCase):
             Path("data/changelog.json").write_text(log_backup, encoding="utf-8")
             self.c.post("/admin/logout")
 
+    def test_tap_only_path_and_back(self):
+        r = self.c.post("/start")
+        self.assertTrue(r.headers["Location"].endswith("/questions"))
+        page = self.c.get("/questions").get_data(as_text=True)
+        self.assertIn("What are you studying now?", page)
+        self.c.post("/questions", data={"field": "education_level", "value": "degree"})
+        page = self.c.get("/questions").get_data(as_text=True)
+        self.assertIn("/questions/back", page)
+        current = page.split('name="current" value="')[1].split('"')[0]
+        self.c.post("/questions/back", data={"current": current})
+        self.assertIn("What are you studying now?", self.c.get("/questions").get_data(as_text=True))
+
+    def test_results_show_first_step_and_listen(self):
+        self.c.post("/find", data={"sample": "lakshmi"})
+        page = self.c.get("/results").get_data(as_text=True)
+        self.assertIn("Your first step", page)
+        self.assertIn("Show me how to apply", page)
+        self.assertIn("data-speak", page)
+        self.assertIn('id="how"', self.c.get("/scheme/ts-rtf").get_data(as_text=True))
+
+    def test_first_visit_language_choice(self):
+        fresh = app.test_client()
+        self.assertIn('class="lang-pick"', fresh.get("/").get_data(as_text=True))
+        fresh.get("/lang/te")
+        self.assertNotIn('class="lang-pick"', fresh.get("/").get_data(as_text=True))
+
     def test_calendar_file(self):
         r = self.c.get("/api/ics/aicte-pragati")
         self.assertEqual(r.status_code, 200)
