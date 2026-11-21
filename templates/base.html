@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% from "_icons.html" import icon %}
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
   <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
 </head>
 <body class="page-{{ page|default('') }}">
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">{{ t('skip_link') }}</a>
   <header class="topbar">
     <div class="topbar-inner">
       <a class="wordmark" href="/" aria-label="Arhata home">
@@ -24,14 +24,14 @@
         <span class="wordmark-te" lang="te" aria-hidden="true">అర్హత</span>
       </a>
       <nav class="top-links" aria-label="Primary">
-        <a href="/" {% if page == 'find' %}aria-current="page"{% endif %}>Find</a>
-        <a href="/tracker" {% if page == 'tracker' %}aria-current="page"{% endif %}>My tracker</a>
-        <a href="#" data-soon>About</a>
+        <a href="/" {% if page == 'find' %}aria-current="page"{% endif %}>{{ t('nav.find') }}</a>
+        <a href="/tracker" {% if page == 'tracker' %}aria-current="page"{% endif %}>{{ t('nav.tracker') }}</a>
+        <a href="#" data-soon>{{ t('nav.about') }}</a>
       </nav>
-      <nav class="lang-switch" aria-label="Language">
-        <a href="#" lang="en" aria-current="true">EN</a>
-        <a href="#" lang="te" data-soon>తెలుగు</a>
-        <a href="#" lang="hi" data-soon>हिंदी</a>
+      <nav class="lang-switch" aria-label="{{ t('lang.label') }}">
+        <a href="/lang/en" lang="en" hreflang="en" {% if lang == 'en' %}aria-current="true"{% endif %}>EN</a>
+        <a href="/lang/te" lang="te" hreflang="te" {% if lang == 'te' %}aria-current="true"{% endif %}>తెలుగు</a>
+        <a href="/lang/hi" lang="hi" hreflang="hi" {% if lang == 'hi' %}aria-current="true"{% endif %}>हिंदी</a>
       </nav>
     </div>
   </header>
@@ -43,11 +43,11 @@
   <footer class="site-footer">
     <div class="footer-card">
       <div class="footer-message">
-        <p class="footer-signoff">Claim what's yours.</p>
-        <p>Arhata is a free guide, not a government website. Final eligibility is decided by the scheme authority. Never pay anyone to apply for you.</p>
+        <p class="footer-signoff">{{ t('footer.signoff') }}</p>
+        <p>{{ t('footer.disclaimer') }}</p>
       </div>
       <div class="footer-meaning">
-        <p><span lang="te">అర్హత</span> means “eligibility” in Telugu.</p>
+        <p>{{ t('footer.meaning') }}</p>
         <p class="credits">Pictures: <a href="https://commons.wikimedia.org/w/index.php?curid=102950320">Kakatiya torana, Warangal Fort</a> by Ms Sarah Welch, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=126491456">Dept. of Telugu classroom, Osmania University</a> by Myadam Abhilash, CC0; <a href="https://commons.wikimedia.org/wiki/File:Corridor_in_Ground_floor_of_OU_arts_college.jpg">OU Arts College corridor</a> and <a href="https://commons.wikimedia.org/wiki/File:Architectural_elements_of_OU_college_of_arts_(1).jpg">window</a> by iMahesh, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; all via Wikimedia Commons.</p>
       </div>
       <p class="footer-name" aria-hidden="true">Arhata</p>
@@ -57,19 +57,20 @@
   <nav class="bottom-nav" aria-label="Primary">
     <a href="/" {% if page == 'find' %}aria-current="page"{% endif %}>
       {{ icon('search', 20) }}
-      <span>Find</span>
+      <span>{{ t('nav.find') }}</span>
     </a>
     <a href="/tracker" {% if page == 'tracker' %}aria-current="page"{% endif %}>
       {{ icon('check-square', 20) }}
-      <span>My tracker</span>
+      <span>{{ t('nav.tracker') }}</span>
       <span class="nav-dot" aria-hidden="true"></span>
     </a>
     <a href="#" data-soon>
       {{ icon('info', 20) }}
-      <span>About</span>
+      <span>{{ t('nav.about') }}</span>
     </a>
   </nav>
 
   <div class="toast" role="status" aria-live="polite" hidden></div>
+  <script>window.ARHATA_T = {{ js_text | tojson }}; window.ARHATA_LANG = {{ lang | tojson }};</script>
 </body>
 </html>

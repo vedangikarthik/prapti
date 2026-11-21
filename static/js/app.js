@@ -2,6 +2,13 @@
 (function () {
   "use strict";
 
+  function T(key, vars) {
+    var dict = window.ARHATA_T || {};
+    var s = dict[key] != null ? dict[key] : key;
+    if (vars) Object.keys(vars).forEach(function (k) { s = s.split("{" + k + "}").join(vars[k]); });
+    return s;
+  }
+
   // ---------- Entrances: heading, then text, then picture (content stays visible without script) ----------
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if ("IntersectionObserver" in window && !reduceMotion) {
@@ -58,7 +65,7 @@
   document.querySelectorAll("[data-soon]").forEach(function (a) {
     a.addEventListener("click", function (e) {
       e.preventDefault();
-      toast("Coming soon");
+      toast(T("soon"));
     });
   });
 
@@ -67,7 +74,8 @@
   if (textarea) {
     var examples = [];
     try { examples = JSON.parse(textarea.dataset.examples); } catch (e) {}
-    var idx = 0;
+    var idx = { te: 1, hi: 2 }[document.documentElement.lang] || 0;
+    if (examples[idx]) textarea.placeholder = examples[idx];
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (examples.length > 1 && !reduce) {
       setInterval(function () {
@@ -106,14 +114,14 @@
         rec.onend = function () {
           rec = null;
           mic.setAttribute("aria-pressed", "false");
-          micLabel.textContent = "Tap and speak";
+          micLabel.textContent = T("home.speak");
         };
         rec.onerror = function () {
-          toast("Couldn't hear you. Check microphone permission and try again.");
+          toast(T("home.mic_error"));
         };
         rec.start();
         mic.setAttribute("aria-pressed", "true");
-        micLabel.textContent = "Listening… tap to stop";
+        micLabel.textContent = T("home.listening");
       });
     }
   }
@@ -149,7 +157,7 @@
         if (b.checked) done.push(b.value);
       });
       store(key, done);
-      if (progressText) progressText.textContent = done.length + " of " + boxes.length + " ready";
+      if (progressText) progressText.textContent = T("det.ready", { a: done.length, b: boxes.length });
       if (bar) bar.style.width = (boxes.length ? (done.length / boxes.length) * 100 : 0) + "%";
     }
     boxes.forEach(function (b) {
@@ -167,7 +175,7 @@
     var id = head.dataset.schemeId;
     function setTracked(isTracked) {
       trackBtn.disabled = isTracked;
-      trackBtn.lastChild.textContent = isTracked ? "In your tracker" : "Add to my tracker";
+      trackBtn.lastChild.textContent = isTracked ? T("det.in_tracker") : T("det.track");
     }
     setTracked(tracked.some(function (t) { return t.id === id; }));
     trackBtn.addEventListener("click", function () {
@@ -178,7 +186,7 @@
         store("arhata:tracker", tracked);
       }
       setTracked(true);
-      toast("Added to your tracker");
+      toast(T("det.added"));
     });
   }
 

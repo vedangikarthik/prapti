@@ -1,7 +1,7 @@
 {% from "_icons.html" import icon %}
 {% macro badge(status) -%}
 {% set ico = {'likely': 'check-circle', 'maybe': 'help-circle', 'no': 'minus-circle'}[status] %}
-{% set txt = {'likely': 'Likely eligible', 'maybe': 'Might be eligible', 'no': 'Not a match right now'}[status] %}
+{% set txt = t('grp.' ~ status) %}
 <span class="badge badge-{{ status }}">{{ icon(ico, 16) }}{{ txt }}</span>
 {%- endmacro %}
 
@@ -12,10 +12,10 @@
 
 {% macro deadline_text(m) -%}
 {% if m.deadline and m.days_left is not none %}
-  {% if m.days_left < 0 %}<span class="deadline">Closed for this year</span>
-  {% elif m.days_left <= 7 %}<span class="deadline deadline-urgent">{{ icon('clock', 16) }}Apply by {{ nice_date(m.deadline) }}, {{ m.days_left }} day{{ '' if m.days_left == 1 else 's' }} left</span>
-  {% else %}<span class="deadline">{{ icon('clock', 16) }}Apply by {{ nice_date(m.deadline) }}</span>{% endif %}
-{% else %}<span class="deadline">{{ icon('clock', 16) }}No fixed last date</span>{% endif %}
+  {% if m.days_left < 0 %}<span class="deadline">{{ t('dl.closed') }}</span>
+  {% elif m.days_left <= 7 %}<span class="deadline deadline-urgent">{{ icon('clock', 16) }}{{ t('dl.apply_by', d=nice_date(m.deadline)) }}, {{ t('dl.today') if m.days_left == 0 else (t('dl.day_left') if m.days_left == 1 else t('dl.days_left', n=m.days_left)) }}</span>
+  {% else %}<span class="deadline">{{ icon('clock', 16) }}{{ t('dl.apply_by', d=nice_date(m.deadline)) }}</span>{% endif %}
+{% else %}<span class="deadline">{{ icon('clock', 16) }}{{ t('dl.nofixed') }}</span>{% endif %}
 {%- endmacro %}
 
 {% macro scheme_card(m, i=0) -%}
@@ -23,26 +23,27 @@
   <div class="scheme-main">
     <div class="scheme-card-top">
       {{ badge(m.status) }}
-      {% if m.category == 'loan' %}<span class="scheme-amount scheme-amount-loan">Loan</span>
-      {% elif m.benefit_max_inr %}<span class="scheme-amount"><span class="upto">up to</span> ₹{{ '{:,}'.format(m.benefit_max_inr) }}</span>{% endif %}
+      {% if m.category == 'loan' %}<span class="scheme-amount scheme-amount-loan">{{ t('loan') }}</span>
+      {% elif m.benefit_max_inr %}<span class="scheme-amount"><span class="upto">{{ t('card.upto') }}</span> ₹{{ '{:,}'.format(m.benefit_max_inr) }}</span>{% endif %}
     </div>
     <h3 class="scheme-name">{{ m.name }}</h3>
+    {% if lang != 'en' %}<p class="scheme-name-en" lang="en">{{ m.name_en }}</p>{% endif %}
     <p class="scheme-summary">{{ m.benefit_text }}</p>
     {% if m.status == 'no' and m.failed %}
       <p class="scheme-why">{{ rule_icon('fail') }}<span>{{ m.failed[0].text }}</span></p>
     {% elif m.status == 'maybe' %}
-      <p class="scheme-why">{{ rule_icon('unknown') }}<span>Check one thing: {{ m.missing_labels | join(', ') }}</span></p>
+      <p class="scheme-why">{{ rule_icon('unknown') }}<span>{{ t('card.check_one') }} {% for f in m.missing_fields %}{{ t('field.' ~ f) }}{{ ', ' if not loop.last }}{% endfor %}</span></p>
     {% else %}
       <p class="scheme-why">
         <span class="why-dots" aria-hidden="true">{% for r in m.reasons %}<span class="why-dot why-{{ r.status }}"></span>{% endfor %}</span>
-        <span>{{ m.passed_count }} of {{ m.rule_count }} rules match</span>
+        <span>{{ t('card.rules', a=m.passed_count, b=m.rule_count) }}</span>
       </p>
     {% endif %}
   </div>
   <div class="perforation" aria-hidden="true"></div>
   <div class="scheme-stub">
     {{ deadline_text(m) }}
-    <span class="see-details">See details {{ icon('arrow-right', 18) }}</span>
+    <span class="see-details">{{ t('card.see') }} {{ icon('arrow-right', 18) }}</span>
   </div>
 </a>
 {%- endmacro %}

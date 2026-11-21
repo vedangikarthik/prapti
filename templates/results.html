@@ -1,75 +1,76 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
 {% from "_scheme_card.html" import scheme_card with context %}
-{% block title %}Your schemes – Arhata{% endblock %}
+{% block title %}{{ t('res.title') }} – Arhata{% endblock %}
 {% block content %}
-<a class="back-link" href="/">{{ icon('arrow-left', 20) }}New search</a>
+<a class="back-link" href="/">{{ icon('arrow-left', 20) }}{{ t('res.new') }}</a>
 
 {% if removed_id %}
 <div class="notice notice-info" role="status">
   {{ icon('eraser', 20) }}
-  <p>We removed a number that looked like an ID. You never need to share ID numbers here.</p>
+  <p>{{ t('removed_id') }}</p>
 </div>
 {% endif %}
 
 <section class="summary-card">
   {% if r.summary.likely_count %}
-  <p class="summary-who">{% if sample_name %}{{ sample_name }} is{% else %}You are{% endif %} likely eligible for {{ r.summary.likely_count }} scheme{{ '' if r.summary.likely_count == 1 else 's' }}{% if r.summary.likely_value_inr %}, worth up to{% endif %}</p>
   {% if r.summary.likely_value_inr %}
-  <h1 class="summary-title">{{ r.summary.likely_value_text }} <span class="summary-unit">a year</span></h1>
+  <p class="summary-who">{% if sample_name %}{{ t('res.who_name', name=sample_name, n=r.summary.likely_count) }}{% else %}{{ t('res.who_you', n=r.summary.likely_count) }}{% endif %}</p>
+  <h1 class="summary-title">{{ r.summary.likely_value_text }} {% if t('res.unit') %}<span class="summary-unit">{{ t('res.unit') }}</span>{% endif %}</h1>
   {% else %}
-  <h1 class="summary-title">{{ r.summary.likely_count }} scheme{{ '' if r.summary.likely_count == 1 else 's' }}</h1>
+  <p class="summary-who">{{ t('res.who_you_novalue') }}</p>
+  <h1 class="summary-title">{{ t('res.schemes_n', n=r.summary.likely_count) }}</h1>
   {% endif %}
   {% else %}
-  <h1 class="summary-title summary-title-none">No sure match yet</h1>
+  <h1 class="summary-title summary-title-none">{{ t('res.none') }}</h1>
   {% endif %}
   {% if r.summary.maybe_count %}
-  <p class="summary-sub">{{ r.summary.maybe_count }} more might fit if you check one detail.</p>
+  <p class="summary-sub">{{ t('res.maybe_more', n=r.summary.maybe_count) }}</p>
   {% elif not r.summary.likely_count %}
-  <p class="summary-sub">Try changing one detail below, or visit your nearest Mee Seva centre.</p>
+  <p class="summary-sub">{{ t('res.try') }}</p>
   {% else %}
-  <p class="summary-sub">Before course and hostel rules. Loans are not counted.</p>
+  <p class="summary-sub">{{ t('res.before') }}</p>
   {% endif %}
 </section>
 
 <section class="understood" aria-labelledby="understood-title">
   <div class="understood-head">
-    <h2 id="understood-title" class="t-label understood-title">What we understood</h2>
+    <h2 id="understood-title" class="t-label understood-title">{{ t('res.understood') }}</h2>
     <button type="button" class="link-btn" data-edit-toggle aria-expanded="{{ 'true' if missing else 'false' }}" aria-controls="edit-panel">
-      {{ icon('pencil', 16) }}Edit my details
+      {{ icon('pencil', 16) }}{{ t('res.edit') }}
     </button>
   </div>
   <ul class="chip-row">
     {% for c in chips %}<li class="chip chip-static">{{ c }}</li>{% endfor %}
-    {% for f in missing %}<li class="chip chip-missing">{{ field_label[f] | capitalize }}?</li>{% endfor %}
+    {% for f in missing %}<li class="chip chip-missing">{{ t('field.' ~ f) }}?</li>{% endfor %}
   </ul>
 
   <form id="edit-panel" class="edit-panel" action="/profile" method="post" {% if not missing %}hidden{% endif %}>
     {% for f in chip_fields %}
     <fieldset class="edit-field">
-      <legend>{{ field_label[f] | capitalize }}</legend>
+      <legend>{{ t('field.' ~ f) }}</legend>
       <div class="chip-options">
         {% for value, label in options[f] %}
         <label class="chip chip-select">
           <input type="radio" name="{{ f }}" value="{{ value | lower if value is sameas true or value is sameas false else value }}" {% if selected[f] is not none and selected[f] == value %}checked{% endif %}>
-          <span>{{ icon('check-circle', 16, 'chip-check') }}{{ label }}</span>
+          <span>{{ icon('check-circle', 16, 'chip-check') }}{{ opt(label) }}</span>
         </label>
         {% endfor %}
         <label class="chip chip-select chip-skip">
           <input type="radio" name="{{ f }}" value="" {% if profile.get(f) is none %}checked{% endif %}>
-          <span>Not sure</span>
+          <span>{{ t('res.notsure') }}</span>
         </label>
       </div>
     </fieldset>
     {% endfor %}
-    <button type="submit" class="btn btn-primary btn-block">Update my results</button>
+    <button type="submit" class="btn btn-primary btn-block">{{ t('res.update') }}</button>
   </form>
 </section>
 
 {% set n = namespace(i=0) %}
 {% if r.likely %}
 <section class="result-group" aria-labelledby="g-likely">
-  <h2 id="g-likely" class="group-title">Likely eligible <span class="count">{{ r.likely|length }}</span></h2>
+  <h2 id="g-likely" class="group-title">{{ t('grp.likely') }} <span class="count">{{ r.likely|length }}</span></h2>
   <div class="card-list">
     {% for m in r.likely %}{{ scheme_card(m, n.i) }}{% set n.i = n.i + 1 %}{% endfor %}
   </div>
@@ -78,7 +79,7 @@
 
 {% if r.maybe %}
 <section class="result-group" aria-labelledby="g-maybe">
-  <h2 id="g-maybe" class="group-title">Might be eligible <span class="count">{{ r.maybe|length }}</span></h2>
+  <h2 id="g-maybe" class="group-title">{{ t('grp.maybe') }} <span class="count">{{ r.maybe|length }}</span></h2>
   <div class="card-list">
     {% for m in r.maybe %}{{ scheme_card(m, n.i) }}{% set n.i = n.i + 1 %}{% endfor %}
   </div>
@@ -88,7 +89,7 @@
 {% if r.no %}
 <details class="result-group result-no">
   <summary class="group-title">
-    Not a match right now <span class="count">{{ r.no|length }}</span>
+    {{ t('grp.no') }} <span class="count">{{ r.no|length }}</span>
     {{ icon('chevron-down', 20, 'summary-chevron') }}
   </summary>
   <div class="card-list">

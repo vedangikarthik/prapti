@@ -20,7 +20,11 @@
       "expected_likely": [
         "ts-postmatric-bc-ebc",
         "ts-rtf"
-      ]
+      ],
+      "name_te": "లక్ష్మి",
+      "name_hi": "लक्ष्मी",
+      "blurb_te": "ఇంటర్ 2వ సంవత్సరం, BC-B, ₹1.1 లక్షలు, గ్రామం",
+      "blurb_hi": "इंटर दूसरा साल, BC-B, ₹1.1 लाख, गाँव"
     },
     {
       "id": "ravi",
@@ -44,7 +48,11 @@
         "ts-rtf",
         "central-sector",
         "pm-vidyalaxmi"
-      ]
+      ],
+      "name_te": "రవి",
+      "name_hi": "रवि",
+      "blurb_te": "బీటెక్ 1వ సంవత్సరం, SC, ₹80 వేలు",
+      "blurb_hi": "बीटेक पहला साल, SC, ₹80 हज़ार"
     },
     {
       "id": "ayesha",
@@ -67,7 +75,11 @@
         "ts-postmatric-minority",
         "ts-rtf",
         "pm-vidyalaxmi"
-      ]
+      ],
+      "name_te": "ఆయేషా",
+      "name_hi": "आयशा",
+      "blurb_te": "డిగ్రీ 2వ సంవత్సరం, మైనారిటీ, ₹1.6 లక్షలు",
+      "blurb_hi": "डिग्री दूसरा साल, अल्पसंख्यक, ₹1.6 लाख"
     }
   ]
 }

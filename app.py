@@ -11,6 +11,7 @@ from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, fields_that_matter
                           format_value, load_schemes, match_all, match_scheme)
 
 app = Flask(__name__)
+app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 180  # remember language and answers for 6 months
 # The session only holds the student's answers (never ID numbers) on their own device.
 app.secret_key = os.environ.get("SECRET_KEY", "arhata-dev-only-change-me")
 
@@ -44,9 +45,51 @@ QUESTIONS = {
 }
 
 
+LANGS = ("en", "te", "hi")
+with open(os.path.join(DATA_DIR, "i18n.json"), encoding="utf-8") as _f:
+    I18N = {k: v for k, v in json.load(_f).items() if not k.startswith("_")}
+
+
+def get_lang():
+    lang = session.get("lang")
+    if lang in LANGS:
+        return lang
+    best = request.accept_languages.best_match(["en", "te", "hi"]) if request else None
+    return best if best in LANGS else "en"
+
+
+def tr(key, lang=None, **kw):
+    lang = lang or get_lang()
+    entry = I18N.get(key)
+    if entry is None:
+        text = key
+    else:
+        text = entry.get(lang) if entry.get(lang) is not None else entry.get("en", key)
+    if "n" in kw and "{schemes}" in text:
+        kw["schemes"] = "scheme" if kw["n"] == 1 else "schemes"
+    for k, v in kw.items():
+        text = text.replace("{" + k + "}", str(v))
+    return text
+
+
+def opt(label, lang=None):
+    """Translate an answer label (e.g. 'Female', 'Under ₹1L')."""
+    entry = I18N.get("opt." + label)
+    if not entry:
+        return label
+    return entry.get(lang or get_lang()) or label
+
+
 def load_samples():
     with open(os.path.join(DATA_DIR, "samples.json"), encoding="utf-8") as f:
         return json.load(f)["samples"]
+
+
+def sample_display_name(sample_id, lang):
+    sample = next((x for x in load_samples() if x["id"] == sample_id), None)
+    if not sample:
+        return None
+    return sample.get(f"name_{lang}") or sample["name"]
 
 
 def scheme_by_id(scheme_id):
@@ -93,21 +136,22 @@ def selected_options(profile):
     return out
 
 
-def understood_chips(profile):
+def understood_chips(profile, lang=None):
     chips = []
     for f in CHIP_FIELDS:
         v = profile.get(f)
         if v is None:
             continue
-        label = format_value(f, v)
         if f == "year":
-            label = f"Year {v}"
+            label = tr("chip.year", lang, n=v)
         elif f == "annual_income":
-            label = f"{label} a year"
+            label = tr("chip.income", lang, v=format_value(f, v))
         elif f == "disability":
-            label = "Disability 40%+" if v else "No disability"
+            label = tr("chip.disabled" if v else "chip.not_disabled", lang)
         elif f == "marks_percent":
-            label = f"{label} marks"
+            label = tr("chip.marks", lang, v=format_value(f, v))
+        else:
+            label = opt(format_value(f, v), lang)
         chips.append(label)
     if profile.get("district"):
         chips.append(profile["district"])
@@ -116,11 +160,26 @@ def understood_chips(profile):
 
 @app.context_processor
 def inject_helpers():
+    lang = get_lang()
+
     def nice_date(iso):
         if not iso:
             return ""
         return date.fromisoformat(iso).strftime("%-d %b %Y")
-    return {"nice_date": nice_date}
+
+    js_keys = {k: (v.get(lang) if v.get(lang) is not None else v.get("en")) for k, v in I18N.items()
+               if k.split(".")[0] in ("home", "soon", "det", "tr", "st", "adv", "nx", "dl")}
+    return {"nice_date": nice_date, "lang": lang, "t": lambda key, **kw: tr(key, lang, **kw),
+            "opt": lambda label: opt(label, lang), "js_text": js_keys}
+
+
+@app.route("/lang/<code>")
+def set_lang(code):
+    if code in LANGS:
+        session["lang"] = code
+        session.permanent = True
+    back = request.referrer or url_for("index")
+    return redirect(back if back.startswith(request.host_url) else url_for("index"))
 
 
 @app.route("/")
@@ -139,7 +198,7 @@ def find():
         session["profile"] = dict(sample["profile"])
         session["text"] = sample["text"]
         session["removed_id"] = False
-        session["sample_name"] = sample["name"]
+        session["sample_name"] = sample["id"]
     else:
         text = (request.form.get("text") or "").strip()
         if not text:
@@ -190,10 +249,10 @@ def questions():
     session["asked"] = asked
     step = len(asked)
     total = step + len(pending) - 1
-    q, why = QUESTIONS[field]
+    q, why = tr("q." + field), tr("why." + field)
     return render_template("questions.html", page="find", field=field, question=q, why=why,
                            options=FIELD_OPTIONS[field], step=step, total=total,
-                           chips=understood_chips(profile), removed_id=session.get("removed_id", False))
+                           chips=understood_chips(profile, get_lang()), removed_id=session.get("removed_id", False))
 
 
 @app.route("/profile", methods=["POST"])
@@ -214,14 +273,15 @@ def results():
     profile = current_profile()
     if not session.get("profile"):
         return redirect(url_for("index"))
-    result = match_all(profile)
+    lang = get_lang()
+    result = match_all(profile, lang=lang)
     missing = [f for f in CHIP_FIELDS if profile.get(f) is None]
     return render_template("results.html", page="find", r=result, profile=profile,
-                           chips=understood_chips(profile), options=FIELD_OPTIONS,
+                           chips=understood_chips(profile, lang), options=FIELD_OPTIONS,
                            field_label=FIELD_LABEL, chip_fields=CHIP_FIELDS, missing=missing,
                            selected=selected_options(profile),
                            removed_id=session.pop("removed_id", False),
-                           sample_name=session.get("sample_name"))
+                           sample_name=sample_display_name(session.get("sample_name"), lang))
 
 
 @app.route("/scheme/<scheme_id>")
@@ -230,7 +290,7 @@ def scheme_detail(scheme_id):
     if not scheme:
         abort(404)
     profile = current_profile()
-    result = match_scheme(scheme, profile)
+    result = match_scheme(scheme, profile, get_lang())
     return render_template("scheme.html", page="find", s=scheme, m=result,
                            has_profile=bool(session.get("profile")))
 
@@ -240,10 +300,11 @@ def tracker():
     """The tracker lives on the student's own device (localStorage); the page only needs scheme facts."""
     meta = []
     today = date.today()
+    lang = get_lang()
     for s in load_schemes():
         meta.append({
             "id": s["id"],
-            "name": s["name_en"],
+            "name": s.get(f"name_{lang}") or s["name_en"],
             "benefit": s.get("benefit_text"),
             "deadline": s.get("deadline"),
             "deadline_note": s.get("deadline_note"),

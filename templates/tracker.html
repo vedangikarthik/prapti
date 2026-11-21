@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
-{% block title %}My tracker – Arhata{% endblock %}
+{% block title %}{{ t('tr.title') }} – Arhata{% endblock %}
 {% block content %}
 <header class="tracker-head">
-  <h1 class="tracker-title">My tracker</h1>
-  <p class="tracker-lead">The schemes you are applying for, their last dates, and your next step. Saved only on this phone or computer.</p>
+  <h1 class="tracker-title">{{ t('tr.title') }}</h1>
+  <p class="tracker-lead">{{ t('tr.lead') }}</p>
 </header>
 
 <div class="urgent-banner" data-urgent hidden role="status">
@@ -13,22 +13,22 @@
 </div>
 
 <div class="tracker-tools" data-tools hidden>
-  <button type="button" class="btn btn-secondary btn-small" data-notify>{{ icon('clock', 18) }}Remind me before last dates</button>
-  <p class="tracker-tools-note" data-notify-note>We remind you 14, 7, 3 and 1 day before each last date, when you open this page.</p>
+  <button type="button" class="btn btn-secondary btn-small" data-notify>{{ icon('clock', 18) }}{{ t('tr.remind') }}</button>
+  <p class="tracker-tools-note" data-notify-note>{{ t('tr.remind_note') }}</p>
 </div>
 
 <section class="track-list" data-track-list aria-live="polite"></section>
 
 <section class="slip track-empty" data-empty hidden>
   <div class="slip-body">
-    <h2 class="track-empty-title">Nothing tracked yet</h2>
-    <p class="track-empty-text">Open a scheme from your results and tap “Add to my tracker”. Its last date, documents and next step will show here.</p>
-    <a class="btn btn-primary" href="/">Find my schemes {{ icon('arrow-right', 20) }}</a>
+    <h2 class="track-empty-title">{{ t('tr.empty_title') }}</h2>
+    <p class="track-empty-text">{{ t('tr.empty_text') }}</p>
+    <a class="btn btn-primary" href="/">{{ t('home.find') }} {{ icon('arrow-right', 20) }}</a>
   </div>
 </section>
 
 <noscript>
-  <p class="notice">The tracker needs JavaScript turned on, because it saves your progress on this device only.</p>
+  <p class="notice">{{ t('tr.noscript') }}</p>
 </noscript>
 
 <template id="track-item">
@@ -44,17 +44,17 @@
         <div class="progress"><span class="progress-bar" data-bar></span></div>
         <span class="track-docs-text" data-docs></span>
       </div>
-      <p class="track-next"><span class="track-next-label">Next step:</span> <span data-next></span></p>
+      <p class="track-next"><span class="track-next-label">{{ t('tr.next') }}</span> <span data-next></span></p>
     </div>
     <div class="perforation" aria-hidden="true"></div>
     <div class="track-stub">
       <button type="button" class="btn btn-primary btn-small" data-advance></button>
       <label class="track-select">
-        <span class="visually-hidden">Change status</span>
+        <span class="visually-hidden">{{ t('tr.change') }}</span>
         <select data-status-select></select>
       </label>
-      <a class="btn btn-secondary btn-small" data-ics download>{{ icon('calendar-plus', 18) }}Calendar</a>
-      <button type="button" class="link-btn track-remove" data-remove>Remove</button>
+      <a class="btn btn-secondary btn-small" data-ics download>{{ icon('calendar-plus', 18) }}{{ t('tr.calendar') }}</a>
+      <button type="button" class="link-btn track-remove" data-remove>{{ t('tr.remove') }}</button>
     </div>
   </article>
 </template>

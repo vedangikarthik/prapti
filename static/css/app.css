@@ -2016,3 +2016,44 @@ h3 {
   margin: var(--space-3) 0 var(--space-5);
   max-width: 32em;
 }
+
+/* ---------- Telugu / Hindi ---------- */
+.scheme-name-en,
+.detail-sub-en {
+  font-family: var(--font-text);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.detail-sub-en {
+  margin-top: 0;
+}
+
+.english-note {
+  margin-top: var(--space-2);
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+:lang(te) .hero-title,
+:lang(te) .q-title,
+:lang(te) .summary-title-none {
+  font-family: "Noto Serif Telugu", var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+:lang(hi) .hero-title,
+:lang(hi) .q-title,
+:lang(hi) .summary-title-none {
+  font-family: "Noto Serif Devanagari", var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+:lang(te) .hero-title,
+:lang(hi) .hero-title {
+  font-size: clamp(2rem, 1.1rem + 4.2vw, 4.5rem);
+}

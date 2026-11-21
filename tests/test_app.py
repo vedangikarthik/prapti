@@ -66,6 +66,31 @@ class TestFlow(unittest.TestCase):
         self.assertIn("aicte-pragati", page)
         self.assertIn('href="/tracker"', self.c.get("/").get_data(as_text=True))
 
+    def test_telugu_and_hindi(self):
+        self.c.get("/lang/te")
+        page = self.c.get("/").get_data(as_text=True)
+        self.assertIn('<html lang="te">', page)
+        self.assertIn("మీరు పొందగల స్కాలర్‌షిప్‌లు", page)
+        self.c.post("/find", data={"sample": "lakshmi"})
+        page = self.c.get("/results").get_data(as_text=True)
+        self.assertIn("లక్ష్మి", page)
+        self.assertIn("సంవత్సరానికి ₹1,10,000", page)
+        self.c.get("/lang/hi")
+        page = self.c.get("/scheme/ts-postmatric-bc-ebc").get_data(as_text=True)
+        self.assertIn("पारिवारिक आय", page)
+        self.assertIn("मेरे ट्रैकर में जोड़ें", page)
+        self.c.get("/lang/en")
+
+    def test_every_text_has_all_languages(self):
+        import json
+        with open("data/i18n.json", encoding="utf-8") as f:
+            data = json.load(f)
+        for key, entry in data.items():
+            if key.startswith("_"):
+                continue
+            for lang in ("en", "te", "hi"):
+                self.assertIn(lang, entry, key)
+
     def test_calendar_file(self):
         r = self.c.get("/api/ics/aicte-pragati")
         self.assertEqual(r.status_code, 200)

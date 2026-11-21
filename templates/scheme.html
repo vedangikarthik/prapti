@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
 {% from "_scheme_card.html" import badge, rule_icon with context %}
-{% block title %}{{ s.name_en }} – Arhata{% endblock %}
+{% block title %}{{ s['name_' ~ lang] or s.name_en }} – Arhata{% endblock %}
 {% block content %}
-<a class="back-link" href="{{ '/results' if has_profile else '/' }}">{{ icon('arrow-left', 20) }}{{ 'All my schemes' if has_profile else 'Home' }}</a>
+<a class="back-link" href="{{ '/results' if has_profile else '/' }}">{{ icon('arrow-left', 20) }}{{ t('det.all') if has_profile else t('det.home') }}</a>
 
-{% set nm = s.name_en | replace('Telangana ', '') %}
+{% set nm = (s['name_' ~ lang] or s.name_en) | replace('Telangana ', '') | replace('తెలంగాణ ', '') | replace('तेलंगाना ', '') %}
 {% if nm | length > 34 and ' for ' in nm %}{% set parts = nm.split(' for ', 1) %}{% set title, sub = parts[0], 'for ' ~ parts[1] %}
 {% elif nm | length > 34 and ' (' in nm %}{% set parts = nm.split(' (', 1) %}{% set title, sub = parts[0], '(' ~ parts[1] %}
 {% else %}{% set title, sub = nm, '' %}{% endif %}
@@ -13,7 +13,8 @@
   {% if has_profile %}{{ badge(m.status) }}{% endif %}
   <h1 class="detail-title">{{ title }}</h1>
   {% if sub %}<p class="detail-sub">{{ sub }}</p>{% endif %}
-  <p class="detail-runby">{{ icon('landmark', 16) }}{{ 'Telangana Government' if s.run_by == 'Telangana' else 'Government of India' }} · {{ s.category | capitalize }}</p>
+  {% if lang != 'en' %}<p class="detail-sub detail-sub-en" lang="en">{{ s.name_en }}</p>{% endif %}
+  <p class="detail-runby">{{ icon('landmark', 16) }}{{ t('gov.ts') if s.run_by == 'Telangana' else t('gov.in') }} · {{ s.category | capitalize }}</p>
   <p class="detail-benefit">{{ s.benefit_text }}</p>
   <p class="detail-summary">{{ s.summary_en }}</p>
 </header>
@@ -21,7 +22,7 @@
 {% if has_profile %}
 <section class="detail-section" aria-labelledby="why-title">
   <h2 id="why-title" class="section-title">
-    {% if m.status == 'likely' %}Why we think you qualify{% elif m.status == 'maybe' %}What we still need to check{% else %}Why it's not a match right now{% endif %}
+    {{ t('det.why_' ~ m.status) }}
   </h2>
   <ul class="rule-list">
     {% for r in m.reasons %}
@@ -29,7 +30,7 @@
     {% endfor %}
   </ul>
   {% if m.status == 'maybe' %}
-  <a class="btn btn-secondary btn-block" href="/results#edit-panel">Add {{ m.missing_labels | join(' and ') }}</a>
+  <a class="btn btn-secondary btn-block" href="/results#edit-panel">{% set what %}{% for f in m.missing_fields %}{{ t('field.' ~ f) | lower }}{{ ', ' if not loop.last }}{% endfor %}{% endset %}{{ t('det.add_missing', what=what | trim) }}</a>
   {% endif %}
 </section>
 {% endif %}
@@ -40,28 +41,29 @@
     <div>
       <h2 id="dl-title" class="deadline-title">
         {% if s.deadline and m.days_left is not none and m.days_left >= 0 %}
-          Apply by {{ nice_date(s.deadline) }}
-          <span class="days-left">{{ m.days_left }} day{{ '' if m.days_left == 1 else 's' }} left</span>
-        {% elif s.deadline %}Closed for this year
-        {% else %}No fixed last date{% endif %}
+          {{ t('dl.apply_by', d=nice_date(s.deadline)) }}
+          <span class="days-left">{{ t('dl.today') if m.days_left == 0 else (t('dl.day_left') if m.days_left == 1 else t('dl.days_left', n=m.days_left)) }}</span>
+        {% elif s.deadline %}{{ t('dl.closed') }}
+        {% else %}{{ t('dl.nofixed') }}{% endif %}
       </h2>
       {% if s.deadline_note %}<p class="deadline-note">{{ s.deadline_note }}</p>{% endif %}
     </div>
   </div>
   <div class="perforation" aria-hidden="true"></div>
   <div class="deadline-actions">
-    <button type="button" class="btn btn-primary" data-track>{{ icon('bookmark-plus', 20) }}Add to my tracker</button>
+    <button type="button" class="btn btn-primary" data-track>{{ icon('bookmark-plus', 20) }}{{ t('det.track') }}</button>
     {% if s.deadline and m.days_left is not none and m.days_left >= 0 %}
-    <a class="btn btn-secondary" href="/api/ics/{{ s.id }}" download>{{ icon('calendar-plus', 20) }}Add to phone calendar</a>
+    <a class="btn btn-secondary" href="/api/ics/{{ s.id }}" download>{{ icon('calendar-plus', 20) }}{{ t('det.calendar') }}</a>
     {% endif %}
   </div>
 </section>
 
 <section class="detail-section" aria-labelledby="docs-title">
   <div class="section-head">
-    <h2 id="docs-title" class="section-title">Your document checklist</h2>
-    <span class="progress-text" data-doc-progress>0 of {{ m.documents|length }} ready</span>
+    <h2 id="docs-title" class="section-title">{{ t('det.docs') }}</h2>
+    <span class="progress-text" data-doc-progress>{{ t('det.ready', a=0, b=m.documents|length) }}</span>
   </div>
+  {% if t('det.english_note') %}<p class="english-note">{{ t('det.english_note') }}</p>{% endif %}
   <div class="progress"><span class="progress-bar" data-doc-bar></span></div>
   <ul class="checklist" data-checklist="{{ s.id }}">
     {% for d in m.documents %}
@@ -80,7 +82,7 @@
 </section>
 
 <section class="detail-section" aria-labelledby="steps-title">
-  <h2 id="steps-title" class="section-title">How to apply — step by step</h2>
+  <h2 id="steps-title" class="section-title">{{ t('det.steps') }}</h2>
   <ol class="steps">
     {% for st in s.steps %}
     <li class="step">
@@ -88,7 +90,7 @@
       <div class="step-body">
         <h3 class="step-title">{{ st.title }}</h3>
         <p class="step-detail">{{ st.detail }}</p>
-        {% if st.link %}<a class="btn btn-secondary btn-small" href="{{ st.link }}" target="_blank" rel="noopener">Open official portal {{ icon('external-link', 16) }}</a>{% endif %}
+        {% if st.link %}<a class="btn btn-secondary btn-small" href="{{ st.link }}" target="_blank" rel="noopener">{{ t('det.portal') }} {{ icon('external-link', 16) }}</a>{% endif %}
       </div>
     </li>
     {% endfor %}
@@ -96,16 +98,16 @@
 </section>
 
 <section class="detail-section" aria-labelledby="after-title">
-  <h2 id="after-title" class="section-title">After you apply</h2>
+  <h2 id="after-title" class="section-title">{{ t('det.after') }}</h2>
   <p class="after-text">{{ s.after_apply }}</p>
 </section>
 
 <aside class="source-box">
-  <p>Source: <a href="{{ s.source_url }}" target="_blank" rel="noopener">{{ s.source_name }} {{ icon('external-link', 14) }}</a></p>
-  <p>{% if s.last_verified %}Last verified: {{ nice_date(s.last_verified) }}{% else %}Not yet verified — check the official site before applying{% endif %}</p>
+  <p>{{ t('det.source') }}: <a href="{{ s.source_url }}" target="_blank" rel="noopener">{{ s.source_name }} {{ icon('external-link', 14) }}</a></p>
+  <p>{% if s.last_verified %}{{ t('det.verified', d=nice_date(s.last_verified)) }}{% else %}{{ t('det.not_verified') }}{% endif %}</p>
 </aside>
 
 <a class="btn btn-secondary btn-block share-btn"
    href="https://wa.me/?text={{ (s.name_en ~ ' – official details: ' ~ s.source_url ~ '  (found on Arhata, a free guide. Never pay anyone to apply.)') | urlencode }}"
-   target="_blank" rel="noopener">{{ icon('message-circle', 20) }}Send to WhatsApp</a>
+   target="_blank" rel="noopener">{{ icon('message-circle', 20) }}{{ t('det.share') }}</a>
 {% endblock %}

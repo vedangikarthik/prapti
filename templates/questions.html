@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
-{% block title %}A few quick questions – Arhata{% endblock %}
+{% block title %}{{ t('q.title') }} – Arhata{% endblock %}
 {% block content %}
-<a class="back-link" href="/">{{ icon('arrow-left', 20) }}Start again</a>
+<a class="back-link" href="/">{{ icon('arrow-left', 20) }}{{ t('q.start_again') }}</a>
 
 {% if removed_id %}
 <div class="notice" role="status">
   {{ icon('eraser', 20) }}
-  <p>We removed a number that looked like an ID. You never need to share ID numbers here.</p>
+  <p>{{ t('removed_id') }}</p>
 </div>
 {% endif %}
 
 <section class="slip q-slip" aria-labelledby="q-title">
-  <div class="q-progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ step }}" aria-label="Question {{ step }} of {{ total }}">
+  <div class="q-progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ step }}" aria-label="{{ t('q.count', a=step, b=total) }}">
     <span class="q-progress-bar" style="width: {{ (step / total * 100) | round(0) }}%"></span>
   </div>
   <div class="q-body">
-    <p class="q-count">Question {{ step }} of {{ total }} · tap an answer</p>
+    <p class="q-count">{{ t('q.count', a=step, b=total) }}</p>
     <h1 id="q-title" class="q-title">{{ question }}</h1>
     <p class="q-why">{{ why }}</p>
 
@@ -24,7 +24,7 @@
       <input type="hidden" name="field" value="{{ field }}">
       {% for value, label in options %}
       <button type="submit" class="q-option" name="value" value="{{ value | lower if value is sameas true or value is sameas false else value }}">
-        <span>{{ label }}</span>{{ icon('arrow-right', 18, 'q-arrow') }}
+        <span>{{ opt(label) }}</span>{{ icon('arrow-right', 18, 'q-arrow') }}
       </button>
       {% endfor %}
     </form>
@@ -32,14 +32,14 @@
   <div class="perforation" aria-hidden="true"></div>
   <form class="q-stub" action="/questions" method="post">
     <input type="hidden" name="field" value="{{ field }}">
-    <button type="submit" name="skip" value="1" class="link-btn q-skip">I'm not sure, skip this</button>
-    <span class="q-stub-note">Skipped details show as “might be eligible”.</span>
+    <button type="submit" name="skip" value="1" class="link-btn q-skip">{{ t('q.skip') }}</button>
+    <span class="q-stub-note">{{ t('q.skip_note') }}</span>
   </form>
 </section>
 
 {% if chips %}
 <section class="q-known" aria-labelledby="known-title">
-  <h2 id="known-title" class="understood-title">What we understood so far</h2>
+  <h2 id="known-title" class="understood-title">{{ t('res.understood_sofar') }}</h2>
   <ul class="chip-row">
     {% for c in chips %}<li class="chip">{{ c }}</li>{% endfor %}
   </ul>
