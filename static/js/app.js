@@ -13,7 +13,7 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if ("IntersectionObserver" in window && !reduceMotion) {
     document.documentElement.classList.add("js");
-    var groups = document.querySelectorAll(".moments, .sheet, .faq, .detail-section, .source-box, .footer-card");
+    var groups = document.querySelectorAll(".moments, .sheet, .faq, .detail-section, .source-box, .footer-card, .about-block, .helper-list-wrap, .admin-log");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -189,6 +189,13 @@
       toast(T("det.added"));
     });
   }
+
+  // ---------- Offline notice ----------
+  var offline = document.querySelector("[data-offline]");
+  function net() { if (offline) offline.hidden = navigator.onLine !== false; }
+  window.addEventListener("online", net);
+  window.addEventListener("offline", net);
+  net();
 
   // ---------- Nav dot: any tracked deadline within 7 days ----------
   var dot = document.querySelector(".nav-dot");

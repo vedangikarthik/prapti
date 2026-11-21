@@ -4,22 +4,28 @@
 {% block page_class %}page page-about{% endblock %}
 {% block content %}
 <header class="about-head">
-  <h1 class="about-title">Why Arhata exists</h1>
-  <p class="about-lead">India has hundreds of scholarships for students like you. Many eligible families never claim them: the rules are hard to read, the document list is unclear, and middlemen charge for help that should be free.</p>
+  <div class="about-head-text">
+    <h1 class="about-title">Why Arhata exists</h1>
+    <p class="about-lead">India has hundreds of scholarships for students like you. Many eligible families never claim them: the rules are hard to read, the document list is unclear, and middlemen charge for help that should be free.</p>
+  </div>
+  <img class="about-hero" src="{{ url_for('static', filename='img/a-torana-gate-to-sacred-precinct-warangal.jpg') }}" width="1400" height="1867" alt="The carved Kakatiya stone gateway at Warangal Fort, the arch on Telangana's state emblem">
 </header>
 
 <section class="about-block" aria-labelledby="how-title">
   <h2 id="how-title" class="section-title">How it works</h2>
   <div class="about-steps">
     <div class="slip about-step">
+      <img class="about-step-pic" src="{{ url_for('static', filename='img/dept-of-telugu-osmania-university-class-room.jpg') }}" width="1400" height="663" alt="An empty classroom in the Department of Telugu, Osmania University" loading="lazy">
       <h3>Tell</h3>
       <p>Describe yourself in plain words, typed or spoken, in English, Telugu or Hindi. We only ask a quick question when a missing detail would change a result.</p>
     </div>
     <div class="slip about-step">
+      <img class="about-step-pic" src="{{ url_for('static', filename='img/architectural-elements-of-ou-college-of-arts.jpg') }}" width="1400" height="979" alt="A carved stone window on the Arts College building, Osmania University" loading="lazy">
       <h3>See why</h3>
       <p>A plain rules engine checks every scheme. Each result shows the rule it rests on and your answer. AI only helps read your message; it never decides.</p>
     </div>
     <div class="slip about-step">
+      <img class="about-step-pic" src="{{ url_for('static', filename='img/corridor-in-ground-floor-of-ou-arts.jpg') }}" width="1400" height="932" alt="The ground-floor corridor of the Osmania University Arts College" loading="lazy">
       <h3>Apply and track</h3>
       <p>Your document checklist, the steps on the official portal, and reminders before the last date, saved on your own phone.</p>
     </div>

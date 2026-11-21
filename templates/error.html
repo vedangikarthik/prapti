@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}{{ title }} – Arhata{% endblock %}
+{% block content %}
+<section class="slip error-slip">
+  <div class="slip-body">
+    <h1 class="error-title">{{ title }}</h1>
+    <p class="error-text">{{ text }}</p>
+    <a class="btn btn-primary" href="/">{{ t('home.find') }} {{ icon('arrow-right', 20) }}</a>
+  </div>
+</section>
+{% endblock %}

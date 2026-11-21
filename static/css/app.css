@@ -1549,7 +1549,7 @@ h3 {
 
 /* ---------- Footer: the back of the card ---------- */
 .site-footer {
-  padding: 0 var(--gutter) 96px;
+  padding: 0 var(--gutter) 128px;
 }
 
 .footer-card {
@@ -2059,10 +2059,18 @@ h3 {
 }
 
 /* ---------- About / Helper / Editor ---------- */
-.page-about,
 .page-helper,
 .page-admin {
   max-width: 1040px;
+}
+
+.page-about {
+  max-width: 1280px;
+}
+
+.page-about .about-title {
+  font-size: var(--step-hero);
+  line-height: 0.98;
 }
 
 .about-title,
@@ -2491,4 +2499,109 @@ h3 {
 
 .notice .icon {
   vertical-align: -4px;
+}
+
+/* ---------- Errors / offline ---------- */
+.error-slip {
+  max-width: 640px;
+  margin-top: var(--space-6);
+}
+
+.error-title {
+  font-size: clamp(32px, 1.6rem + 2.4vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.error-text {
+  margin: var(--space-3) 0 var(--space-5);
+}
+
+.offline-bar {
+  padding: var(--space-3) var(--gutter);
+  font-size: 16px;
+  text-align: center;
+  background: var(--surface-3);
+  color: var(--ink);
+}
+
+.offline-bar[hidden] {
+  display: none;
+}
+
+/* About: lead picture, step pictures, table as cards on phones */
+.about-head {
+  display: grid;
+  gap: var(--space-6);
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .about-head {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.about-hero {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 82vh;
+  object-fit: cover;
+  object-position: 50% 30%;
+  animation: slip-in 700ms var(--ease) both;
+}
+
+@media (max-width: 899px) {
+  .about-hero {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.about-step {
+  padding: 0 0 var(--space-5);
+}
+
+.about-step h3,
+.about-step p {
+  padding: 0 var(--space-5);
+}
+
+.about-step-pic {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 639px) {
+  .pays-table-wrap {
+    overflow: visible;
+  }
+  .pays-table,
+  .pays-table tbody,
+  .pays-table tr,
+  .pays-table th,
+  .pays-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .pays-table thead {
+    display: none;
+  }
+  .pays-table tr {
+    margin-bottom: var(--space-3);
+    background: var(--paper);
+  }
+  .pays-table tbody th {
+    width: 100%;
+    padding-bottom: 0;
+  }
+  .pays-table td {
+    padding-top: var(--space-2);
+  }
+  .pays-table td:last-child {
+    color: var(--brand);
+    font-weight: 600;
+  }
 }

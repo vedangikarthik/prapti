@@ -517,6 +517,18 @@ def api_ics(scheme_id):
                     headers={"Content-Disposition": f"attachment; filename=arhata-{scheme_id}.ics"})
 
 
+@app.errorhandler(404)
+def not_found(_e):
+    return render_template("error.html", page="", title="Page not found",
+                           text="This page does not exist. Your saved schemes and tracker are safe."), 404
+
+
+@app.errorhandler(500)
+def server_error(_e):
+    return render_template("error.html", page="", title="Something went wrong",
+                           text="Please try again in a moment. Nothing you typed was stored."), 500
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5050))
-    app.run(debug=True, port=port)
+    app.run(debug=os.environ.get("FLASK_DEBUG", "1") == "1", host=os.environ.get("HOST", "127.0.0.1"), port=port)
