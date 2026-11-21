@@ -247,7 +247,7 @@ def questions_back():
     asked.pop(current, None)
     asked.pop(field, None)
     session.update(profile=profile, skipped=skipped, asked=asked, history=history)
-    return redirect(url_for("questions"))
+    return redirect(url_for("questions", dir="back"))
 
 
 def pending_questions(profile, skipped):

@@ -84,6 +84,6 @@ Telangana ePASS Post-Matric (SC/ST, BC/EBC, Minorities), Reimbursement of Tuitio
 
 ## Credits
 
-Photographs from Wikimedia Commons: Kakatiya torana at Warangal Fort by Ms Sarah Welch (CC0); Department of Telugu classroom, Osmania University by Myadam Abhilash (CC0); Osmania University Arts College corridor and window by iMahesh (CC BY-SA 4.0). Typefaces: Young Serif, Source Serif 4, Noto Serif Telugu, Noto Serif Devanagari (Google Fonts, OFL).
+Photographs from Wikimedia Commons: Kakatiya torana at Warangal Fort by Ms Sarah Welch (CC0); Department of Telugu classroom, Osmania University by Myadam Abhilash (CC0); Osmania University Arts College corridor and window by iMahesh (CC BY-SA 4.0). Typefaces: Anek Latin, Anek Telugu, Anek Devanagari by Ek Type (Google Fonts, OFL).
 
 *Prapti is a free guide, not a government website. Final eligibility is decided by the scheme authority. Never pay anyone to apply.*

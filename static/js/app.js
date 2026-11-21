@@ -223,6 +223,13 @@
     });
   }
 
+  // ---------- Questions: show the choice instantly before the next screen loads ----------
+  document.querySelectorAll("[data-q-form] .q-tile").forEach(function (tile) {
+    tile.addEventListener("click", function () {
+      tile.classList.add("is-chosen");
+    });
+  });
+
   // ---------- Offline notice ----------
   var offline = document.querySelector("[data-offline]");
   function net() { if (offline) offline.hidden = navigator.onLine !== false; }

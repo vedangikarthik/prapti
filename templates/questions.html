@@ -1,59 +1,71 @@
 {% extends "base.html" %}
 {% from "_icons.html" import icon %}
 {% block title %}{{ t('q.title') }} – Prapti{% endblock %}
+{% block page_class %}page page-questions{% endblock %}
 {% block content %}
-<div class="q-nav">
-  {% if can_go_back %}
-  <form action="/questions/back" method="post">
-    <input type="hidden" name="current" value="{{ field }}">
-    <button type="submit" class="back-link back-btn">{{ icon('arrow-left', 20) }}{{ t('q.back') }}</button>
-  </form>
-  {% else %}
-  <a class="back-link" href="/">{{ icon('arrow-left', 20) }}{{ t('q.start_again') }}</a>
-  {% endif %}
-  <button type="button" class="listen-btn" data-speak="#speak-q" hidden>{{ icon('volume', 20) }}<span>{{ t('listen') }}</span></button>
-</div>
-<div id="speak-q" hidden>{{ question }} {{ why }} {% for value, label in options %}{{ opt(label) }}. {% endfor %}</div>
+{# A short visual cue on every answer, so people can recognise it without reading much #}
+{% set GLYPHS = {
+  'education_level': {'class_9': '9', 'class_10': '10', 'inter': '11–12', 'iti_polytechnic': 'ITI', 'degree': 'UG', 'professional': 'B.Tech', 'pg': 'PG'},
+  'year': {1: '1', 2: '2', 3: '3', 4: '4+'},
+  'community': {'SC': 'SC', 'ST': 'ST', 'BC': 'BC', 'EBC': 'EBC', 'Minority': 'M', 'OC': 'OC'},
+  'annual_income': {90000: '<1L', 125000: '1.5L', 175000: '2L', 225000: '2.5L', 300000: '3.5L', 500000: '8L', 900000: '8L+'},
+  'gender': {'female': '♀', 'male': '♂', 'other': '•'},
+  'area': {'rural': 'i:trees', 'urban': 'i:building'},
+  'disability': {True: 'i:check', False: 'i:x'},
+  'marks_percent': {45: '<50', 52: '50+', 68: '55+', 88: '80+'},
+  'college_type': {'government': 'i:landmark', 'private': 'i:building'},
+} %}
 
-{% if removed_id %}
-<div class="notice" role="status">
-  {{ icon('eraser', 20) }}
-  <p>{{ t('removed_id') }}</p>
-</div>
-{% endif %}
-
-<section class="slip q-slip" aria-labelledby="q-title">
-  <div class="q-progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ step }}" aria-label="{{ t('q.count', a=step, b=total) }}">
-    <span class="q-progress-bar" style="width: {{ (step / total * 100) | round(0) }}%"></span>
+<div class="q-shell {% if request.args.get('dir') == 'back' %}from-back{% endif %}">
+  <div class="q-nav">
+    {% if can_go_back %}
+    <form action="/questions/back" method="post">
+      <input type="hidden" name="current" value="{{ field }}">
+      <button type="submit" class="q-pill">{{ icon('arrow-left', 18) }}{{ t('q.back') }}</button>
+    </form>
+    {% else %}
+    <a class="q-pill" href="/">{{ icon('arrow-left', 18) }}{{ t('q.start_again') }}</a>
+    {% endif %}
+    <button type="button" class="q-pill listen-btn" data-speak="#speak-q" hidden>{{ icon('volume', 18) }}<span>{{ t('listen') }}</span></button>
   </div>
-  <div class="q-body">
+
+  {% if removed_id %}
+  <div class="notice" role="status">{{ icon('eraser', 20) }}<p>{{ t('removed_id') }}</p></div>
+  {% endif %}
+
+  <section class="q-card" aria-labelledby="q-title">
+    <div class="q-steps" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ step }}" aria-label="{{ t('q.count', a=step, b=total) }}">
+      {% for i in range(total) %}<span class="q-step {% if i < step - 1 %}is-done{% elif i == step - 1 %}is-now{% endif %}"></span>{% endfor %}
+    </div>
     <p class="q-count">{{ t('q.count', a=step, b=total) }}</p>
     <h1 id="q-title" class="q-title">{{ question }}</h1>
-    <p class="q-why">{{ why }}</p>
+    <p class="q-why">{{ icon('info', 18) }}<span>{{ why }}</span></p>
 
-    <form class="q-options" action="/questions" method="post">
+    <form class="q-grid q-grid-{{ options | length }}" action="/questions" method="post" data-q-form>
       <input type="hidden" name="field" value="{{ field }}">
       {% for value, label in options %}
-      <button type="submit" class="q-option" name="value" value="{{ value | lower if value is sameas true or value is sameas false else value }}">
-        <span>{{ opt(label) }}</span>{{ icon('arrow-right', 18, 'q-arrow') }}
+      {% set g = GLYPHS.get(field, {}).get(value) %}
+      <button type="submit" class="q-tile" name="value" value="{{ value | lower if value is sameas true or value is sameas false else value }}" style="--i: {{ loop.index0 }}">
+        {% if g %}<span class="q-glyph {% if g|length > 3 and not g.startswith('i:') %}q-glyph-wide{% endif %}" aria-hidden="true">{% if g.startswith('i:') %}{{ icon(g[2:], 24) }}{% else %}{{ g }}{% endif %}</span>{% endif %}
+        <span class="q-label">{{ opt(label) }}</span>
+        <span class="q-tick" aria-hidden="true">{{ icon('check', 18) }}</span>
       </button>
       {% endfor %}
     </form>
-  </div>
-  <div class="perforation" aria-hidden="true"></div>
-  <form class="q-stub" action="/questions" method="post">
-    <input type="hidden" name="field" value="{{ field }}">
-    <button type="submit" name="skip" value="1" class="link-btn q-skip">{{ t('q.skip') }}</button>
-    <span class="q-stub-note">{{ t('q.skip_note') }}</span>
-  </form>
-</section>
 
-{% if chips %}
-<section class="q-known" aria-labelledby="known-title">
-  <h2 id="known-title" class="understood-title">{{ t('res.understood_sofar') }}</h2>
-  <ul class="chip-row">
-    {% for c in chips %}<li class="chip">{{ c }}</li>{% endfor %}
-  </ul>
-</section>
-{% endif %}
+    <form class="q-skip-row" action="/questions" method="post">
+      <input type="hidden" name="field" value="{{ field }}">
+      <button type="submit" name="skip" value="1" class="q-skip">{{ icon('skip', 18) }}{{ t('q.skip') }}</button>
+      <span class="q-skip-note">{{ t('q.skip_note') }}</span>
+    </form>
+  </section>
+
+  {% if chips %}
+  <section class="q-known" aria-labelledby="known-title">
+    <h2 id="known-title" class="q-known-title">{{ t('res.understood_sofar') }}</h2>
+    <ul class="chip-row">{% for c in chips %}<li class="chip">{{ c }}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+</div>
+<div id="speak-q" hidden>{{ question }} {{ why }} {% for value, label in options %}{{ opt(label) }}. {% endfor %}</div>
 {% endblock %}

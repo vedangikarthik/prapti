@@ -25,11 +25,11 @@ body {
 }
 
 :lang(te) {
-  font-family: "Noto Serif Telugu", var(--font-text);
+  font-family: "Anek Telugu", var(--font-text);
 }
 
 :lang(hi) {
-  font-family: "Noto Serif Devanagari", var(--font-text);
+  font-family: "Anek Devanagari", var(--font-text);
 }
 
 p {
@@ -139,7 +139,7 @@ h3 {
 }
 
 .wordmark-te {
-  font-family: "Noto Serif Telugu", serif;
+  font-family: "Anek Telugu", sans-serif;
   font-size: 16px;
   color: var(--brand);
 }
@@ -2038,7 +2038,7 @@ h3 {
 :lang(te) .hero-title,
 :lang(te) .q-title,
 :lang(te) .summary-title-none {
-  font-family: "Noto Serif Telugu", var(--font-display);
+  font-family: "Anek Telugu", var(--font-display);
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.25;
@@ -2047,7 +2047,7 @@ h3 {
 :lang(hi) .hero-title,
 :lang(hi) .q-title,
 :lang(hi) .summary-title-none {
-  font-family: "Noto Serif Devanagari", var(--font-display);
+  font-family: "Anek Devanagari", var(--font-display);
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.2;
@@ -2839,4 +2839,398 @@ h3 {
   background: none;
   border: 0;
   cursor: pointer;
+}
+
+/* =====================================================================
+   Modern pass (22 Nov): clean sans (Anek, matching Latin/Telugu/Devanagari),
+   rounded paper, pill buttons. Overrides the earlier print-like look.
+   ===================================================================== */
+body {
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3,
+.wordmark-en, .sample-name, .scheme-amount, .summary-title, .footer-signoff,
+.footer-name, .stat-num, .step-num, .track-days, .helper-value, .admin-name,
+.detail-benefit, .faq-list summary, .moment-title, .sheet-title, .pays-table tbody th {
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.hero-title, .about-title, .q-title, .section-head-title, .summary-title,
+.detail-title, .tracker-title, .helper-title {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+:lang(te) .hero-title, :lang(te) .q-title, :lang(te) .summary-title-none,
+:lang(hi) .hero-title, :lang(hi) .q-title, :lang(hi) .summary-title-none {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.wordmark-en {
+  font-size: 27px;
+  letter-spacing: -0.04em;
+}
+
+/* Rounded paper */
+.slip,
+.summary-card,
+.notice,
+.source-box,
+.help-note,
+.about-privacy,
+.partner-slot,
+.stat,
+.check-item label,
+.footer-card,
+.pays-table tr,
+.urgent-banner,
+.admin-rule {
+  border-radius: var(--radius-card);
+}
+
+.sheet {
+  border-radius: var(--radius-sheet);
+}
+
+.about-hero,
+.moment-pic {
+  border-radius: var(--radius-card);
+}
+
+.about-step-pic {
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.pays-table th,
+.pays-table td {
+  background: transparent;
+}
+
+.pays-table tr {
+  background: var(--paper);
+}
+
+/* Pills and soft fields */
+.btn,
+.tap-btn {
+  border-radius: 999px;
+}
+
+.tap-btn {
+  border-radius: 28px;
+}
+
+.ask textarea,
+.helper-input,
+.admin-form input,
+.admin-form select,
+.track-select select {
+  border-radius: 16px;
+}
+
+.sample-card,
+.lang-pick-btn {
+  border-radius: var(--radius-tile);
+}
+
+.check-box {
+  border-radius: 8px;
+}
+
+.progress,
+.q-progress {
+  border-radius: 999px;
+}
+
+/* ---------- Questions screen, modern ---------- */
+.page-questions {
+  max-width: 860px;
+}
+
+.q-shell {
+  animation: q-in 420ms var(--ease) both;
+}
+
+.q-shell.from-back {
+  animation-name: q-in-back;
+}
+
+@keyframes q-in {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes q-in-back {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: none; }
+}
+
+.q-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.q-nav form {
+  margin: 0;
+}
+
+.q-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-5) 0 var(--space-4);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.q-pill:hover {
+  background: #ffffff;
+}
+
+.q-pill:active {
+  transform: scale(0.97);
+}
+
+.q-pill.listen-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.q-card {
+  padding: clamp(24px, 5vw, 56px);
+  background: var(--paper);
+  border-radius: var(--radius-sheet);
+}
+
+.q-steps {
+  display: flex;
+  gap: 6px;
+}
+
+.q-step {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  transition: background-color var(--dur-card) var(--ease);
+}
+
+.q-step.is-done {
+  background: var(--brand);
+}
+
+.q-step.is-now {
+  background: var(--brand);
+  opacity: 0.45;
+}
+
+.q-count {
+  margin-top: var(--space-5);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.q-title {
+  margin-top: var(--space-2);
+  font-size: clamp(36px, 1.6rem + 3.4vw, 60px);
+}
+
+.q-why {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  margin-top: var(--space-4);
+  max-width: 36em;
+  font-size: 18px;
+  color: var(--ink-2);
+}
+
+.q-why .icon {
+  margin-top: 3px;
+  color: var(--brand);
+}
+
+.q-grid {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 560px) {
+  .q-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1180px) {
+  .page-questions {
+    max-width: 1040px;
+  }
+  .q-grid-6, .q-grid-7 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.q-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 84px;
+  padding: var(--space-3) var(--space-5) var(--space-3) var(--space-3);
+  font: inherit;
+  text-align: left;
+  color: var(--ink);
+  background: var(--bg);
+  border: 0;
+  border-radius: var(--radius-tile);
+  cursor: pointer;
+  animation: tile-in 380ms var(--ease) both;
+  animation-delay: calc(120ms + var(--i, 0) * 45ms);
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+@keyframes tile-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.q-tile:hover {
+  background: #dcd7cc;
+  transform: translateY(-2px);
+}
+
+.q-tile:active {
+  transform: scale(0.98);
+}
+
+.q-glyph {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--brand);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.q-glyph-wide {
+  font-size: 16px;
+}
+
+.q-label {
+  flex: 1;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.q-tick {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: transparent;
+  color: transparent;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.q-tile:hover .q-tick,
+.q-tile:focus-visible .q-tick {
+  background: var(--paper);
+  color: var(--ink-3);
+}
+
+.q-tile.is-chosen {
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+
+.q-tile.is-chosen .q-glyph {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--brand-ink);
+}
+
+.q-tile.is-chosen .q-tick {
+  background: var(--brand-ink);
+  color: var(--brand);
+}
+
+.q-skip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.q-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-soft);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.q-skip:hover {
+  background: #d3ddc6;
+}
+
+.q-skip:active {
+  transform: scale(0.97);
+}
+
+.q-skip-note {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.q-known {
+  margin-top: var(--space-6);
+}
+
+.q-known-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .q-shell, .q-tile { animation: none; }
 }
