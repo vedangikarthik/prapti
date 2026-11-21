@@ -12,7 +12,7 @@ Every year, eligible students in Telangana miss scholarships because the rules a
 
 **Team:** (fill in your names / solo)
 
-**GitHub repository:** https://github.com/vedangikarthik/hakku-claim-whats-yours
+**GitHub repository:** https://github.com/vedangikarthik/prapti
 
 **How to run:** see README.md (`pip install -r requirements.txt`, then `python app.py`, open http://127.0.0.1:5050).
 
