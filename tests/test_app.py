@@ -58,6 +58,14 @@ class TestFlow(unittest.TestCase):
             for word in BANNED:
                 self.assertNotIn(word, page, url)
 
+    def test_tracker_page(self):
+        r = self.c.get("/tracker")
+        self.assertEqual(r.status_code, 200)
+        page = r.get_data(as_text=True)
+        self.assertIn('id="schemes-meta"', page)
+        self.assertIn("aicte-pragati", page)
+        self.assertIn('href="/tracker"', self.c.get("/").get_data(as_text=True))
+
     def test_calendar_file(self):
         r = self.c.get("/api/ics/aicte-pragati")
         self.assertEqual(r.status_code, 200)

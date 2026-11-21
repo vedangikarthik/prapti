@@ -235,6 +235,26 @@ def scheme_detail(scheme_id):
                            has_profile=bool(session.get("profile")))
 
 
+@app.route("/tracker")
+def tracker():
+    """The tracker lives on the student's own device (localStorage); the page only needs scheme facts."""
+    meta = []
+    today = date.today()
+    for s in load_schemes():
+        meta.append({
+            "id": s["id"],
+            "name": s["name_en"],
+            "benefit": s.get("benefit_text"),
+            "deadline": s.get("deadline"),
+            "deadline_note": s.get("deadline_note"),
+            "days_left": (date.fromisoformat(s["deadline"]) - today).days if s.get("deadline") else None,
+            "documents": [{"name": d["name"], "hint": d.get("hint", "")} for d in s.get("documents", [])],
+            "portal": next((st["link"] for st in s.get("steps", []) if st.get("link")), s.get("source_url")),
+            "source_name": s.get("source_name"),
+        })
+    return render_template("tracker.html", page="tracker", schemes_meta=meta)
+
+
 @app.route("/api/extract", methods=["POST"])
 def api_extract():
     data = request.get_json(silent=True) or {}

@@ -1811,3 +1811,208 @@ h3 {
 .q-known {
   margin-top: var(--space-6);
 }
+
+/* ---------- My tracker ---------- */
+.tracker-title {
+  font-size: var(--step-head);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tracker-lead {
+  margin-top: var(--space-3);
+  max-width: 32em;
+  font-size: var(--step-lead);
+  line-height: 1.4;
+}
+
+.urgent-banner {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  background: var(--urgent-bg);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.urgent-banner[hidden],
+.tracker-tools[hidden] {
+  display: none;
+}
+
+.urgent-banner .icon {
+  color: var(--urgent);
+  margin-top: 1px;
+}
+
+.tracker-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.tracker-tools-note {
+  flex: 1 1 260px;
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.track-list {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.track-item {
+  animation: card-in var(--dur-card) var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.track-item.is-urgent {
+  background: #f7ebe6;
+}
+
+.track-main {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) clamp(20px, 4vw, 32px) var(--space-4);
+}
+
+.track-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.track-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 3px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-chip);
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.status-documents_ready .track-status,
+.status-applied .track-status,
+.status-under_review .track-status {
+  background: var(--maybe-bg);
+  color: var(--maybe);
+}
+
+.status-received .track-status {
+  background: var(--likely-bg);
+  color: var(--likely);
+}
+
+.status-rejected .track-status {
+  background: var(--urgent-bg);
+  color: var(--urgent);
+}
+
+.track-days {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--brand);
+  white-space: nowrap;
+}
+
+.is-urgent .track-days {
+  color: var(--urgent);
+}
+
+.track-name {
+  margin-top: var(--space-2);
+  font-size: clamp(21px, 1.1rem + 0.5vw, 25px);
+  line-height: 1.15;
+}
+
+.track-name a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.track-name a:hover {
+  color: var(--brand);
+}
+
+.track-deadline {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.track-docs {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.track-docs .progress {
+  margin-top: 0;
+}
+
+.track-docs-text {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.track-next {
+  margin-top: var(--space-2);
+}
+
+.track-next-label {
+  font-weight: 600;
+}
+
+.track-stub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-3) clamp(20px, 4vw, 32px) var(--space-4);
+}
+
+.track-select select {
+  min-height: 46px;
+  padding: 0 var(--space-4);
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.track-remove {
+  margin-left: auto;
+  color: var(--ink-2);
+}
+
+.track-empty {
+  margin-top: var(--space-6);
+}
+
+.track-empty[hidden] {
+  display: none;
+}
+
+.track-empty-title {
+  font-size: clamp(28px, 1.4rem + 1.6vw, 40px);
+  line-height: 1.05;
+}
+
+.track-empty-text {
+  margin: var(--space-3) 0 var(--space-5);
+  max-width: 32em;
+}

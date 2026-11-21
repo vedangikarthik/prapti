@@ -25,7 +25,7 @@
       </a>
       <nav class="top-links" aria-label="Primary">
         <a href="/" {% if page == 'find' %}aria-current="page"{% endif %}>Find</a>
-        <a href="#" data-soon>My tracker</a>
+        <a href="/tracker" {% if page == 'tracker' %}aria-current="page"{% endif %}>My tracker</a>
         <a href="#" data-soon>About</a>
       </nav>
       <nav class="lang-switch" aria-label="Language">
@@ -59,7 +59,7 @@
       {{ icon('search', 20) }}
       <span>Find</span>
     </a>
-    <a href="#" data-soon>
+    <a href="/tracker" {% if page == 'tracker' %}aria-current="page"{% endif %}>
       {{ icon('check-square', 20) }}
       <span>My tracker</span>
       <span class="nav-dot" aria-hidden="true"></span>
