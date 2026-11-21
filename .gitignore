@@ -21,3 +21,16 @@ __pycache__/
 .codebenders/dev-server.json
 .DS_Store
 .taste-skill/
+
+# Next.js scaffold created by the Codebenders IDE (not used by the Flask app)
+/app/
+/components/
+/lib/
+/public/
+/src/
+next.config.mjs
+package.json
+package-lock.json
+postcss.config.mjs
+tailwind.config.ts
+tsconfig.json
