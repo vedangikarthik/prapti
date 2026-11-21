@@ -176,8 +176,22 @@ def extract_fallback(text: str) -> dict:
     }
 
 
-def extract(text: str) -> dict:
-    """Returns {"profile": {...}, "removed_id": bool}."""
+def extract(text: str, use_ai: bool = True) -> dict:
+    """Returns {"profile": {...}, "removed_id": bool, "source": "ai" | "offline"}.
+
+    ID-like numbers are removed before anything else sees the text.
+    The optional AI reading fills what it can; the offline parser fills any gaps.
+    """
     clean, removed = scrub_ids(text or "")
-    profile = extract_fallback(clean)
-    return {"profile": profile, "removed_id": removed}
+    offline = extract_fallback(clean)
+    ai = None
+    if use_ai:
+        from engine.llm import extract_with_ai
+        ai = extract_with_ai(clean)
+    if ai:
+        profile = {k: (ai.get(k) if ai.get(k) is not None else offline.get(k)) for k in PROFILE_KEYS}
+        source = "ai"
+    else:
+        profile = offline
+        source = "offline"
+    return {"profile": profile, "removed_id": removed, "source": source}

@@ -1703,3 +1703,111 @@ h3 {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
+
+/* ---------- Quick questions ---------- */
+.q-slip {
+  animation: slip-in 500ms var(--ease) both;
+}
+
+.q-progress {
+  height: 6px;
+  background: var(--surface-2);
+}
+
+.q-progress-bar {
+  display: block;
+  height: 100%;
+  background: var(--brand);
+  transition: width var(--dur-card) var(--ease);
+}
+
+.q-body {
+  padding: clamp(28px, 5vw, 48px) clamp(20px, 5vw, 48px) var(--space-5);
+}
+
+.q-count {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.q-title {
+  margin-top: var(--space-3);
+  font-size: clamp(30px, 1.3rem + 2.6vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.q-why {
+  margin-top: var(--space-3);
+  max-width: 34em;
+  color: var(--ink-2);
+}
+
+.q-options {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .q-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.q-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 60px;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-text);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 0;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.q-option:hover {
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+
+.q-option:active {
+  transform: scale(0.98);
+}
+
+.q-arrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.q-option:hover .q-arrow,
+.q-option:focus-visible .q-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.q-stub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 var(--space-4);
+  padding: var(--space-2) clamp(20px, 5vw, 48px) var(--space-4);
+}
+
+.q-stub-note {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.q-known {
+  margin-top: var(--space-6);
+}

@@ -7,8 +7,8 @@ from flask import (Flask, Response, abort, jsonify, redirect, render_template,
 
 from engine.extract import PROFILE_KEYS, extract
 from engine.ics import build_ics
-from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, format_value,
-                          load_schemes, match_all, match_scheme)
+from engine.match import (FIELD_LABEL, LEVEL_LABEL, DATA_DIR, fields_that_matter,
+                          format_value, load_schemes, match_all, match_scheme)
 
 app = Flask(__name__)
 # The session only holds the student's answers (never ID numbers) on their own device.
@@ -20,15 +20,28 @@ FIELD_OPTIONS = {
     "year": [(1, "1st"), (2, "2nd"), (3, "3rd"), (4, "4th+")],
     "community": [(c, c if c != "OC" else "OC / General") for c in ["SC", "ST", "BC", "EBC", "Minority", "OC"]],
     "annual_income": [(90000, "Under ₹1L"), (125000, "₹1–1.5L"), (175000, "₹1.5–2L"), (225000, "₹2–2.5L"),
-                      (500000, "₹2.5–8L"), (900000, "Above ₹8L")],
+                      (300000, "₹2.5–3.5L"), (500000, "₹3.5–8L"), (900000, "Above ₹8L")],
     "gender": [("female", "Female"), ("male", "Male"), ("other", "Other")],
-    "area": [("rural", "Rural"), ("urban", "Urban")],
+    "area": [("rural", "Village (rural)"), ("urban", "Town or city (urban)")],
     "disability": [(True, "Yes, 40%+"), (False, "No")],
-    "marks_percent": [(45, "Under 50%"), (55, "50–60%"), (68, "60–75%"), (80, "75–85%"), (90, "85%+")],
+    "marks_percent": [(45, "Under 50%"), (52, "50–55%"), (68, "55–80%"), (88, "80% or more")],
     "college_type": [("government", "Government / Aided"), ("private", "Private")],
 }
 CHIP_FIELDS = ["education_level", "year", "community", "annual_income", "gender", "area",
                "disability", "marks_percent", "college_type"]
+
+# The Quick questions screen: asked only when a detail is missing AND it changes a result.
+QUESTIONS = {
+    "education_level": ("What are you studying now?", "Each scholarship is for certain classes or courses."),
+    "year": ("Which year of the course?", "Some schemes are only for the first or second year."),
+    "community": ("Which community are you from?", "Many Telangana scholarships are set aside for SC, ST, BC, EBC or minority students."),
+    "annual_income": ("Family income in a year?", "Almost every scholarship has an income limit. A rough idea is enough."),
+    "gender": ("Are you a girl or a boy?", "Some schemes, like AICTE Pragati, are only for girls."),
+    "area": ("Where do you live?", "The income limit for BC, EBC and minority students is different in rural and urban areas."),
+    "disability": ("A disability of 40% or more?", "Some schemes are for students with a disability certificate."),
+    "marks_percent": ("Marks in your last exam?", "A few scholarships ask for a minimum percentage."),
+    "college_type": ("Government or private college?", "NMMS is only for students in government or aided schools."),
+}
 
 
 def load_samples():
@@ -59,8 +72,8 @@ def _coerce(field, raw):
 BAND_EDGES = {
     # option value -> upper edge of that band; a typed value is shown as the band it falls in
     "annual_income": [(90000, 100000), (125000, 150000), (175000, 200000), (225000, 250000),
-                      (500000, 800000), (900000, float("inf"))],
-    "marks_percent": [(45, 50), (55, 60), (68, 75), (80, 85), (90, float("inf"))],
+                      (300000, 350000), (500000, 800000), (900000, float("inf"))],
+    "marks_percent": [(45, 49.99), (52, 54.99), (68, 79.99), (88, float("inf"))],
 }
 
 
@@ -135,8 +148,52 @@ def find():
         session["profile"] = result["profile"]
         session["text"] = text if not result["removed_id"] else ""
         session["removed_id"] = result["removed_id"]
+        session["read_by"] = result["source"]
         session.pop("sample_name", None)
+        session["skipped"] = []
+        session["asked"] = {}
+        if pending_questions(result["profile"], []):
+            return redirect(url_for("questions"))
     return redirect(url_for("results"))
+
+
+def pending_questions(profile, skipped):
+    """Missing details that would change at least one result, in a sensible order."""
+    matter = set(fields_that_matter(profile))
+    return [f for f in QUESTIONS if f in matter and f not in skipped and profile.get(f) is None]
+
+
+@app.route("/questions", methods=["GET", "POST"])
+def questions():
+    if not session.get("profile"):
+        return redirect(url_for("index"))
+    profile = dict(current_profile())
+    skipped = list(session.get("skipped", []))
+    if request.method == "POST":
+        field = request.form.get("field")
+        if field in QUESTIONS:
+            if request.form.get("skip"):
+                skipped.append(field)
+            else:
+                profile[field] = _coerce(field, request.form.get("value"))
+                if profile[field] is None:
+                    skipped.append(field)
+            session["profile"] = profile
+            session["skipped"] = skipped
+        return redirect(url_for("questions"))
+    pending = pending_questions(profile, skipped)
+    if not pending:
+        return redirect(url_for("results"))
+    field = pending[0]
+    asked = dict(session.get("asked", {}))
+    asked[field] = True
+    session["asked"] = asked
+    step = len(asked)
+    total = step + len(pending) - 1
+    q, why = QUESTIONS[field]
+    return render_template("questions.html", page="find", field=field, question=q, why=why,
+                           options=FIELD_OPTIONS[field], step=step, total=total,
+                           chips=understood_chips(profile), removed_id=session.get("removed_id", False))
 
 
 @app.route("/profile", methods=["POST"])

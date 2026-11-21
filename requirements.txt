@@ -1,1 +1,2 @@
 flask
+anthropic  # optional: AI reading of messages when ANTHROPIC_API_KEY is set
